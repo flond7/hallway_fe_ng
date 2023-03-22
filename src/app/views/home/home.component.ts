@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faBullseye } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-home',
@@ -6,6 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent {
+
+  faUsers = faUsers;
+  faBullseye = faBullseye;
 
   permission_users = true;
   permission_peg = true;
