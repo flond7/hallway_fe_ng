@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-white">Hallway</h1>
+  </div>
+  <div class="row bg-dark">
+    <div *ngIf="permission_users" class="col-3 p-3 m-3 bg-users text-white">
+      <h2>Utenti</h2>
+      <p>Gestione utenti e credenziali</p>
+    </div>
+    <div *ngIf="permission_peg" class="col-3 p-3 m-3 bg-peg text-white">
+      <h2>PEG</h2>
+      <p>Gestione obbiettivi annuali</p>
+    </div>
+    <div *ngif="permission_service3" class=""></div>
+    <div *ngif="permission_service4" class=""></div>
+  </div>
+
+</div>
