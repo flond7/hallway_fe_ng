@@ -3,11 +3,16 @@
     <h1 class="text-white">Hallway</h1>
   </div>
   <div class="row bg-dark">
-    <div *ngIf="permission_users" class="col-3 p-3 m-3 bg-users text-white">
-      <h2>Utenti</h2>
-      <p>Gestione utenti e credenziali</p>
+    <div *ngIf="permission_users" class="col-3 d-flex p-3 m-3 bg-users text-white">
+      <div class="col-4">asd
+        <!-- <fa-icon [icon]='faPlus' class="mr-3"></fa-icon> -->
+      </div>
+      <div class="col-8">
+        <h2>Utenti</h2>
+        <p>Gestione utenti e credenziali</p>
+      </div>
     </div>
-    <div *ngIf="permission_peg" class="col-3 p-3 m-3 bg-peg text-white">
+    <div *ngIf="permission_peg" class="col-3 p-3 m-3 bg-peg text-white" routerLink="/peg-home">
       <h2>PEG</h2>
       <p>Gestione obbiettivi annuali</p>
     </div>

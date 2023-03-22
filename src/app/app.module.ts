@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 /* VIEWS */
 import { HomeComponent } from './views/home/home.component';
+import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    PegHomeComponent,
   ],
   imports: [
     BrowserModule,
