@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class PegGoalViewComponent {
 
+obj = {
+  type: "ordinario",
+  start: "",
+  end: "",
+  office: "",
+  year: "",
+  people: ["Elisa Pessa", "Elisa Pessa", "Elisa Pessa"],
+  phases: [
+    {description: "description 1", weight: "50", status:"fatto"},
+    {description: "description 2", weight: "30", status:"fatto"},
+    {description: "description 3", weight: "20", status: "in corso"},
+    {description: "description 2", weight: "30", status:"da fare"},
+  ]
+}
+
+
 }

@@ -10,6 +10,7 @@ import { HomeComponent } from './views/home/home.component';
 import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegGoalViewComponent } from './views/peg/peg-goal-view/peg-goal-view.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
+import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-row.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
     PegHomeComponent,
     PegGoalViewComponent,
     PegMenuComponent,
+    PegPhaseRowComponent,
   ],
   imports: [
     BrowserModule,

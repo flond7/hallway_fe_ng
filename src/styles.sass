@@ -3,20 +3,47 @@
 @import "../node_modules/bootstrap/scss/functions"  
 @import "../node_modules/bootstrap/scss/variables"
 //@import "../node_modules/bootstrap/scss/maps"
-//@import "../node_modules/bootstrap/scss/mixins"
+@import "../node_modules/bootstrap/scss/mixins"
 //@import "../node_modules/bootstrap/scss/utilities"
 //@import "../node_modules/bootstrap/scss/helpers"
 //@import "../node_modules/bootstrap/scss/utilities/api"
 
 // Create your own colors and map
-$custom-colors: ("users": #d63384, "peg": #fecf6c)
+
+$muted: #e9ecef
+$dark: #1e1e25
+$dark: #22252f !important
+
+$custom-colors: ("users": #d63384, "peg": #fecf6c, "dark":#1e1e25, 'success': #8BC34A)
 $theme-colors: map-merge($theme-colors, $custom-colors)
 
 
 @import "../node_modules/bootstrap/scss/bootstrap"
 
+body
+  background-color: #F8F9FA
+  color: #5c6b85
 
 .container
   height: 90vh
   width: 1250px !important
   display: flex
+.alert-small
+  font-size: 0.7rem
+  height: 1rem
+  width: auto !important
+  display: flex
+  align-items: center
+.no-hover
+  hover:none
+  cursor: none
+
+
+/* .bg-card
+  background-color: #00000038 */
+.bg-card
+  //background-color: #2b2e3b
+  background-color: #fff
+  box-shadow: 0 .5rem 1rem rgba($black, .15)
+
+.tag

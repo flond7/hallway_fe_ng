@@ -1,0 +1,19 @@
+<div class="row py-2 text-muted" >
+  <div class="col-1 text-center">N°</div>
+  <div class="col-9">Descrizione </div>
+  <div class="col-1 text-center">Peso</div>
+  <div class="col-1 text-center">Stato</div>
+</div>
+
+<div *ngFor="let phase of phases; index as i" class="row border-bottom py-2" >
+  <div class="col-1 text-center">{{i}} </div>
+  <div class="col-9">{{phase.description}} </div>
+  <div class="col-1 text-center">{{phase.weight}}</div>
+
+  <div class="col-1 text-center">
+    <fa-icon *ngIf="phase.status === 'fatto'" [icon]='faCircle' class="icon-bg text-success"></fa-icon>
+    <fa-icon *ngIf="phase.status === 'in corso'" [icon]='faCircleHalfStroke' class="icon-bg text-warning"></fa-icon>
+    <fa-icon *ngIf="phase.status === 'da fare'" [icon]='faMinus' class="icon-bg"></fa-icon>
+  </div>
+
+</div>
