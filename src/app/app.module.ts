@@ -11,6 +11,9 @@ import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegGoalViewComponent } from './views/peg/peg-goal-view/peg-goal-view.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
 import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-row.component';
+import { PegYearViewComponent } from './views/peg/peg-year-view/peg-year-view.component';
+import { PegUserViewComponent } from './views/peg/peg-user-view/peg-user-view.component';
+import { PegGoalGroupComponent } from './components/peg/peg-goal-group/peg-goal-group.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-r
     PegGoalViewComponent,
     PegMenuComponent,
     PegPhaseRowComponent,
+    PegYearViewComponent,
+    PegUserViewComponent,
+    PegGoalGroupComponent,
   ],
   imports: [
     BrowserModule,
