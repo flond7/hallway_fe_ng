@@ -14,7 +14,7 @@ $muted: #e9ecef
 $dark: #1e1e25
 $dark: #22252f !important
 
-$custom-colors: ("users": #d63384, "peg": #fecf6c, "dark":#1e1e25, 'success': #8BC34A)
+$custom-colors: ("users": #d63384, "peg": #fecf6c, "dark":#1e1e25, 'success': rgb(139, 195, 74))
 $theme-colors: map-merge($theme-colors, $custom-colors)
 
 
@@ -30,15 +30,17 @@ body
   display: flex
 .alert-small
   font-size: 0.7rem
-  height: 1rem
-  width: auto !important
+  height: 1.5rem
   display: flex
   align-items: center
+  justify-content: center
 .no-hover
   hover:none
   cursor: none
 
-
+.big
+  font-size: 4rem
+  line-height: 0.7
 /* .bg-card
   background-color: #00000038 */
 .bg-card
