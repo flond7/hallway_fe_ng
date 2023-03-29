@@ -10,6 +10,8 @@
 
 // Create your own colors and map
 
+$bg-color: #F8F9FA  
+$txt-color: #5c6b85
 $muted: #e9ecef
 $dark: #1e1e25
 $dark: #22252f !important
@@ -21,8 +23,8 @@ $theme-colors: map-merge($theme-colors, $custom-colors)
 @import "../node_modules/bootstrap/scss/bootstrap"
 
 body
-  background-color: #F8F9FA
-  color: #5c6b85
+  background-color: $bg-color
+  color: $txt-color
 
 .container
   height: 90vh

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { faUsers, faBullseye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-peg-menu',
@@ -7,8 +6,5 @@ import { faUsers, faBullseye } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./peg-menu.component.sass']
 })
 export class PegMenuComponent {
-
-  faUsers = faUsers;
-  faBullseye = faBullseye;
 
 }

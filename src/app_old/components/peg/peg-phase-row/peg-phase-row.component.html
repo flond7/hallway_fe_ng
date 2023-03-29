@@ -1,0 +1,32 @@
+<div class="row py-2 text-muted">
+  <div class="col-2 text-center">Peso</div>
+  <div class="col-8">Descrizione </div>
+  <div class="col-2 text-center">Stato</div>
+</div>
+
+<div *ngFor="let phase of phases; index as i" class="row border-bottom py-4">
+
+  <div class="row m-0 p-0">
+    <div class="col-2 text-center big">{{phase.weight}}</div>
+    <div class="col-8">{{phase.description}} </div>
+    <div class="col-2 text-end">
+      <div *ngIf="phase.status === 'In ritardo'" class="alert alert-small alert-danger">{{phase.status}}</div>
+      <div *ngIf="phase.status === 'In anticipo'" class="alert alert-small alert-success">{{phase.status}}</div>
+      <div *ngIf="phase.status === 'In tempo'" class="alert alert-small alert-success">{{phase.status}}</div>
+      <div *ngIf="phase.status === 'Da fare'" class="alert alert-small alert-info">{{phase.status}}</div>
+    </div>
+
+  </div>
+
+  <div class="row small m-0 p-0">
+    <div class="col-8 offset-2 d-flex mt-3">
+
+      <div class="col-4"><strong>Inizio previsto: </strong><br/>{{phase.startPrevision | date:'dd/MM/yyyy' }}</div>
+      <div class="col-4"><strong>Fine prevista: </strong><br/>{{phase.endPrevision | date:'dd/MM/yyyy' }}</div>
+      <div class="col-4"><strong>Inizio reale: </strong><br/>{{phase.startReal | date:'dd/MM/yyyy' }}</div>
+      <div class="col-4"><strong>Fine reale: </strong><br/>{{phase.endReal | date:'dd/MM/yyyy'}}</div>
+ 
+    </div>
+  </div>
+
+</div>

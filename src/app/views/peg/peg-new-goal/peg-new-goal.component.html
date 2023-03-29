@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <form [formGroup]="goalForm" (ngSubmit)="submit()" class="d-flex flex-column w-100">
+
+        <label for="name">Name</label>
+        <input formControlName="name" id="name" type="text" class="form-control">
+        <!-- <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+          <div *ngIf="f.name.errors && f.name.errors.required">Name is required.</div>
+          <div *ngIf="f.name.errors && f.name.errors.minlength">Name should be 3 character.</div>
+        </div> -->
+
+
+      </form>
+
+    </div>
+  </div>
+</div>

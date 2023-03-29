@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="row w-100 align-items-center justify-content-center">
+
+    <div *ngIf="permission_users" class="col-4 me-4 bg-users text-white home-tile">
+      <div class="d-flex justify-content-center">
+        <fa-icon [icon]='faUsers' class="icon-bg"></fa-icon>
+      </div>
+      <div class="text-center">
+        <h2>Utenti</h2>
+        <p>Gestione utenti e credenziali</p>
+      </div>
+    </div>
+
+    <div *ngIf="permission_peg" class="col-4 me-4 bg-peg home-tile" routerLink="/peg-home">
+      <div class="d-flex justify-content-center">
+        <fa-icon [icon]='faBullseye' class="icon-bg"></fa-icon>
+      </div>
+      <div class="text-center">
+        <h2>PEG</h2> 
+        <p>Gestione obbiettivi annuali</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
