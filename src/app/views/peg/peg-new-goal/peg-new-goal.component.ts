@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+
 
 
 @Component({
@@ -8,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms"
   styleUrls: ['./peg-new-goal.component.sass']
 })
 export class PegNewGoalComponent {
+
+@Input() phases: any;
 
 /* REACTIVE FORM */
 goalForm = new FormGroup({
