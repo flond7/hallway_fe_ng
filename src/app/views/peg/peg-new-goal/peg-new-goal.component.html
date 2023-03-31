@@ -10,7 +10,13 @@
           <div *ngIf="f.name.errors && f.name.errors.required">Name is required.</div>
           <div *ngIf="f.name.errors && f.name.errors.minlength">Name should be 3 character.</div>
         </div> -->
+        <label for="description">Descrizione</label>
+        <input formControlName="description" id="description" type="text" class="form-control">
+        <!-- <label for="description">Peso dell'obbiettivo</label>
+        <div *ngFor="let weight of GB.globalConstants.; index as i" class="" (click)="this.changeWeight(i)">{{weight}}</div>
 
+        <label for="description">Descrizione</label>
+        <input formControlName="description" id="description" type="text" class="form-control"> -->
 
       </form>
 

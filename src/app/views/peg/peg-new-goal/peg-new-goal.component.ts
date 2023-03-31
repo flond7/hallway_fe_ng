@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import * as GB from '../../../../constants'
 
 
 
@@ -16,7 +17,7 @@ export class PegNewGoalComponent {
 goalForm = new FormGroup({
   name: new FormControl('', [Validators.required]),
   description: new FormControl('', [Validators.required]),
-  weight: new FormControl('', [Validators.required]),
+  weight: new FormControl([Validators.required]),
   start: new FormControl('', []),
   end: new FormControl('', []),
   office: new FormControl('', []),
@@ -27,6 +28,17 @@ goalForm = new FormGroup({
 
 get gf(){return this.goalForm.controls;}
 
+constructor () {}
+
+ngOnInit(): void {  
+  console.log(this.gf);
+  console.log(GB.globalConstants.GOAL_WEIGHT)
+}
+
+changeWeight(value: any) {
+  console.log(this.gf)
+  //this.weight = value;
+}
 submit() {
   console.log('submitted')
 }

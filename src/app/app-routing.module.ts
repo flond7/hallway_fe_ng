@@ -6,6 +6,7 @@ import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 
 import { PegViewYearComponent  } from './views/peg/peg-view-year/peg-view-year.component';
 import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
+import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'peg-home', component: PegHomeComponent },
   { path: 'peg-view-goal', component: PegViewGoalComponent },
   { path: 'peg-view-year', component: PegViewYearComponent },
+  { path: 'peg-new-goal', component: PegNewGoalComponent },
 ];
 
 @NgModule({
