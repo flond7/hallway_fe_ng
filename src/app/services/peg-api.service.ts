@@ -12,8 +12,14 @@ export class PegApiService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getOptions() {
+    let headers = new HttpHeaders;
+    headers = headers.append('Authorization','Bearer${this.auth.jwToken}');
+    return headers;
+  }
+
   getUserList() {
-    return this.httpClient.get(`${djangoUserURL}/api_users/user_list`)
+    return this.httpClient.get('http://127.0.0.1:8000/api_user/user_list')
   }
 
   /* findSingleUser(cf:any) {

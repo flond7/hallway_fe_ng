@@ -19,6 +19,6 @@ export class HomeComponent {
 
   constructor (public api: PegApiService) {}
   ngOnInit(): void {
-    this.api.getUserList().subscribe((res) => { console.log(res); });
+    this.api.getUserList().subscribe((res) => { console.log('res'); console.log(res); });
   }
 }
