@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row w-100">
     <div class="col-12">
 
       <form [formGroup]="goalForm" (ngSubmit)="submit()" class="d-flex flex-column w-100">
@@ -12,11 +12,13 @@
         </div> -->
         <label for="description">Descrizione</label>
         <input formControlName="description" id="description" type="text" class="form-control">
-        <!-- <label for="description">Peso dell'obbiettivo</label>
-        <div *ngFor="let weight of GB.globalConstants.; index as i" class="" (click)="this.changeWeight(i)">{{weight}}</div>
 
+        <label for="description">Peso dell'obbiettivo</label>
+        <div class="d-flex ">
+          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3" (click)="this.changeWeight(i)">{{weight}}</div>
+        </div>
         <label for="description">Descrizione</label>
-        <input formControlName="description" id="description" type="text" class="form-control"> -->
+        <input formControlName="description" id="description" type="text" class="form-control">
 
       </form>
 

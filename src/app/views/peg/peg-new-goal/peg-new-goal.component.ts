@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import * as GB from '../../../../constants'
+import * as GC from '../../../../constants'
 
 
 
@@ -12,6 +12,7 @@ import * as GB from '../../../../constants'
 export class PegNewGoalComponent {
 
 @Input() phases: any;
+goalWeight: any;
 
 /* REACTIVE FORM */
 goalForm = new FormGroup({
@@ -31,8 +32,10 @@ get gf(){return this.goalForm.controls;}
 constructor () {}
 
 ngOnInit(): void {  
-  console.log(this.gf);
-  console.log(GB.globalConstants.GOAL_WEIGHT)
+  this.goalWeight = GC.GOAL_WEIGHT;
+  //this.weights = globalConstants.GOAL_WEIGHT
+  console.log(GC.GOAL_WEIGHT);
+  console.log(typeof(GC))
 }
 
 changeWeight(value: any) {
