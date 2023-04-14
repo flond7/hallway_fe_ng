@@ -4,20 +4,54 @@
 
       <form [formGroup]="goalForm" (ngSubmit)="submit()" class="d-flex flex-column w-100">
 
-        <label for="name">Name</label>
-        <input formControlName="name" id="name" type="text" class="form-control">
-        <!-- <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
-          <div *ngIf="f.name.errors && f.name.errors.required">Name is required.</div>
-          <div *ngIf="f.name.errors && f.name.errors.minlength">Name should be 3 character.</div>
-        </div> -->
-        <label for="description">Descrizione</label>
-        <input formControlName="description" id="description" type="text" class="form-control">
-
-        <label for="description">Peso dell'obbiettivo</label>
-        <div class="d-flex ">
-          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3" (click)="this.changeWeight(i)">{{weight}}</div>
+        <div class="d-flex">
+          <div class="col-4 pe-3">
+            <label for="name" class="mt-2 h5">Name</label>
+            <input formControlName="name" id="name" type="text" class="form-control">
+            <!-- <div *ngIf="goalForm.name.touched && goalForm.name.invalid" class="alert alert-danger">
+            <div *ngIf="goalForm.name.errors && goalForm.name.errors.required">Name is required.</div>
+            <div *ngIf="goalForm.name.errors && goalForm.name.errors.minlength">Name should be 3 character.</div>
+          </div> -->
+          </div>
+          <div class="col-8">
+            <label for="description" class="mt-2 h5">Descrizione</label>
+            <input formControlName="description" id="description" type="textarea" class="form-control">
+          </div>
         </div>
-        <label for="description">Descrizione</label>
+        <label for="description" class="mt-2 h5">Peso dell'obbiettivo</label>
+        <div class="d-flex ">
+          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3"
+            (click)="this.changeWeight(i)">{{weight}}</div>
+        </div>
+
+        <label for="description" class="mt-2 h5">Aggiungi le persone coinvolte nell'obbietivo</label>
+        <div class="d-flex">
+          <div class="col-3">
+            <label for="">Filtra per ufficio</label>
+            <select class="">
+              <option *ngFor="let office of this.offices; index as i" value="dog">{{office}}</option>
+            </select>
+          </div>
+          <div class="col-9">
+            <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
+              <div class="">{{person.name}} {{person.surname}}</div>
+              <div class="circle border border-primary cursor" (click)="addInvolvedPeople(person)"><small><fa-icon
+                    [icon]='faPlus' class=""></fa-icon></small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          Persone coinvolte: {{this.involved}}
+        </div>
+
+        <div class="d-flex ">
+          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3"
+            (click)="this.changeWeight(i)">{{weight}}</div>
+        </div>
+
+
+        <label for="description" class="mt-2">Descrizione</label>
         <input formControlName="description" id="description" type="text" class="form-control">
 
       </form>

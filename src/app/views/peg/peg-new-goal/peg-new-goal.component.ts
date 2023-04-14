@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { PegApiService } from '../../../services/peg-api.service';
 import * as GC from '../../../../constants'
 
 
@@ -12,7 +14,15 @@ import * as GC from '../../../../constants'
 export class PegNewGoalComponent {
 
 @Input() phases: any;
+
 goalWeight: any;
+offices = ["informatica", "segreteria"];
+involved: any;
+userList: any;
+
+// FA icons
+faPlus = faPlus;
+
 
 /* REACTIVE FORM */
 goalForm = new FormGroup({
@@ -29,18 +39,21 @@ goalForm = new FormGroup({
 
 get gf(){return this.goalForm.controls;}
 
-constructor () {}
+constructor (public api: PegApiService) {}
 
 ngOnInit(): void {  
   this.goalWeight = GC.GOAL_WEIGHT;
-  //this.weights = globalConstants.GOAL_WEIGHT
-  console.log(GC.GOAL_WEIGHT);
-  console.log(typeof(GC))
+  this.api.getUserList().subscribe(res => {this.userList = res})
+  
 }
 
 changeWeight(value: any) {
   console.log(this.gf)
   //this.weight = value;
+}
+
+addInvolvedPeople(person:any){
+this.involved.add(person)
 }
 submit() {
   console.log('submitted')

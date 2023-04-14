@@ -25,11 +25,11 @@ $theme-colors: map-merge($theme-colors, $custom-colors)
 body
   background-color: $bg-color
   color: $txt-color
-
 .container
   height: 90vh
   width: 1250px !important
   display: flex
+
 .alert-small
   font-size: 0.7rem
   height: 1.5rem
@@ -39,6 +39,16 @@ body
 .no-hover
   hover:none
   cursor: none
+.circle
+  width:1.5rem
+  height:1.5rem
+  border-radius: 50%
+  display: flex
+  align-items: center
+  justify-content: center
+.cursor
+  :hover
+    cursor: pointer
 
 .big
   font-size: 4rem
