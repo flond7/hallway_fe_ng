@@ -18,6 +18,10 @@ export class PegApiService {
     return headers;
   }
 
+  getOfficeList() {
+    return this.httpClient.get('http://127.0.0.1:8000/api_user/office_list')
+  }
+
   getUserList() {
     return this.httpClient.get('http://127.0.0.1:8000/api_user/user_list')
   }

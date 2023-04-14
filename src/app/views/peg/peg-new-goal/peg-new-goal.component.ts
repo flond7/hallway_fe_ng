@@ -16,7 +16,7 @@ export class PegNewGoalComponent {
 @Input() phases: any;
 
 goalWeight: any;
-offices = ["informatica", "segreteria"];
+offices: any;     //office list to retrive with API
 involved: any;
 userList: any;
 
@@ -43,18 +43,19 @@ constructor (public api: PegApiService) {}
 
 ngOnInit(): void {  
   this.goalWeight = GC.GOAL_WEIGHT;
+  this.api.getOfficeList().subscribe(res =>{this.offices = res})
   this.api.getUserList().subscribe(res => {this.userList = res})
   
 }
 
 changeWeight(value: any) {
   console.log(this.gf)
-  //this.weight = value;
 }
 
 addInvolvedPeople(person:any){
-this.involved.add(person)
+  this.involved.add(person)
 }
+
 submit() {
   console.log('submitted')
 }
