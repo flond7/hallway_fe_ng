@@ -15,9 +15,12 @@ export class PegNewGoalComponent {
 
 @Input() phases: any;
 
+//interface
+/* interface romanType {[key: number]: string;};
+ */
 goalWeight: any;
 offices: any;     //office list to retrive with API
-involved: any;
+involved:Array<object> = [];
 userList: any;
 
 // FA icons
@@ -52,10 +55,10 @@ changeWeight(value: any) {
   console.log(this.gf)
 }
 
-addInvolvedPeople(person:any){
-  this.involved.add(person)
+addInvolvedPeople(person:Object){
+  this.involved.push(person);
+  console.log(this.involved)
 }
-
 submit() {
   console.log('submitted')
 }

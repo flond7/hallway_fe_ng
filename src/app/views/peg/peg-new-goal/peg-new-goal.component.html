@@ -42,7 +42,7 @@
         </div>
 
         <div class="d-flex">
-          Persone coinvolte: {{this.involved}}
+          Persone coinvolte: <span *ngFor="let person of this.involved">{{person}}</span>
         </div>
 
         <div class="d-flex ">
@@ -50,9 +50,6 @@
             (click)="this.changeWeight(i)">{{weight}}</div>
         </div>
 
-
-        <label for="description" class="mt-2">Descrizione</label>
-        <input formControlName="description" id="description" type="text" class="form-control">
 
       </form>
 
