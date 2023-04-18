@@ -35,14 +35,16 @@
           <div class="col-9">
             <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
               <div class="">{{person.name}} {{person.surname}}</div>
-              <div class="circle border border-primary cursor" (click)="addInvolvedPeople(person)"><small><fa-icon
-                    [icon]='faPlus' class=""></fa-icon></small></div>
+              <div *ngIf="person?.added == false || person?.added == null" class="circle bg-primary text-white cursor" (click)="addInvolvedPeople(person)"><small><fa-icon
+                [icon]='faPlus' class=""></fa-icon></small></div>
+              <div *ngIf="person?.added == true" class="circle border border-primary cursor" (click)="removeInvolvedPeople(person)"><small><fa-icon
+                    [icon]='faMinus' class=""></fa-icon></small></div>
             </div>
           </div>
         </div>
 
         <div class="d-flex">
-          Persone coinvolte: <span *ngFor="let person of this.involved">{{person}}</span>
+          Persone coinvolte: <span *ngFor="let person of this.involved">{{person.name}} {{person.surname}}</span>
         </div>
 
         <div class="d-flex ">
