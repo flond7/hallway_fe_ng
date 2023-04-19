@@ -2,55 +2,142 @@
   <div class="row w-100">
     <div class="col-12">
 
-      <form [formGroup]="goalForm" (ngSubmit)="submit()" class="d-flex flex-column w-100">
+      <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
 
-        <div class="d-flex">
-          <div class="col-4 pe-3">
-            <label for="name" class="mt-2 h5">Name</label>
-            <input formControlName="name" id="name" type="text" class="form-control">
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Nome</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+          <div class="col-2">
             <!-- <div *ngIf="goalForm.name.touched && goalForm.name.invalid" class="alert alert-danger">
             <div *ngIf="goalForm.name.errors && goalForm.name.errors.required">Name is required.</div>
             <div *ngIf="goalForm.name.errors && goalForm.name.errors.minlength">Name should be 3 character.</div>
           </div> -->
           </div>
-          <div class="col-8">
-            <label for="description" class="mt-2 h5">Descrizione</label>
-            <input formControlName="description" id="description" type="textarea" class="form-control">
-          </div>
-        </div>
-        <label for="description" class="mt-2 h5">Peso dell'obbiettivo</label>
-        <div class="d-flex ">
-          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3"
-            (click)="this.changeWeight(i)">{{weight}}</div>
         </div>
 
-        <label for="description" class="mt-2 h5">Aggiungi le persone coinvolte nell'obbietivo</label>
-        <div class="d-flex">
-          <div class="col-3">
-            <label for="">Filtra per ufficio</label>
-            <select class="">
-              <option *ngFor="let office of this.offices; index as i" value="dog">{{office[1]}}</option>
-            </select>
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <label for="description" class="border-muted-right h5">Descrizione</label>
           </div>
-          <div class="col-9">
+          <div class="col-8">
+            <textarea formControlName="description" id="description" type="textarea" rows="4"
+              class="col-10 form-control"></textarea>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <label for="weight" class="border-muted-right h5">Tipologia</label>
+          </div>
+          <div class="col-8">
+            <div class="d-flex">
+              <div *ngFor="let weight of this.goalWeight"
+                class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
+                [ngClass]="this.gf.weight.value === weight.text ? 'border border-primary' : 'bg-primary btn'"
+                (click)="this.changeWeight(weight)">{{weight.text}}</div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <div class="col-2 border-muted-right">
+              <label for="description" class="col-2 border-muted-right h5">Persone coinvolte</label>
+              <label for="">Filtra per ufficio</label>
+              <select class="">
+                <option *ngFor="let office of this.offices; index as i" value="dog">{{office[1]}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-8 justify-content-between">
             <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
               <div class="">{{person.name}} {{person.surname}}</div>
-              <div *ngIf="person?.added == false || person?.added == null" class="circle bg-primary text-white cursor" (click)="addInvolvedPeople(person)"><small><fa-icon
-                [icon]='faPlus' class=""></fa-icon></small></div>
-              <div *ngIf="person?.added == true" class="circle border border-primary cursor" (click)="removeInvolvedPeople(person)"><small><fa-icon
-                    [icon]='faMinus' class=""></fa-icon></small></div>
+              <div *ngIf="person?.added == false || person?.added == null" class="circle bg-primary text-white cursor"
+                (click)="addInvolvedPeople(person)"><small><fa-icon [icon]='faPlus' class=""></fa-icon></small></div>
+              <div *ngIf="person?.added == true" class="circle border border-primary cursor"
+                (click)="removeInvolvedPeople(person)"><small><fa-icon [icon]='faMinus' class=""></fa-icon></small>
+              </div>
+            </div>
+            <div class="d-flex">
+              Persone coinvolte: <span *ngFor="let person of this.involved">{{person.name}} {{person.surname}}</span>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <label for="type" class="col-2 border-muted-right h5">Tipologia</label>
+          </div>
+          <div class="col-8 d-flex">
+            <div *ngFor="let type of this.goalType"
+              class="col-2 d-flex justify-content-center align-items-center rounded me-3"
+              [ngClass]="this.gf.type.value === type ? 'border border-primary' : 'bg-primary btn'"
+              (click)="this.changeType(type)">{{type}}</div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div *ngIf="this.gf.type.value === 'Ordinario'">
+          <div class="row m-0 mt-3">
+            <div class="col-2">
+              <label for="marker" class="col-2 border-muted-right h5">Indicatori <small>(es: pratiche
+                  evase)</small></label>
+              <div class="btn bg-primary" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="row m-0">
+                <div class="col-8 p-0 pe-2"><small class="">Nome indicatore</small></div>
+                <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Valore previsto</small></div>
+                <div class="col-2 p-0 d-flex justify-content-center"><small class="">Valore finale</small></div>
+              </div>
+
+              <div *ngFor="let marker of this.markers" class="row m-0 mt-3">
+                <div class="col-8 p-0 pe-2">
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-2 p-0 pe-2">
+                  <input type="text" class="form-control">
+                </div>
+                <div class="col-2 p-0">
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+
             </div>
           </div>
         </div>
 
-        <div class="d-flex">
-          Persone coinvolte: <span *ngFor="let person of this.involved">{{person.name}} {{person.surname}}</span>
+        <div *ngIf="this.gf.type.value === 'Straordinario'">
+          <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
+          <div class="d-flex ">
+          </div>
+
         </div>
 
-        <div class="d-flex ">
-          <div *ngFor="let weight of this.goalWeight; index as i" class="col-2 btn bg-primary rounded me-3"
-            (click)="this.changeWeight(i)">{{weight}}</div>
+
+
+
+
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+          </div>
         </div>
+        <div class="col-8 d-flex"></div>
+        <div class="col-2"></div>
+
+
+
 
 
       </form>
