@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
+import { faPlus, faMinus, faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson, PegIndicator } from '../../../../interfaces';
+import { PegPerson } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 
 
@@ -20,12 +20,15 @@ goalWeight: any;                    //needed to manage constants: {text: 'etiche
 goalType: any;                      //needed to manage constants: ['string', 'string']
 offices: any;                       //office list to retrive with API
 involved: Array<PegPerson> = [];
-markers: Array<PegIndicator> = [];
+//markers: Array<PegIndicator> = [];
 userList: any;
 
 // FA icons
 faPlus = faPlus;
 faMinus = faMinus;
+faCheck = faCheck;
+faPen = faPen;
+faTrash = faTrash;
 
 /* REACTIVE FORM */
 goalForm = new FormGroup({
@@ -38,11 +41,16 @@ goalForm = new FormGroup({
   office: new FormControl('', []),
   year: new FormControl('', []),
   people: new FormControl('', []),
-  phases: new FormControl('', []),
+  //phases: new FormControl('', []),
+  phases: new FormArray([]),
+  markers: new FormArray([]),
 });
+markers!: FormArray;
+markerSingleGroup!: FormGroup;
 
 
-get gf(){return this.goalForm.controls;}
+get gf()  { return this.goalForm.controls;}
+get markerFormArray()  { return this.goalForm.get("markers") as FormArray; }
 
 constructor (public api: PegApiService) {}
 
@@ -80,18 +88,36 @@ removeInvolvedPeople(person:PegPerson){
   });
 }
 
+
+// GENERATE MARKERS AND ADD THEM TO GENERAL FORM
 addMarker() {
-  let newMarker = {
-    name: "",
-    valueStart: "",
-    valueEnd: "",
-  }
-  this.markers.push(newMarker);
+  this.markers = this.goalForm.get("markers") as FormArray;
+  this.markers.push(this.generateMarkerGroupForm())
+}
+
+generateMarkerGroupForm():FormGroup {
+  this.markerSingleGroup =  new FormGroup ({
+    phaseName: new FormControl('',[]),
+    phaseValueStart: new FormControl('',[]),
+    phaseValueEnd: new FormControl('',[]),
+    phaseDone: new FormControl(false),
+  })
+  return this.markerSingleGroup
+}
+confirmMarker(marker:any, i:any){
+  console.log(marker.value);
+  marker.controls.phaseDone.setValue(true);
+}
+editMarker(marker:any, i:any) {
+  marker.controls.phaseDone.setValue(false);
+}
+deleteMarker(marker:any, i:any) {
 
 }
 
 submit() {
-  console.log('submitted')
+  console.log(this.goalForm.value)
+  console.log(this.markers)
 }
 
 }
