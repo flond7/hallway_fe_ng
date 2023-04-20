@@ -87,23 +87,23 @@
         <div *ngIf="this.gf.type.value === 'Ordinario'">
           <div class="row m-0 mt-3">
             <div class="col-2">
-              <label for="marker" class="col-2 border-muted-right h5">Indicatori <small>(es: pratiche
-                  evase)</small></label>
+              <label for="marker" class="col-2 border-muted-right h5">Indicatori</label>
+              <p><small>(es: pratiche evase)</small></p>
               <div class="btn bg-primary" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
               </div>
             </div>
             <div class="col-8">
               <div class="row m-0">
-                <div class="col-7 p-0 pe-2"><small class="">Nome indicatore</small></div>
+                <div class="col-6 p-0 pe-2"><small class="">Nome indicatore</small></div>
                 <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Valore previsto</small></div>
                 <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Valore finale</small></div>
-                <div class="col-1 p-0 d-flex justify-content-center"></div>
+                <div class="col-2 p-0 d-flex justify-content-center"></div>
               </div>
 
               <div formArrayName="markers">
                 <div *ngFor="let m of markerFormArray.controls; index as i">
                   <div [formGroupName]="i" class="row p-0 m-0 mt-3">
-                    <div class="col-7 p-0 pe-2">
+                    <div class="col-6 p-0 pe-2">
                       <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
                     </div>
                     <div class="col-2 p-0 pe-2">
@@ -112,10 +112,10 @@
                     <div class="col-2 p-0 pe-2">
                       <input formControlName="phaseValueEnd" name="phaseValueEnd" type="text" class="form-control">
                     </div>
-                    <div class="col-1 p-0">
-                      <div *ngIf="m.value.phaseDone === false" class="btn bg-primary" (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                    <div class="col-2 p-0">
+                      <div *ngIf="m.value.phaseDone === false" class="btn bg-peg me-2" (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
                       <div *ngIf="m.value.phaseDone === false" class="btn bg-danger text-white" (click)="deleteMarker(m, i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                      <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary" (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                      <div *ngIf="m.value.phaseDone !== false" class="btn bg-peg-secondary" (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
                     </div>
                   </div>
                 </div>

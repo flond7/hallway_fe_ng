@@ -10,21 +10,37 @@
 
 // Create your own colors and map
 
-$bg-color: #F8F9FA  
-$txt-color: #5c6b85
+$light: #F8F9FA  
 $muted: #e9ecef
-$dark: #1e1e25
-$dark: #22252f !important
+//$dark: #1e1e25
+$dark: #22252f
+$darker: #16171e
+$bg-color: $dark
+$txt-color: $light
+//$txt-color: #5c6b85
 
-$custom-colors: ("users": #d63384, "peg": #fecf6c, "dark":#1e1e25, 'success': rgb(139, 195, 74))
+$custom-colors: ("users": #d63384, "peg": #fecf6c, "peg-secondary": #6CA6C1,"dark":#1e1e25, 'success': rgb(139, 195, 74))
 $theme-colors: map-merge($theme-colors, $custom-colors)
+
+
+/* PALETTE FOR ...... */
+$bright-pink-crayola: #ff6978ff
+$baby-powder: #fffcf9ff
+$celeste: #b1ede8ff
+$eggplant: #6d435aff
+$raisin-black: #352d39ff
 
 
 @import "../node_modules/bootstrap/scss/bootstrap"
 
 body
-  background-color: $bg-color
+  background-color: $dark
   color: $txt-color
+input
+  background-color: $darker !important
+  border-color: $darker !important
+  color: $txt-color !important
+  
 .container
   height: 90vh
   width: 1250px !important
