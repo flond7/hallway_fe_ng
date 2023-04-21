@@ -38,7 +38,7 @@
             <div class="d-flex">
               <div *ngFor="let weight of this.goalWeight"
                 class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
-                [ngClass]="this.gf.weight.value === weight.text ? 'border border-primary' : 'bg-primary btn'"
+                [ngClass]="this.gf.weight.value === weight.text ? 'border border-primary-peg' : 'bg-primary-peg btn'"
                 (click)="this.changeWeight(weight)">{{weight.text}}</div>
             </div>
           </div>
@@ -58,9 +58,9 @@
           <div class="col-8 justify-content-between">
             <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
               <div class="">{{person.name}} {{person.surname}}</div>
-              <div *ngIf="person?.added == false || person?.added == null" class="circle bg-primary text-white cursor"
+              <div *ngIf="person?.added == false || person?.added == null" class="circle bg--peg text-white cursor"
                 (click)="addInvolvedPeople(person)"><small><fa-icon [icon]='faPlus' class=""></fa-icon></small></div>
-              <div *ngIf="person?.added == true" class="circle border border-primary cursor"
+              <div *ngIf="person?.added == true" class="circle border border-primary-peg cursor"
                 (click)="removeInvolvedPeople(person)"><small><fa-icon [icon]='faMinus' class=""></fa-icon></small>
               </div>
             </div>
@@ -78,7 +78,7 @@
           <div class="col-8 d-flex">
             <div *ngFor="let type of this.goalType"
               class="col-2 d-flex justify-content-center align-items-center rounded me-3"
-              [ngClass]="this.gf.type.value === type ? 'border border-primary' : 'bg-primary btn'"
+              [ngClass]="this.gf.type.value === type ? 'border border-primary-peg' : 'bg-primary-peg btn'"
               (click)="this.changeType(type)">{{type}}</div>
           </div>
           <div class="col-2"></div>
@@ -89,7 +89,7 @@
             <div class="col-2">
               <label for="marker" class="col-2 border-muted-right h5">Indicatori</label>
               <p><small>(es: pratiche evase)</small></p>
-              <div class="btn bg-primary" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
+              <div class="btn bg-primary-peg" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
               </div>
             </div>
             <div class="col-8">
@@ -113,9 +113,9 @@
                       <input formControlName="phaseValueEnd" name="phaseValueEnd" type="text" class="form-control">
                     </div>
                     <div class="col-2 p-0">
-                      <div *ngIf="m.value.phaseDone === false" class="btn bg-peg me-2" (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                      <div *ngIf="m.value.phaseDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
                       <div *ngIf="m.value.phaseDone === false" class="btn bg-danger text-white" (click)="deleteMarker(m, i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                      <div *ngIf="m.value.phaseDone !== false" class="btn bg-peg-secondary" (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                      <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
                     </div>
                   </div>
                 </div>
