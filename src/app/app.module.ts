@@ -17,6 +17,8 @@ import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.compo
 import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
 import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.component';
 import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.component';
+import { PegGoalMarkerComponent } from './components/peg/peg-goal-marker/peg-goal-marker.component';
+import { PegGoalPhaseComponent } from './components/peg/peg-goal-phase/peg-goal-phase.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.co
     PegViewGoalComponent,
     PegViewUserComponent,
     PegViewYearComponent,
+    PegGoalMarkerComponent,
+    PegGoalPhaseComponent,
   ],
   imports: [
     BrowserModule,
