@@ -4,6 +4,7 @@ import { faPlus, faMinus, faCheck, faPen, faTrash } from '@fortawesome/free-soli
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson } from '../../../../interfaces';
 import * as GC from '../../../../constants'
+import { disableDebugTools } from '@angular/platform-browser';
 
 
 
@@ -14,7 +15,7 @@ import * as GC from '../../../../constants'
 })
 export class PegNewGoalComponent {
 
-@Input() phases: any;
+//@Input() phases: any;
 
 goalWeight: any;                    //needed to manage constants: {text: 'etichetta', value: 1-3}
 goalType: any;                      //needed to manage constants: ['string', 'string']
@@ -41,12 +42,12 @@ goalForm = new FormGroup({
   office: new FormControl('', []),
   year: new FormControl('', []),
   people: new FormControl('', []),
-  //phases: new FormControl('', []),
   phases: new FormArray([]),
   markers: new FormArray([]),
 });
 markers!: FormArray;
 markerSingleGroup!: FormGroup;
+phases!: FormArray;
 
 
 get gf()  { return this.goalForm.controls;}
@@ -98,19 +99,38 @@ addMarker() {
 generateMarkerGroupForm():FormGroup {
   this.markerSingleGroup =  new FormGroup ({
     phaseName: new FormControl('',[]),
-    phaseValueStart: new FormControl('',[]),
-    phaseValueEnd: new FormControl('',[]),
+    phaseExpectedStart: new FormControl('',[]),
+    phaseExpectedEnd: new FormControl('',[]),
+    phaseRealStart: new FormControl('',[]),
+    phaseRealEnd: new FormControl('',[]),
+    phaseValue: new FormControl('',[]),
     phaseDone: new FormControl(false),
   })
   return this.markerSingleGroup
 }
+
+readNewMarkerFormArray(event: any){
+  console.log(event)
+}
+
+
 confirmMarker(marker:any, i:any){
   console.log(marker.value);
   marker.controls.phaseDone.setValue(true);
+
+  // find all the keys for the marker group, then use the key to apply a disable() function
+  // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
+  let k = Object.keys(marker.controls);
+  k.map(el => {marker.controls[el].disable()})
 }
+
 editMarker(marker:any, i:any) {
   marker.controls.phaseDone.setValue(false);
+
+  let k = Object.keys(marker.controls);
+  k.map(el => {marker.controls[el].enable()})
 }
+
 deleteMarker(marker:any, i:any) {
 
 }
