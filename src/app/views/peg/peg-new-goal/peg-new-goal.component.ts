@@ -48,6 +48,7 @@ goalForm = new FormGroup({
 markers!: FormArray;
 markerSingleGroup!: FormGroup;
 phases!: FormArray;
+phaseSingleGroup!: FormGroup;
 
 
 get gf()  { return this.goalForm.controls;}
@@ -97,22 +98,14 @@ addMarker() {
 }
 
 generateMarkerGroupForm():FormGroup {
-  this.markerSingleGroup =  new FormGroup ({
-    phaseName: new FormControl('',[]),
-    phaseExpectedStart: new FormControl('',[]),
-    phaseExpectedEnd: new FormControl('',[]),
-    phaseRealStart: new FormControl('',[]),
-    phaseRealEnd: new FormControl('',[]),
-    phaseValue: new FormControl('',[]),
-    phaseDone: new FormControl(false),
+  this.phaseSingleGroup =  new FormGroup ({
+    markerName: new FormControl('',[]),
+    markerExpectedValue: new FormControl('',[]),
+    markerRealValue: new FormControl('',[]),
+    markerDone: new FormControl(false),
   })
   return this.markerSingleGroup
 }
-
-readNewMarkerFormArray(event: any){
-  console.log(event)
-}
-
 
 confirmMarker(marker:any, i:any){
   console.log(marker.value);
@@ -134,6 +127,33 @@ editMarker(marker:any, i:any) {
 deleteMarker(marker:any, i:any) {
 
 }
+
+
+// PHASES
+
+generatePhaseGroupForm():FormGroup {
+  this.phaseSingleGroup =  new FormGroup ({
+    phaseName: new FormControl('',[]),
+    phaseExpectedStart: new FormControl('',[]),
+    phaseExpectedEnd: new FormControl('',[]),
+    phaseRealStart: new FormControl('',[]),
+    phaseRealEnd: new FormControl('',[]),
+    phaseValue: new FormControl('',[]),
+    phaseDone: new FormControl(false),
+  })
+  return this.markerSingleGroup
+}
+
+confirmPhase(phase:any, i:any){
+  console.log(phase.value);
+  phase.controls.phaseDone.setValue(true);
+
+  // find all the keys for the marker group, then use the key to apply a disable() function
+  // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
+  /* let k = Object.keys(phase.controls);
+  k.map(el => {phase.controls[el].disable()}) */
+}
+
 
 submit() {
   console.log(this.goalForm.value)
