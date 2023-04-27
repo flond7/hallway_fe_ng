@@ -1,72 +1,16 @@
-<div class="row m-0">
-  <div class="col-5 p-0 pe-2"><small class="">Nome indicatore</small></div>
-  <div class="col-7 p-0 d-flex">
-    <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Inizio previsto</small></div>
-    <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Fine prevista</small></div>
-    <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Inizio reale</small></div>
-    <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Fine reale</small></div>
-    <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Valore</small></div>
-    <div class="col-2 p-0 d-flex justify-content-center"></div>
+<div formGroupName="formGroupName" class="row p-0 m-0 mt-3">
+  <div class="col-6 p-0 pe-2">
+    <input formControlName="markerName" name="markerName" type="text" class="form-control">
+  </div>
+  <div class="col-2 p-0 pe-2">
+    <input formControlName="markerExpectedValue" name="markerExpectedValue" type="integer" class="form-control">
+  </div>
+  <div class="col-2 p-0 pe-2">
+    <input formControlName="markerRealValue" name="markerRealValue" type="integer" class="form-control">
+  </div>
+  <div class="col-2 p-0">
+    <div *ngIf="markerControl.value.markerDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(markerControl, markerControlIndex)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+    <div *ngIf="markerControl.value.markerDone === false" class="btn bg-danger text-white" (click)="deleteMarker(markerControl, markerControlIndex)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
+    <div *ngIf="markerControl.value.markerDone !== false" class="btn bg-secondary-peg" (click)="editMarker(markerControl, markerControlIndex)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
   </div>
 </div>
-
-<div *ngFor="let m of markerArray.controls; index as i">
-  <div [formGroupName]="i" class="row p-0 m-0 mt-3">
-    <div class="col-5 p-0 pe-2">
-      <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
-    </div>
-
-    <div class="col-7 p-0 d-flex">
-
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseRealStart" name="phaseRealStart" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseRealEnd" name="phaseValphaseRealEndueEnd" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseValue" name="phaseValue" type="text" class="form-control">
-      </div>
-
-      <div class="col-2 p-0">
-        <div *ngIf="m.value.phaseDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(m, i)"><fa-icon
-            [icon]='faCheck' class=""></fa-icon></div>
-        <div *ngIf="m.value.phaseDone === false" class="btn bg-danger text-white" (click)="deleteMarker(m, i)"><fa-icon
-            [icon]='faTrash' class=""></fa-icon></div>
-        <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m, i)"><fa-icon
-            [icon]='faPen' class=""></fa-icon></div>
-      </div>
-
-    </div>
-
-
-  </div>
-</div>
-
-
-<!-- <div formArrayName="markers">
-  <div *ngFor="let m of markerFormArray.controls; index as i">
-    <div [formGroupName]="i" class="row p-0 m-0 mt-3">
-      <div class="col-6 p-0 pe-2">
-        <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseValueStart" name="phaseValueStart" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0 pe-2">
-        <input formControlName="phaseValueEnd" name="phaseValueEnd" type="text" class="form-control">
-      </div>
-      <div class="col-2 p-0">
-        <div *ngIf="m.value.phaseDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-        <div *ngIf="m.value.phaseDone === false" class="btn bg-danger text-white" (click)="deleteMarker(m, i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-        <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
-      </div>
-    </div>
-  </div>
-</div> -->

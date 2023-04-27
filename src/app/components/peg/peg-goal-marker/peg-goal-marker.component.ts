@@ -10,6 +10,9 @@ import { faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 export class PegGoalMarkerComponent {
 
   @Input() markerArray: any;
+  @Input() formGroupName: any;
+  @Input() markerControl: any;
+  @Input() markerControlIndex: any;
   @Output() markerArrayCompiled = new EventEmitter<any>();
 
   // FA icons
@@ -23,31 +26,37 @@ export class PegGoalMarkerComponent {
   markerSingleGroup!: FormGroup;
   phases!: FormArray;
 
-  aemitMarkerArray(value: any) {
+  emitMarkerArray(value: any) {
     this.markerArrayCompiled.emit(value);
   }
 
   generateMarkerGroupForm():FormGroup {
     this.markerSingleGroup =  new FormGroup ({
-      phaseName: new FormControl('',[]),
-      phaseExpectedStart: new FormControl('',[]),
-      phaseExpectedEnd: new FormControl('',[]),
-      phaseRealStart: new FormControl('',[]),
-      phaseRealEnd: new FormControl('',[]),
-      phaseValue: new FormControl('',[]),
-      phaseDone: new FormControl(false),
+      markerName: new FormControl('',[]),
+      markerExpectedValue: new FormControl('',[]),
+      markerRealValue: new FormControl('',[]),
+      markerDone: new FormControl(false),
     })
     return this.markerSingleGroup
   }
   
   confirmMarker(marker:any, i:any){
     console.log(marker.value);
-    marker.controls.phaseDone.setValue(true);
+    marker.controls.markerDone.setValue(true);
+    // find all the keys for the marker group, then use the key to apply a disable() function
+    // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
+    let k = Object.keys(marker.controls);
+    k.map(el => {marker.controls[el].disable()})
+    this.emitMarkerArray(marker);
   }
-  editMarker(marker:any, i:any) {
-    marker.controls.phaseDone.setValue(false);
-  }
-  deleteMarker(marker:any, i:any) {
   
+  editMarker(marker:any, i:any) {
+    marker.controls.markerDone.setValue(false);
+  
+    let k = Object.keys(marker.controls);
+    k.map(el => {marker.controls[el].enable()})
   }
+  
+  deleteMarker(marker:any, i:any) {}
+
 }
