@@ -91,13 +91,30 @@
               </div>
             </div>
             <div class="col-10">
-              <!-- <div formArrayName="markers">
-                <app-peg-goal-marker [markerArray]="markerFormArray"
-                  (markerArrayCompiled)="readNewMarkerFormArray($event)"></app-peg-goal-marker>
-              </div> -->
-
               <div formArrayName="markers">
-                <!-- <div *ngFor="let m of markerFormArray.controls; index as i">
+                <div class="d-flex">
+                  <div class="col-6 p-0 pe-2 small">Nome</div>
+                  <div class="col-2 p-0 pe-2 small">Valore previsto</div>
+                  <div class="col-2 p-0 pe-2 small">Valore reale</div>
+                  <div class="col-2 p-0 pe-2 small"></div>
+                </div>
+
+                <div *ngFor="let m of markerFormArray.controls; index as i">
+                  <div [formGroupName]="i" class="row p-0 m-0 mt-3">
+                    <div class="col-6 p-0 pe-2"><input formControlName="markerName" name="markerName" type="text" class="form-control"></div>
+                    <div class="col-2 p-0 pe-2"><input formControlName="markerExpectedValue" name="markerExpectedValue" type="integer" class="form-control"></div>
+                    <div class="col-2 p-0 pe-2"><input formControlName="markerRealValue" name="markerRealValue" type="integer" class="form-control"></div>
+                    <div class="col-2 p-0">
+                      <div *ngIf="m.value.markerDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(m)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                      <div *ngIf="m.value.markerDone === false" class="btn bg-danger text-white" (click)="deleteMarker(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
+                      <div *ngIf="m.value.markerDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <!-- <div formArrayName="markers">
+                <div *ngFor="let m of markerFormArray.controls; index as i">
                   <div [formGroupName]="i" class="row p-0 m-0 mt-3 p-2 rounded bg-darker">
                     <div class="col-10">
                     <div class="row p-0 m-0">
@@ -119,8 +136,8 @@
                         (click)="deleteMarker(m, i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
                       <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg"
                         (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
-                    </div> -->
-                    <!-- <div class="col-3 p-0 pe-2"><input formControlName="phaseName" name="phaseName" type="text" class="form-control"></div>
+                    </div> 
+                    <div class="col-3 p-0 pe-2"><input formControlName="phaseName" name="phaseName" type="text" class="form-control"></div>
                     <div class="col-10 p-0 d-flex">
                       <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date" class="form-control"></div>
                       <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date" class="form-control"></div>
@@ -135,9 +152,9 @@
                         <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg"
                           (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
                       </div>
-                    </div> -->
-                  <!-- </div>
-                </div> -->
+                    </div>
+                  </div>
+                </div>
 
                 <div *ngFor="let m of markerFormArray.controls; index as i">
                   <app-peg-goal-marker [formGroupName]="i" [markerControl]="m" [markerControlIndex]="i" (markerArrayCompiled)="readMarkerArray($event)"></app-peg-goal-marker>
@@ -158,16 +175,16 @@
                     </div>
                   </div>
                 </div>
+              </div> -->
               </div>
             </div>
           </div>
-        </div>
 
-        <div *ngIf="this.gf.type.value === 'Straordinario'">
-          <div class="col-2">
-            <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
-          </div>
-          <!-- <div class="col-10">
+          <div *ngIf="this.gf.type.value === 'Straordinario'">
+            <div class="col-2">
+              <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
+            </div>
+            <!-- <div class="col-10">
             <div class="row m-0">
                   <div class="col-5 p-0 pe-2"><small class="">Nome indicatore</small></div>
                   <div class="col-7 p-0 d-flex">
@@ -183,23 +200,23 @@
           </div> -->
 
 
-        </div>
-
-
-
-
-
-
-        <div class="row m-0 mt-3">
-          <div class="col-2">
           </div>
-        </div>
-        <div class="col-10 d-flex"></div>
 
 
 
 
-        <button value="Submit" (click)="submit()">Submit</button>
+
+
+          <div class="row m-0 mt-3">
+            <div class="col-2">
+            </div>
+          </div>
+          <div class="col-10 d-flex"></div>
+
+
+
+
+          <button value="Submit" (click)="submit()">Submit</button>
 
       </form>
 

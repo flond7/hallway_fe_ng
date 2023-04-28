@@ -107,8 +107,7 @@ generateMarkerGroupForm():FormGroup {
   return this.markerSingleGroup
 }
 
-confirmMarker(marker:any, i:any){
-  console.log(marker.value);
+confirmMarker(marker:any){
   marker.controls.markerDone.setValue(true);
   // find all the keys for the marker group, then use the key to apply a disable() function
   // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
@@ -116,15 +115,15 @@ confirmMarker(marker:any, i:any){
   k.map(el => {marker.controls[el].disable()})
 }
 
-editMarker(marker:any, i:any) {
+editMarker(marker:any) {
   marker.controls.markerDone.setValue(false);
 
   let k = Object.keys(marker.controls);
   k.map(el => {marker.controls[el].enable()})
 }
 
-deleteMarker(marker:any, i:any) {
-
+deleteMarker(i:any) {
+  this.markers.removeAt(i);
 }
 
 readMarkerArray(event:FormGroup) {
