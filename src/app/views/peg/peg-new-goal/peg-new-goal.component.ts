@@ -53,6 +53,7 @@ phaseSingleGroup!: FormGroup;
 
 get gf()  { return this.goalForm.controls;}
 get markerFormArray()  { return this.goalForm.get("markers") as FormArray; }
+get phasesFormArray()  { return this.goalForm.get("phases") as FormArray; }
 
 constructor (public api: PegApiService) {}
 
@@ -126,11 +127,11 @@ deleteMarker(i:any) {
   this.markers.removeAt(i);
 }
 
-readMarkerArray(event:FormGroup) {
-  console.log(event)
+// GENERATE PHASES AND ADD THEM TO GENERAL FORM
+addPhase() {
+  this.phases = this.goalForm.get("phases") as FormArray;
+  this.phases.push(this.generatePhaseGroupForm())
 }
-
-// PHASES
 
 generatePhaseGroupForm():FormGroup {
   this.phaseSingleGroup =  new FormGroup ({
@@ -142,17 +143,16 @@ generatePhaseGroupForm():FormGroup {
     phaseValue: new FormControl('',[]),
     phaseDone: new FormControl(false),
   })
-  return this.markerSingleGroup
+  return this.phaseSingleGroup
 }
 
-confirmPhase(phase:any, i:any){
-  console.log(phase.value);
+confirmPhase(phase:any){
   phase.controls.phaseDone.setValue(true);
 
   // find all the keys for the marker group, then use the key to apply a disable() function
   // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
-  /* let k = Object.keys(phase.controls);
-  k.map(el => {phase.controls[el].disable()}) */
+  let k = Object.keys(phase.controls);
+  k.map(el => {phase.controls[el].disable()})
 }
 
 
