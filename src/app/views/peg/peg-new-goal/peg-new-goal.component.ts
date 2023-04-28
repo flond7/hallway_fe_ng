@@ -154,6 +154,17 @@ confirmPhase(phase:any){
   let k = Object.keys(phase.controls);
   k.map(el => {phase.controls[el].disable()})
 }
+editPhase(phase:any) {
+  phase.controls.phaseDone.setValue(false);
+
+  let k = Object.keys(phase.controls);
+  k.map(el => {phase.controls[el].enable()})
+}
+
+deletePhase(i:any) {
+  this.phases.removeAt(i);
+}
+
 
 
 submit() {

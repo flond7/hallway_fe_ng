@@ -34,9 +34,10 @@
           <div class="col-2">
             <label for="weight" class="border-muted-right h5">Difficoltà / Peso</label>
           </div>
-          <div class="col-10">
+          <div class="col-8">
             <div class="d-flex">
-              <div *ngFor="let weight of this.goalWeight" class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
+              <div *ngFor="let weight of this.goalWeight"
+                class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
                 [ngClass]="this.gf.weight.value === weight.text ? 'bg-primary-peg text-dark' : 'border border-primary-peg text-white btn'"
                 (click)="this.changeWeight(weight)">{{weight.text}}</div>
             </div>
@@ -46,19 +47,20 @@
 
         <div class="row m-0 mt-3">
           <div class="col-2">
-            
-              <label for="description" class="col-2 border-muted-right h5">Personale</label>
-              <div class="small">Filtra per ufficio</div>
-              <select class="">
-                <option *ngFor="let office of this.offices; index as i" value="dog">{{office[1]}}</option>
-              </select>
-            
+
+            <label for="description" class="col-2 border-muted-right h5">Personale</label>
+            <div class="small">Filtra per ufficio</div>
+            <select class="">
+              <option *ngFor="let office of this.offices; index as i" value="dog">{{office[1]}}</option>
+            </select>
+
           </div>
-          <div class="col-10 justify-content-between">
+          <div class="col-8 justify-content-between">
             <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
               <div class="">{{person.name}} {{person.surname}}</div>
-              <div *ngIf="person?.added == false || person?.added == null" class="circle border border-primary-peg text-white cursor"
-                (click)="addInvolvedPeople(person)"><small><fa-icon [icon]='faPlus' class=""></fa-icon></small></div>
+              <div *ngIf="person?.added == false || person?.added == null"
+                class="circle border border-primary-peg text-white cursor" (click)="addInvolvedPeople(person)">
+                <small><fa-icon [icon]='faPlus' class=""></fa-icon></small></div>
               <div *ngIf="person?.added == true" class="circle bg-primary-peg cursor"
                 (click)="removeInvolvedPeople(person)"><small><fa-icon [icon]='faMinus' class=""></fa-icon></small>
               </div>
@@ -86,9 +88,10 @@
             <div class="col-2">
               <label for="marker" class="col-2 border-muted-right h5">Indicatori</label>
               <div class="small">(es: pratiche evase)</div>
-              <div class="btn bg-primary-peg" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon></div>
+              <div class="btn bg-primary-peg" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
+              </div>
             </div>
-            <div class="col-10">
+            <div class="col-8">
               <div formArrayName="markers">
                 <div class="d-flex">
                   <div class="col-6 p-0 pe-2 small">Nome</div>
@@ -99,13 +102,19 @@
 
                 <div *ngFor="let m of markerFormArray.controls; index as i">
                   <div [formGroupName]="i" class="row p-0 m-0 mt-3">
-                    <div class="col-6 p-0 pe-2"><input formControlName="markerName" name="markerName" type="text" class="form-control"></div>
-                    <div class="col-2 p-0 pe-2"><input formControlName="markerExpectedValue" name="markerExpectedValue" type="integer" class="form-control"></div>
-                    <div class="col-2 p-0 pe-2"><input formControlName="markerRealValue" name="markerRealValue" type="integer" class="form-control"></div>
+                    <div class="col-6 p-0 pe-2"><input formControlName="markerName" name="markerName" type="text"
+                        class="form-control"></div>
+                    <div class="col-2 p-0 pe-2"><input formControlName="markerExpectedValue" name="markerExpectedValue"
+                        type="integer" class="form-control"></div>
+                    <div class="col-2 p-0 pe-2"><input formControlName="markerRealValue" name="markerRealValue"
+                        type="integer" class="form-control"></div>
                     <div class="col-2 p-0">
-                      <div *ngIf="m.value.markerDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(m)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-                      <div *ngIf="m.value.markerDone === false" class="btn bg-danger text-white" (click)="deleteMarker(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                      <div *ngIf="m.value.markerDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                      <div *ngIf="m.value.markerDone === false" class="btn bg-primary-peg me-2"
+                        (click)="confirmMarker(m)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                      <div *ngIf="m.value.markerDone === false" class="btn bg-danger text-white"
+                        (click)="deleteMarker(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
+                      <div *ngIf="m.value.markerDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m)">
+                        <fa-icon [icon]='faPen' class=""></fa-icon></div>
                     </div>
                   </div>
                 </div>
@@ -119,54 +128,50 @@
             <div class="col-2">
               <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
               <div class="small">(es: Verifica, test...)</div>
-              <div class="btn bg-primary-peg" (click)="addPhase()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon></div>
+              <div class="btn bg-primary-peg" (click)="addPhase()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
+              </div>
             </div>
-            <div class="col-10">
-              <div class="row m-0">
-                    <!-- <div class="col-5 p-0 pe-2"><small class="">Nome indicatore</small></div>
-                    <div class="col-7 p-0 d-flex">
-                      <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Inizio previsto</small></div>
-                      <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Fine prevista</small></div>
-                      <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Inizio reale</small></div>
-                      <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Fine reale</small></div>
-                      <div class="col-2 p-0 pe-2 d-flex justify-content-center"><small class="">Valore</small></div>
-                      <div class="col-2 p-0 d-flex justify-content-center"></div>
-                    </div>
-                  </div>
-  -->
+            <div class="col-8">
+              <div class="row m-0" formArrayName="phases">
+                <div *ngFor="let p of phasesFormArray.controls; index as i" class="d-flex p-0 m-0 border-bottom">
+                  <div [formGroupName]="i">
 
-                  <div formArrayName="phases">
-                    <div *ngFor="let p of phasesFormArray.controls; index as i">
-                      <div [formGroupName]="i" class="row p-0 m-0 mt-3 p-2 rounded border border-muted-peg">
-
-                        <div class="d-flex">
-                          <div class="col-4 p-0 pe-3">
-                            <small class="">Nome</small>
-                            <textarea formControlName="phaseName" name="phaseName" type="text" class="form-control"></textarea>
-                          </div>
-                          <div class="col-1 p-0 pe-3">
-                            <small class="">Valore</small>
-                            <input formControlName="phaseValue" name="phaseValue" type="text" class="form-control">
-                          </div>
-                          <div class="col-6 p-0 pe-2 d-flex">
-                            <div class="col-5 pe-3">
-                              <small class="">Inizio previsto</small>
-                              <input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date" class="form-control">
-                              <small class="">Fine prevista</small>
-                              <input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date" class="form-control">
-                            </div>
-                            <div class="col-5">
-                              <small class="">Inizio reale</small>
-                              <input formControlName="phaseRealStart" name="phaseRealStart" type="date" class="form-control">
-                              <small class="">Fine reale</small>
-                              <input formControlName="phaseRealEnd" name="phaseRealEnd" type="date" class="form-control">
-                            </div>
-                          </div>
-
-                            
+                    <div class="d-flex mb-2">
+                      <div class="col-5 p-0 pe-2">
+                        <div class="mb-1 small text-muted">Nome</div>
+                        <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
+                      </div>
+                      <div class="col-1 p-0 pe-2">
+                        <div class="mb-1 small text-muted">Valore</div>
+                        <input formControlName="phaseValue" name="phaseValue" type="text" class="form-control">
+                      </div>
+                      <div class="col-6 p-0 pe-2 d-flex">
+                        <div class="col-5 pe-2">
+                          <div class="mb-1 small text-muted">Inizio previsto</div>
+                          <input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date"
+                            class="form-control">
+                          <div class="mb-1 small text-muted">Fine prevista</div>
+                          <input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date"
+                            class="form-control">
                         </div>
+                        <div class="col-5">
+                          <div class="mb-1 small text-muted">Inizio reale</div>
+                          <input formControlName="phaseRealStart" name="phaseRealStart" type="date"
+                            class="form-control">
+                          <div class="mb-1 small text-muted">Fine reale</div>
+                          <input formControlName="phaseRealEnd" name="phaseRealEnd" type="date" class="form-control">
+                        </div>
+                        <div class="col-2">
+                          <div *ngIf="p.value.phaseDone === false" class="btn bg-primary-peg me-2"(click)="confirmPhase(p)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                            <div *ngIf="p.value.phaseDone === false" class="btn bg-danger text-white" (click)="deletePhase(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
+                            <div *ngIf="p.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editPhase(p)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                        </div>
+                      </div>
 
-                        <!-- <div class="col-10">
+
+                    </div>
+
+                    <!-- <div class="col-10">
                           <div class="row p-0 m-0">
                             <div class="col-10 p-0 pe-2"><small class="">Nome</small><input formControlName="phaseName" name="phaseName" type="text" class="form-control"></div>
                             <div class="col-2 p-0"><small class="">Valore</small><input formControlName="phaseValue" name="phaseValue" type="text" class="form-control"></div>
@@ -187,7 +192,7 @@
 
 
 
-                        <!-- <div class="col-10 p-0 d-flex">
+                    <!-- <div class="col-10 p-0 d-flex">
                           <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date" class="form-control"></div>
                           <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date" class="form-control"></div>
                           <div class="col-2 p-0 pe-2"><input formControlName="phaseRealStart" name="phaseRealStart" type="text" class="form-control"></div>
@@ -202,30 +207,33 @@
                               (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
                           </div>
                         </div> -->
-                      </div>
-                    </div>
                   </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          </div>
-
-
-
-
-
-
-          <div class="row m-0 mt-3">
             <div class="col-2">
+              
             </div>
           </div>
-          <div class="col-10 d-flex"></div>
+
+        </div>
 
 
 
 
-          <button value="Submit" (click)="submit()">Submit</button>
+
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+          </div>
+        </div>
+        <div class="col-10 d-flex"></div>
+
+
+
+
+        <button value="Submit" (click)="submit()">Submit</button>
 
       </form>
 
