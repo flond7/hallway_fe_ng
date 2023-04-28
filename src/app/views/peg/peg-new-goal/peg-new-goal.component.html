@@ -157,7 +157,6 @@
                 </div>
 
                 <div *ngFor="let m of markerFormArray.controls; index as i">
-                  <app-peg-goal-marker [formGroupName]="i" [markerControl]="m" [markerControlIndex]="i" (markerArrayCompiled)="readMarkerArray($event)"></app-peg-goal-marker>
                   <div [formGroupName]="i" class="row p-0 m-0 mt-3">
                     <div class="col-6 p-0 pe-2">
                       <input formControlName="markerName" name="markerName" type="text" class="form-control">
