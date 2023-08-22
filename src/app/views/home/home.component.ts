@@ -16,6 +16,7 @@ export class HomeComponent {
 
   permission_users = true;
   permission_peg = true;
+  permission_accessoAtti = true;
 
   constructor (public api: PegApiService) {}
   ngOnInit(): void {
