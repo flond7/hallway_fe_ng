@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="row w-100">
+    <div class="col-12">
+
+      <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
+
+        <div class="row m-0">
+          <h2>Domanda</h2>
+        </div>
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Protocollo</label>
+          </div>
+          <div class="col-2">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+          <div class="col-4">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+        </div>
+
+        <div class="row m-0">
+          <h2>Richiedente</h2>
+        </div>
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Protocollo</label>
+          </div>
+          <div class="col-2">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+          <div class="col-4">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+        </div>
+
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Nome</label>
+          </div>
+          <div class="col-8">
+            <input formControlName="name" id="name" type="text" class="col-8 form-control">
+          </div>
+          <div class="col-2">
+            <!-- <div *ngIf="goalForm.name.touched && goalForm.name.invalid" class="alert alert-danger">
+            <div *ngIf="goalForm.name.errors && goalForm.name.errors.required">Name is required.</div>
+            <div *ngIf="goalForm.name.errors && goalForm.name.errors.minlength">Name should be 3 character.</div>
+          </div> -->
+          </div>
+        </div>
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <label for="description" class="border-muted-right h5">Descrizione</label>
+          </div>
+          <div class="col-8">
+            <textarea formControlName="description" id="description" type="textarea" rows="4"
+              class="col-10 form-control"></textarea>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+            <label for="weight" class="border-muted-right h5">Difficoltà / Peso</label>
+          </div>
+          <div class="col-8">
+            <div class="d-flex">
+              <div *ngFor="let weight of this.goalWeight"
+                class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
+                [ngClass]="this.gf.weight.value === weight.text ? 'bg-primary-aa text-dark' : 'border border-primary-aa text-white btn'"
+                (click)="this.changeWeight(weight)">{{weight.text}}</div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+
+
+
+        
+
+        <div *ngIf="this.gf.type.value === 'Straordinario'">
+          <div class="row m-0 mt-3">
+            <div class="col-2">
+              <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
+              <div class="small">(es: Verifica, test...)</div>
+              <div class="btn bg-primary-aa" (click)="addPhase()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="row m-0" formArrayName="phases">
+                <div *ngFor="let p of phasesFormArray.controls; index as i" class="d-flex p-0 m-0 border-bottom">
+                  <div [formGroupName]="i">
+
+                    <div class="d-flex mb-2">
+                      <div class="col-5 p-0 pe-2">
+                        <div class="mb-1 small text-muted">Nome</div>
+                        <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
+                      </div>
+                      <div class="col-1 p-0 pe-2">
+                        <div class="mb-1 small text-muted">Valore</div>
+                        <input formControlName="phaseValue" name="phaseValue" type="text" class="form-control">
+                      </div>
+                      <div class="col-6 p-0 pe-2 d-flex">
+                        <div class="col-5 pe-2">
+                          <div class="mb-1 small text-muted">Inizio previsto</div>
+                          <input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date"
+                            class="form-control">
+                          <div class="mb-1 small text-muted">Fine prevista</div>
+                          <input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date"
+                            class="form-control">
+                        </div>
+                        <div class="col-5">
+                          <div class="mb-1 small text-muted">Inizio reale</div>
+                          <input formControlName="phaseRealStart" name="phaseRealStart" type="date"
+                            class="form-control">
+                          <div class="mb-1 small text-muted">Fine reale</div>
+                          <input formControlName="phaseRealEnd" name="phaseRealEnd" type="date" class="form-control">
+                        </div>
+                        <div class="col-2">
+                          <div *ngIf="p.value.phaseDone === false" class="btn bg-primary-peg me-2"(click)="confirmPhase(p)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
+                            <div *ngIf="p.value.phaseDone === false" class="btn bg-danger text-white" (click)="deletePhase(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
+                            <div *ngIf="p.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editPhase(p)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-2">
+              
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="row m-0 mt-3">
+          <div class="col-2">
+          </div>
+        </div>
+        <div class="col-10 d-flex"></div>
+
+
+
+
+        <button value="Submit" (click)="submit()">Submit</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

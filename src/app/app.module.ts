@@ -18,6 +18,9 @@ import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.co
 import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.component';
 import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.component';
 
+import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,7 @@ import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.co
     PegViewGoalComponent,
     PegViewUserComponent,
     PegViewYearComponent,
+    AaNewAccessComponent,
   ],
   imports: [
     BrowserModule,
