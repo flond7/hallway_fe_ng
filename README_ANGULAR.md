@@ -1,4 +1,6 @@
 ## basics
+- ng new my-first-project
+- cd my-first-project
 - yarn start (to run the live project in dev mode)
 - yarn install (when the repository is copied and you need to reinstall everything)
 
