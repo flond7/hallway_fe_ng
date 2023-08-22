@@ -19,7 +19,7 @@ export class AaNewAccessComponent {
 
 goalWeight: any;                    //needed to manage constants: {text: 'etichetta', value: 1-3}
 goalType: any;                      //needed to manage constants: ['string', 'string']
-offices: any;                       //office list to retrive with API
+applicants: any;                    //applicants list to retrive with API
 involved: Array<PegPerson> = [];
 //markers: Array<PegIndicator> = [];
 userList: any;
@@ -32,47 +32,37 @@ faPen = faPen;
 faTrash = faTrash;
 
 /* REACTIVE FORM */
-goalForm = new FormGroup({
+accessForm = new FormGroup({
   name: new FormControl('', [Validators.required]),
   description: new FormControl('', [Validators.required]),
   weight: new FormControl('',[Validators.required]),
   type: new FormControl('Ordinario',[Validators.required]),
-  start: new FormControl('', []),
-  end: new FormControl('', []),
-  office: new FormControl('', []),
-  year: new FormControl('', []),
-  people: new FormControl('', []),
-  phases: new FormArray([]),
-  markers: new FormArray([]),
+  
+  requestProtocol: new FormControl('',[Validators.required]),
+  requestDate: new FormControl('',[Validators.required]),
+  requestApplicant: new FormControl('',[Validators.required]),
+
+  answerResult: new FormControl('',[Validators.required]),
+  answerProtocol: new FormControl('',[Validators.required]),
+  answerDate: new FormControl('',[Validators.required]),
+  answerNote: new FormControl('',[Validators.required]),
+
+
 });
-markers!: FormArray;
-markerSingleGroup!: FormGroup;
-phases!: FormArray;
-phaseSingleGroup!: FormGroup;
 
 
-get gf()  { return this.goalForm.controls;}
-get markerFormArray()  { return this.goalForm.get("markers") as FormArray; }
-get phasesFormArray()  { return this.goalForm.get("phases") as FormArray; }
+
+get gf()  { return this.accessForm.controls;}
 
 constructor (public api: PegApiService) {}
 
 ngOnInit(): void {  
   this.goalWeight = GC.GOAL_WEIGHT;
   this.goalType = GC.GOAL_TYPE;
-  this.api.getOfficeList().subscribe(res =>{this.offices = res})
-  this.api.getUserList().subscribe(res => {this.userList = res})
+  this.applicants = GC.APPLICANT_TYPE;
+  //this.api.getOfficeList().subscribe(res =>{this.applicants = res})
+  //this.api.getUserList().subscribe(res => {this.userList = res})
 
-}
-
-setInitialFormValues(){
-  this.gf.type.setValue(this.goalType[0]);
-  this.gf.weight.setValue(this.goalWeight[0].text);
-}
-
-changeWeight(value: any) {
-  this.gf.weight.setValue(value.text);
-  console.log(this.gf.weight.value)
 }
 
 changeType(t:any){
@@ -92,84 +82,10 @@ removeInvolvedPeople(person:PegPerson){
 }
 
 
-// GENERATE MARKERS AND ADD THEM TO GENERAL FORM
-addMarker() {
-  this.markers = this.goalForm.get("markers") as FormArray;
-  this.markers.push(this.generateMarkerGroupForm())
-}
-
-generateMarkerGroupForm():FormGroup {
-  this.markerSingleGroup =  new FormGroup ({
-    markerName: new FormControl('',[]),
-    markerExpectedValue: new FormControl('',[]),
-    markerRealValue: new FormControl('',[]),
-    markerDone: new FormControl(false),
-  })
-  return this.markerSingleGroup
-}
-
-confirmMarker(marker:any){
-  marker.controls.markerDone.setValue(true);
-  // find all the keys for the marker group, then use the key to apply a disable() function
-  // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
-  let k = Object.keys(marker.controls);
-  k.map(el => {marker.controls[el].disable()})
-}
-
-editMarker(marker:any) {
-  marker.controls.markerDone.setValue(false);
-
-  let k = Object.keys(marker.controls);
-  k.map(el => {marker.controls[el].enable()})
-}
-
-deleteMarker(i:any) {
-  this.markers.removeAt(i);
-}
-
-// GENERATE PHASES AND ADD THEM TO GENERAL FORM
-addPhase() {
-  this.phases = this.goalForm.get("phases") as FormArray;
-  this.phases.push(this.generatePhaseGroupForm())
-}
-
-generatePhaseGroupForm():FormGroup {
-  this.phaseSingleGroup =  new FormGroup ({
-    phaseName: new FormControl('',[]),
-    phaseExpectedStart: new FormControl('',[]),
-    phaseExpectedEnd: new FormControl('',[]),
-    phaseRealStart: new FormControl('',[]),
-    phaseRealEnd: new FormControl('',[]),
-    phaseValue: new FormControl('',[]),
-    phaseDone: new FormControl(false),
-  })
-  return this.phaseSingleGroup
-}
-
-confirmPhase(phase:any){
-  phase.controls.phaseDone.setValue(true);
-
-  // find all the keys for the marker group, then use the key to apply a disable() function
-  // to disable controls in a reactive form friendly way you have to use formgroup.controls['name of the control'].disable
-  let k = Object.keys(phase.controls);
-  k.map(el => {phase.controls[el].disable()})
-}
-editPhase(phase:any) {
-  phase.controls.phaseDone.setValue(false);
-
-  let k = Object.keys(phase.controls);
-  k.map(el => {phase.controls[el].enable()})
-}
-
-deletePhase(i:any) {
-  this.phases.removeAt(i);
-}
-
 
 
 submit() {
-  console.log(this.goalForm.value)
-  console.log(this.markers)
+  console.log(this.accessForm.value)
 }
 
 }
