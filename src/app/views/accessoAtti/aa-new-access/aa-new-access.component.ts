@@ -19,7 +19,8 @@ export class AaNewAccessComponent {
 
 goalWeight: any;                    //needed to manage constants: {text: 'etichetta', value: 1-3}
 goalType: any;                      //needed to manage constants: ['string', 'string']
-applicants: any;                    //applicants list to retrive with API
+applicants: any;                    //applicants list to retrive from constants
+results: any;                       //results to retrieve from constants
 involved: Array<PegPerson> = [];
 //markers: Array<PegIndicator> = [];
 userList: any;
@@ -41,7 +42,9 @@ accessForm = new FormGroup({
   requestProtocol: new FormControl('',[Validators.required]),
   requestDate: new FormControl('',[Validators.required]),
   requestApplicant: new FormControl('',[Validators.required]),
-
+  topic: new FormControl('',[Validators.required]),
+  others: new FormControl('',[Validators.required]),
+  responsable: new FormControl('',[Validators.required]),
   answerResult: new FormControl('',[Validators.required]),
   answerProtocol: new FormControl('',[Validators.required]),
   answerDate: new FormControl('',[Validators.required]),
@@ -59,7 +62,8 @@ constructor (public api: PegApiService) {}
 ngOnInit(): void {  
   this.goalWeight = GC.GOAL_WEIGHT;
   this.goalType = GC.GOAL_TYPE;
-  this.applicants = GC.APPLICANT_TYPE;
+  this.applicants = GC.AA_APPLICANT_TYPE;
+  this.results = GC.AA_RESULT;
   //this.api.getOfficeList().subscribe(res =>{this.applicants = res})
   //this.api.getUserList().subscribe(res => {this.userList = res})
 
