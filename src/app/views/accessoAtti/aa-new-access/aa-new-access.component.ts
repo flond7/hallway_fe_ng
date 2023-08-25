@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { PegApiService } from '../../../services/peg-api.service';
+import { AccessoAttiApiService } from '../../../services/accessoAtti-api.service';
 import { PegPerson } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
@@ -57,7 +57,7 @@ accessForm = new FormGroup({
 
 get gf()  { return this.accessForm.controls;}
 
-constructor (public api: PegApiService) {}
+constructor (public api: AccessoAttiApiService) {}
 
 ngOnInit(): void {  
   this.goalWeight = GC.GOAL_WEIGHT;
@@ -88,8 +88,10 @@ removeInvolvedPeople(person:PegPerson){
 
 
 
+
 submit() {
-  console.log(this.accessForm.value)
+  /* console.log(this.accessForm.value) */
+  this.api.createAccess(this.accessForm.value).subscribe(r => console.log(r))
 }
 
 }
