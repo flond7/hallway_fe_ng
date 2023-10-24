@@ -60,9 +60,6 @@ ngOnInit(): void {
   this.applicants = GC.AA_APPLICANT_TYPE;
   this.types = GC.AA_TYPES;
   this.results = GC.AA_RESULT;
-  //this.api.getOfficeList().subscribe(res =>{this.applicants = res})
-  //this.api.getUserList().subscribe(res => {this.userList = res})
-
 }
 
 changeType(t:any){
@@ -81,12 +78,20 @@ removeInvolvedPeople(person:PegPerson){
   });
 }
 
+/* correctFormatForDates(dataToFormat:any) {
+  if (dataToFormat) {
+    let newDate = dataToFormat.toISOString().split('T')[0];
+    return newDate;
+  }
+}
 
-
-
+ */
 
 submit() {
-  console.log(this.accessForm.value)
+  //console.log(this.accessForm.value)
+  //format correctly in ISO the dates
+  //this.accessForm.value.requestDate = this.correctFormatForDates(this.accessForm.value.requestDate)
+
   this.api.createAccess(this.accessForm.value).subscribe(r => console.log(r))
 }
 

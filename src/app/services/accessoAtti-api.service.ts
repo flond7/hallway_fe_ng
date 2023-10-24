@@ -30,7 +30,7 @@ export class AccessoAttiApiService {
     console.log(answers);
   }
 
-  /* getOptions() {
+/*   getOptions() {
     let headers = new HttpHeaders({
       'Content-Type' : 'application/json',
       'Cache-Control': 'no-cache'
@@ -41,20 +41,20 @@ export class AccessoAttiApiService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-  })
-  }
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+      //Authorization: 'my-auth-token'
+    }),
+  };
+
 
   createAccess(access:any): Observable<any> {
-    return this.httpClient.post('http://127.0.0.1:8000/api_accessoAtti/access_new', access, this.httpOptions )
+    let jsonData = JSON.stringify(access);
+    return this.httpClient.post<any>(this.basePath+"/api_accessoAtti/access_new", access, this.httpOptions)
   }
 
   getAccessList(): Observable<any> {
     return this.httpClient.get<any>('http://127.0.0.1:8000/api_accessoAtti/access_list')
-  }
-
-  submit() {
-    this.createAccess('test');
   }
 
   /* getRailwayDetail(id: any): Observable<any> {
