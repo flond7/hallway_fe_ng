@@ -14,4 +14,5 @@ export const INFO_GOAL_PHASE = "";
 
 //ACCESSO AGLI ATTI
 export const AA_APPLICANT_TYPE: Array<string> = ['Privato cittadino', 'Ente pubblico'];
+export const AA_TYPES: Array<string> = ['Semplice', 'Generalizzato'];
 export const AA_RESULT: Array<string> = ['Positivo', 'Negativo'];

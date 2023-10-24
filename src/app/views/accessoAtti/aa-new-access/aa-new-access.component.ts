@@ -35,7 +35,7 @@ faTrash = faTrash;
 
 /* REACTIVE FORM */
 accessForm = new FormGroup({
-  type: new FormControl(GC.AA_TYPES[0],[Validators.required]),
+  accessType: new FormControl(GC.AA_TYPES[0],[Validators.required]),
   requestProtocol: new FormControl('',[Validators.required]),
   requestDate: new FormControl('',[Validators.required]),
   requestApplicant: new FormControl(GC.AA_APPLICANT_TYPE[0],[Validators.required]),
@@ -62,9 +62,9 @@ ngOnInit(): void {
   this.results = GC.AA_RESULT;
 }
 
-changeType(t:any){
-  this.gf.type.setValue(t);
-}
+/* changeType(t:any){
+  this.gf.accesstype.setValue(t);
+} */
 
 addInvolvedPeople(person:PegPerson){
   person.added = true;
