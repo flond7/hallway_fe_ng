@@ -7,7 +7,7 @@
 - In VS terminal set the global user config 
 - Install node but check compatibility before here https://angular.io/guide/versions
 - Open VS terminal and install angular 
-  npm i @angular/cli@15.2.2
+  npm i -g @angular/cli@15.2.2
 - In VS terminal install yarn
   npm install --global yarn
 
