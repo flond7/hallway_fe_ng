@@ -11,6 +11,10 @@
 - In VS terminal install yarn
   npm install --global yarn
 
+# Configure VS
+- Open file > Preferences > Settings > User and look for proxy, check the value is right
+If you don't see User settings leave the setting open, close VS then reopen it. it should magically appear
+
 # Retrieve git project and make it run
 - Open new window in VS go to the git tab and choose clone repository
 - Add the repository and check for windows that might open to ask for credentials or popups (either in the bottom-right corner or up center) that ask for some input in VS
