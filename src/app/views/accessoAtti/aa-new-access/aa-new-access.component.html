@@ -13,10 +13,10 @@
             <label for="name" class="col-2 mt-2 h5">Protocollo</label>
           </div>
           <div class="col-2">
-            <input formControlName="requestProtocol" id="name" type="number" class="col-8 form-control">
+            <input formControlName="requestProtocol" id="requestProtocol" type="number" class="col-8 form-control">
           </div>
           <div class="col-4">
-            <input formControlName="requestDate" id="name" type="date" class="col-8 form-control">
+            <input formControlName="requestDate" id="requestDate" type="date" class="col-8 form-control">
           </div>
         </div>
 
@@ -25,9 +25,30 @@
             <label for="name" class="col-2 mt-2 h5">Richiedente</label>
           </div>
           <div class="col-2">
-            <select class="" formControlName="answerProtocol">
-              <option *ngFor="let applicant of this.applicants; index as i" value="i">{{applicant}}</option>
+            <select class="" formControlName="requestApplicant">
+              <option *ngFor="let applicant of this.applicants; index as i" [ngValue]="applicant">{{applicant}}</option>
             </select>
+          </div>
+        </div>
+
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Tipo</label>
+          </div>
+          <div class="col-2">
+            <select class="" formControlName="type">
+              <option *ngFor="let type of this.types; index as i" [ngValue]="type">{{type}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row m-0">
+          <div class="col-2">
+            <label for="name" class="col-2 mt-2 h5">Oggetto</label>
+          </div>
+          <div class="col-8">
+            <textarea formControlName="topic" id="topic" type="textarea" rows="4"
+              class="col-10 form-control"></textarea>
           </div>
         </div>
 
@@ -58,8 +79,8 @@
             <label for="name" class="col-2 mt-2 h5">Esito</label>
           </div>
           <div class="col-2">
-            <select class="" formControlName="answerProtocol">
-              <option *ngFor="let result of this.results; index as i" value="i">{{result}}</option>
+            <select class="" formControlName="answerResult">
+              <option *ngFor="let result of this.results; index as i" [ngValue]="result">{{result}}</option>
             </select>
           </div>
         </div>
@@ -69,10 +90,10 @@
             <label for="name" class="col-2 mt-2 h5">Protocollo</label>
           </div>
           <div class="col-2">
-            <input formControlName="answerProtocol" id="name" type="number" class="col-8 form-control">
+            <input formControlName="answerProtocol" id="answerProtocol" type="number" class="col-8 form-control">
           </div>
           <div class="col-4">
-            <input formControlName="answerProtocol" id="name" type="date" class="col-8 form-control">
+            <input formControlName="answerDate" id="answerDate" type="date" class="col-8 form-control">
           </div>
         </div>
 
@@ -82,17 +103,17 @@
             <label for="description" class="border-muted-right h5">Note</label>
           </div>
           <div class="col-8">
-            <textarea formControlName="answerNote" id="description" type="textarea" rows="4"
+            <textarea formControlName="answerNote" id="answerNote" type="textarea" rows="4"
               class="col-10 form-control"></textarea>
           </div>
           <div class="col-2"></div>
         </div>
 
 
-      
 
 
-        
+
+
 
 
 
