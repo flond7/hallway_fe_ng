@@ -21,6 +21,7 @@ import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.co
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
 import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
 import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
+import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list-row.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-lis
     AaNewAccessComponent,
     AaMenuComponent,
     AaListAccessComponent,
+    AaListRowComponent,
   ],
   imports: [
     BrowserModule,
