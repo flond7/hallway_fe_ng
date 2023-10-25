@@ -19,6 +19,7 @@ import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.co
 import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.component';
 
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
+import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-a
     PegViewUserComponent,
     PegViewYearComponent,
     AaNewAccessComponent,
+    AaMenuComponent,
   ],
   imports: [
     BrowserModule,
