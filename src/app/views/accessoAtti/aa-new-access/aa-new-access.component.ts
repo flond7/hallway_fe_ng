@@ -55,43 +55,12 @@ get gf()  { return this.accessForm.controls;}
 constructor (public api: AccessoAttiApiService) {}
 
 ngOnInit(): void {  
-  this.goalWeight = GC.GOAL_WEIGHT;
-  this.goalType = GC.GOAL_TYPE;
   this.applicants = GC.AA_APPLICANT_TYPE;
   this.types = GC.AA_TYPES;
   this.results = GC.AA_RESULT;
 }
 
-/* changeType(t:any){
-  this.gf.accesstype.setValue(t);
-} */
-
-addInvolvedPeople(person:PegPerson){
-  person.added = true;
-  this.involved.push(person);
-  console.log(this.involved)
-}
-removeInvolvedPeople(person:PegPerson){
-  person.added = false;
-  this.involved.forEach((el,index)=>{
-    if(el==person) this.involved.splice(index,1);
-  });
-}
-
-/* correctFormatForDates(dataToFormat:any) {
-  if (dataToFormat) {
-    let newDate = dataToFormat.toISOString().split('T')[0];
-    return newDate;
-  }
-}
-
- */
-
 submit() {
-  //console.log(this.accessForm.value)
-  //format correctly in ISO the dates
-  //this.accessForm.value.requestDate = this.correctFormatForDates(this.accessForm.value.requestDate)
-
   this.api.createAccess(this.accessForm.value).subscribe(r => console.log(r))
 }
 
