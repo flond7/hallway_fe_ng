@@ -1,8 +1,8 @@
-<div class="row no-gutters m-0">
-    <div class="col-2">{{access.requestProtocol}} del {{access.requestDate}}</div>
+<div class="row no-gutters m-0 h-3 align-content-center border-bottom border-muted-aa">
+    <div class="col-2">{{access.requestProtocol}} del {{access.requestDate | date:'dd/MM/yyyy'}}</div>
     <div class="col-1">{{access.accessType}}</div>
-    <div class="col-3">{{access.topic}}</div>
+    <div class="col-4">{{access.topic}}</div>
     <div class="col-1">{{access.answerResult}}</div>
     <div class="col-2">{{access.answerProtocol}} del {{access.answerDate}}</div>
-    <div class="col-1" (click)="toogle()">Dettagli</div>
+    <div class="col-2" (click)="toogle()">Dettagli</div>
 </div>
