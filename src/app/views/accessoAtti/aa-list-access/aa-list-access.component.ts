@@ -52,8 +52,10 @@ export class AaListAccessComponent implements OnInit {
       let arrayOfValues = Object.values(singleAccess);
       // merge prot number and date
       // protNum = arrayOfValues[1]    protDate = arrayOfValues[2];
-      let startProt = arrayOfValues[1] + " del " + arrayOfValues[2];
-      let endProt = arrayOfValues[9] + " del " + arrayOfValues[10];
+      let startDate = arrayOfValues[10].split('-').reverse().join('/')
+      let startProt = arrayOfValues[1] + " del " + startDate;
+      let endDate = arrayOfValues[10].split('-').reverse().join('/')
+      let endProt = arrayOfValues[9] + " del " + endDate;
       // clean the array and push inside the new protocols
       arrayOfValues.splice(1,2,startProt);
       arrayOfValues.splice(8,2,endProt);
@@ -66,12 +68,12 @@ export class AaListAccessComponent implements OnInit {
   generatePdf() {
     this.createPdfTable(this.list);
     this.pdfTitle = "Registro degli accessi " + this.year
+
     const documentDefinition = {
       pageOrientation: PageOrientation.Landscape,
       content: [
         { text: this.pdfTitle, style: 'header' },
-        { text: 'This is a sub-header', style: 'subheader' },
-        { text: 'This is an example paragraph.' },
+        { text: ' ' }, //empty line for aesthetic purposes
         {
           table: {
             headerRows: 1,
