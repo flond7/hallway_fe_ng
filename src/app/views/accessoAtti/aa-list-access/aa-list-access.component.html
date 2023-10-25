@@ -1,1 +1,29 @@
-<p>aa-list-access works!</p>
+<app-aa-menu></app-aa-menu>
+
+<div class="container">
+    <div class="row w-100">
+        <div class="col-12">
+
+            <div class="row justify-content-end">
+                <input id="year" type="number" class="form-control" [(ngModel)]="year">
+                <button class="w-auto h-2 rounded border-0 bg-primary-aa mx-2" (click)="getAccessRegister(year)">Cerca</button>
+            </div>
+
+            <div class="row m-0">
+                <h2 class="border-bottom border-primary-aa">Registro accessi {{year}}</h2>
+            </div>
+
+            <div class="row no-gutters m-0">
+                <div class="col-2">Richiesta</div>
+                <div class="col-1">Tipo</div>
+                <div class="col-3">Oggetto</div>
+                <div class="col-1">Esito</div>
+                <div class="col-3">Risposta</div>
+                <div class="col-2"></div>
+            </div>
+
+            <app-aa-list-row *ngFor="let access of this.list; index as i" [access]="access"></app-aa-list-row>
+
+        </div>
+    </div>
+</div>

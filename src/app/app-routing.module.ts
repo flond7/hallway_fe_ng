@@ -8,8 +8,8 @@ import { PegViewYearComponent  } from './views/peg/peg-view-year/peg-view-year.c
 import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
 import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
 
-
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
+import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'peg-new-goal', component: PegNewGoalComponent },
   
   { path: 'aa-new-access', component: AaNewAccessComponent },
+  { path: 'aa-list-access', component: AaListAccessComponent },
 ];
 
 @NgModule({
