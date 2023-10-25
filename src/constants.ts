@@ -14,5 +14,23 @@ export const INFO_GOAL_PHASE = "";
 
 //ACCESSO AGLI ATTI
 export const AA_APPLICANT_TYPE: Array<string> = ['Privato cittadino', 'Ente pubblico'];
-export const AA_TYPES: Array<string> = ['Semplice', 'Generalizzato'];
-export const AA_RESULT: Array<string> = ['Positivo', 'Negativo'];
+export const AA_TYPES: Array<string> = ['Accesso civico c.d. semplice ex art. 5, c.1 del D.Lgs. 33/2013', 'Accesso civico generalizzato ex art. 5, c.2 del D.Lgs. 33/2013 (Foia)'];
+export const AA_RESULT: Array<string> = ['Positivo', 'Negativo', 'Accolta parzialmente'];
+
+//PDF 
+/* export const PDF_ACCESS_KEYS: Array<string> = [
+  'id', 'Prot', 'Data protocollo', 'Richiedente', 'Tipo richiesta', 'Oggetto', 'Controinteressati', 'Responsabile', 'Esito', 'Protocollo risposta', 'answerDate', 'Note'
+] */
+export const PDF_ACCESS_KEYS: Array<string> = [
+  'Richiesta', 'Richiedente', 'Tipo richiesta', 'Oggetto', 'Controinteressati', 'Responsabile', 'Esito', 'Risposta', 'Note'
+]
+export const PDF_STYLE = {
+  header: {
+    fontSize: 22,
+    bold: true
+  },
+  subheader: {
+    fontSize: 18,
+    bold: true
+  }
+}
