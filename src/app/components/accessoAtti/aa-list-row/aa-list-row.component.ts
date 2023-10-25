@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faCircle, faCircleHalfStroke, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-aa-list-row',
@@ -9,9 +9,7 @@ import { faCircle, faCircleHalfStroke, faMinus } from '@fortawesome/free-solid-s
 export class AaListRowComponent {
   @Input() access: any;
   
-  faCircle =faCircle;
-  faCircleHalfStroke = faCircleHalfStroke;
-  faMinus =faMinus;
+  faPen =faPen;
 
   constructor () {}
 
