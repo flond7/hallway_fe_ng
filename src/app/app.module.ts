@@ -20,6 +20,7 @@ import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.co
 
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
 import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
+import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.compon
     PegViewYearComponent,
     AaNewAccessComponent,
     AaMenuComponent,
+    AaListAccessComponent,
   ],
   imports: [
     BrowserModule,
