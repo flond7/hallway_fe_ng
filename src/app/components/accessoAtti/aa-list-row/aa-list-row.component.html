@@ -7,5 +7,25 @@
     <div class="col-2 d-flex justify-content-between align-content-center" (click)="toogle()">
         <div class="" (click)="toogle()"> Dettagli</div>
         <div class="btn bg-primary-aa h-25" (click)="toogle()"><fa-icon [icon]='faPen' class="icon-bg"></fa-icon></div>
+        <div class="btn bg-secondary-aa h-25" (click)="openModal(access.id, deleteModal)"><fa-icon [icon]='faTrash'
+                class="icon-bg"></fa-icon></div>
     </div>
 </div>
+
+
+
+<ng-template #deleteModal>
+    <!-- <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div> -->
+    <div class="modal-body px-5">
+        <p class="text-dark text-center">Sei sicuro di voler cancellare questo elemento?</p>
+        <div class="row justify-content-between px-5">
+            <div class="w-auto btn border-secondary-aa" (click)="modalRef?.hide()">Annulla</div>
+            <div class="w-auto btn bg-primary-aa" (click)="deleteAccess()">Conferma</div>
+        </div>
+    </div>
+</ng-template>

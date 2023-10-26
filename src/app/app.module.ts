@@ -7,7 +7,9 @@ import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
-/* VIEWS */
+import { BsModalService } from 'ngx-bootstrap/modal';
+
+/* PEG */
 import { HomeComponent } from './views/home/home.component';
 import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
@@ -22,6 +24,9 @@ import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-a
 import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
 import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
 import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list-row.component';
+
+/* MODALS */
+import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
 
 
 @NgModule({
@@ -40,6 +45,7 @@ import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list
     AaMenuComponent,
     AaListAccessComponent,
     AaListRowComponent,
+    FeedbackModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,7 @@ import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list
     ReactiveFormsModule,
     HttpClientXsrfModule,
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
