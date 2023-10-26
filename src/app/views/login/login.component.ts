@@ -14,15 +14,15 @@ export class LoginComponent {
   constructor(private authService: AuthService) {}
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(
-      (response) => {
+    this.authService.login(this.username, this.password).subscribe(r => console.log(r)
+      /* (response) => {
         // Handle the response with JWT token
         console.log('JWT Token:', response.token);
       },
       (error) => {
         // Handle authentication error
         console.error('Authentication Error:', error);
-      }
+      } */
     );
   }
 }

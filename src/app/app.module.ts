@@ -13,7 +13,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 
-import { AuthenticationInterceptor } from './authentication.interceptor'
+//import { AuthenticationInterceptor } from './authentication.interceptor'
 
 
 /* PEG */
@@ -65,11 +65,11 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
   ],
   providers: [
     BsModalService, 
-    {
+    /* {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthenticationInterceptor, // Add your interceptor here
       multi: true,
-    },
+    }, */
   ],
   bootstrap: [AppComponent]
 })
