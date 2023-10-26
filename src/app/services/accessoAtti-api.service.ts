@@ -14,31 +14,6 @@ export class AccessoAttiApiService {
 
   basePath = 'http://127.0.0.1:8000';
 
-  /*constructor(private http: HttpClient, public AuthService: AuthService) { }
-  getOptions() {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.AuthService.getToken()
-    if (this.AuthService.token) {
-      headers = headers.set('Authorization', `Token ${this.AuthService.token}`);
-    }
-    return { headers };
-  } */
-
-    // Save partial answer
-  savePartialAnswer(user: any, answers: any) {
-    console.log(user);
-    console.log(answers);
-  }
-
-/*   getOptions() {
-    let headers = new HttpHeaders({
-      'Content-Type' : 'application/json',
-      'Cache-Control': 'no-cache'
-    }); 
-    //headers = headers.append('Authorization','Bearer${this.auth.jwToken}');
-    return headers;
-  } */
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -46,7 +21,6 @@ export class AccessoAttiApiService {
       //Authorization: 'my-auth-token'
     }),
   };
-
 
   createAccess(access:any): Observable<any> {
     let jsonData = JSON.stringify(access);
@@ -57,18 +31,8 @@ export class AccessoAttiApiService {
     return this.httpClient.get<any>('http://127.0.0.1:8000/api_accessoAtti/access_list')
   }
 
-  /* getRailwayDetail(id: any): Observable<any> {
-    return this.http.get<any>(this.basePath + '/railway-detail/' + id, this.getOptions())
+  deleteAccess(id:number):Observable<any> {
+    return this.httpClient.post<any>(this.basePath+"/api_accessoAtti/access_delete/"+id, this.httpOptions)
   }
- */
-
-
-  /* findSingleUser(cf:any) {
-    return this.httpClient.get(`${baseURL}/user/view/${cf}`)
-  }
-
-  createUser(data:any): Observable<any> {
-    return this.httpClient.post(`${baseURL}/user/create`, data);
-  } */
   
 }

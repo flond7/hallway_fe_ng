@@ -1,0 +1,16 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">My Modal</h4>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+  <div class="modal-body">
+    <div *ngIf="success==true" class="text-center">
+        <fa-icon [icon]='faCheck' class="text-success icon-bg bigger-icon"></fa-icon>
+    </div>
+    <div *ngIf="success==false" class="text-center">
+        <fa-icon [icon]='faX' class="text-danger icon-bg bigger-icon"></fa-icon>
+    </div>
+    <p class="text-dark text-center">{{message}}</p>
+  </div>
+  

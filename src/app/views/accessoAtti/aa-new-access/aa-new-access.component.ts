@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { AccessoAttiApiService } from '../../../services/accessoAtti-api.service';
+import { ModalService } from '../../../services/modals.service';
 import { PegPerson } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
@@ -52,7 +53,7 @@ accessForm = new FormGroup({
 
 get gf()  { return this.accessForm.controls;}
 
-constructor (public api: AccessoAttiApiService) {}
+constructor (public api: AccessoAttiApiService, public modalService: ModalService) {}
 
 ngOnInit(): void {  
   this.applicants = GC.AA_APPLICANT_TYPE;
@@ -60,8 +61,18 @@ ngOnInit(): void {
   this.results = GC.AA_RESULT;
 }
 
+
+
 submit() {
-  this.api.createAccess(this.accessForm.value).subscribe(r => console.log(r))
+  this.api.createAccess(this.accessForm.value).subscribe(r => {
+    if (r.status == 200) {
+      //pass if it's a success and the message from the BE
+      this.modalService.openFeedbackModal(true, r.data)
+    } else {
+      //pass if it's a success and the message from the BE
+      this.modalService.openFeedbackModal(false, r.data)
+    }
+  })
 }
 
 }
