@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -12,6 +12,8 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 /* GENERAL */
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
+
+import { AuthenticationInterceptor } from './authentication.interceptor'
 
 
 /* PEG */
@@ -61,7 +63,14 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
     ReactiveFormsModule,
     HttpClientXsrfModule,
   ],
-  providers: [BsModalService],
+  providers: [
+    BsModalService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor, // Add your interceptor here
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
