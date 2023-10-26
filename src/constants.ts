@@ -1,5 +1,11 @@
 //GENERAL
 export const BASE_URL: string = 'http://127.0.0.1:8000/';
+export const HTTP_OPTIONS = {
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache',
+    'Skip-Interceptor': 'true'
+};
+
 
 /* export class globalConstants {
   public static GOAL_WEIGHT: Array<string> = ['Facile', 'Media difficoltà', 'Alta difficoltà'];
