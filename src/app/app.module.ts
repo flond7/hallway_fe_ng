@@ -9,8 +9,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 
-/* PEG */
+/* GENERAL */
 import { HomeComponent } from './views/home/home.component';
+import { LoginComponent } from './views/login/login.component';
+
+
+/* PEG */
 import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
 import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-row.component';
@@ -46,6 +50,7 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
     AaListAccessComponent,
     AaListRowComponent,
     FeedbackModalComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
