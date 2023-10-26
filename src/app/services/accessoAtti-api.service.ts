@@ -18,7 +18,6 @@ export class AccessoAttiApiService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Cache-Control': 'no-cache'
-      //Authorization: 'my-auth-token'
     }),
   };
 
