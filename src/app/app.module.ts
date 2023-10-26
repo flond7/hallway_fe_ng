@@ -22,7 +22,6 @@ import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-a
 import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
 import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
 import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list-row.component';
-import { AaDeleteModalComponent } from './components/accessoAtti/aa-delete-modal/aa-delete-modal.component';
 
 
 @NgModule({
@@ -41,7 +40,6 @@ import { AaDeleteModalComponent } from './components/accessoAtti/aa-delete-modal
     AaMenuComponent,
     AaListAccessComponent,
     AaListRowComponent,
-    AaDeleteModalComponent,
   ],
   imports: [
     BrowserModule,
