@@ -35,25 +35,23 @@ export class AuthService {
     // First, get the CSRF token and update the headers
     return this.getCSRFToken().pipe(
       mergeMap((r: any) => {
-        console.log('CSRF Token Response:', r);
+        //console.log('CSRF Token Response:', r);
         this.csrfToken = r.csrf_token;
         document.cookie = 'csrftoken=' + this.csrfToken;
         this.httpOptions.headers = this.httpOptions.headers.set('X-CSRFToken', this.csrfToken);
-        console.log(this.httpOptions)
         // Then, send the login request and return the observable
-        return this.http.post(baseURL + 'common/user_log', { username, password }, this.httpOptions);
+        return this.http.post(baseURL + 'common/user_log', { username, password }, this.httpOptions).pipe(
+          catchError((error: any) => {
+            // Handle the error here, and optionally, log it
+            //console.error('Login failed:', error);
+            // You can also customize the error message or response before re-throwing it
+            return throwError(() => error);    
+          })
+        );
       })
     );
   }
   
-
-   
-    //return this.http.post(baseURL + 'accounts/login/', { username, password }, this.httpOptions)
-    //return this.http.post(baseURL + 'get_csrf_token/', this.httpOptions)
-    
-    //this.getCSRFToken()
-    // get the crsftoken
-    // use the token for the login request
 
 /* 
     return this.http.post(baseURL + 'accounts/login/', { username, password }, this.httpOptions)
