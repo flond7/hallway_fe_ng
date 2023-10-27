@@ -10,3 +10,16 @@
 
 ## constants.ts
 Rember they can be imported in .ts files but to use them in a template you need to reassign them to a new variable defined in the view .ts file
+
+
+
+
+
+# Login with django
+- Create an auth service where you have a login function. This function sends the credential and receives a JWT token in return
+- Store the token in html cookies (install)
+
+- Create an Interceptor with the purpose of adding the JWT token to any http request sent
+  ng g interceptor authentication
+
+- create a function to get the CSRF token (which is a token required for CORS)

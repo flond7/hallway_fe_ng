@@ -23,6 +23,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "bootstrap": "^5.2.3",
+    "ngx-bootstrap": "10.x.x",
+    "ngx-cookie-service": "^16.0.1",
     "pdfmake": "^0.2.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
