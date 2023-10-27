@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +12,17 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   login() {
-    this.authService.login(this.username, this.password).subscribe(r => console.log(r)
-      /* (response) => {
-        // Handle the response with JWT token
-        console.log('JWT Token:', response.token);
-      },
-      (error) => {
-        // Handle authentication error
-        console.error('Authentication Error:', error);
-      } */
+    this.authService.login(this.username, this.password).subscribe(r => {
+      if (r.status == 201) {
+        //redirect to home
+        this.router.navigate(['/home']);
+      } else {
+        //show login error
+      }
+    }
     );
   }
 }
