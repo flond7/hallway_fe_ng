@@ -32,6 +32,16 @@ export class AuthService {
   login(username: string, password: string): Observable<any> {
     console.log('login auth service');
     
+    //retrieve single apps authorization
+    let userid = 2;
+    this.getAuthorizations(userid).subscribe(r=> {
+      // Save variables to local storage
+      Object.keys(r.data).forEach(key => {
+        const value = r.data[key];
+        localStorage.setItem(key, JSON.stringify(value));
+      });
+    });
+    
     // First, get the CSRF token and update the headers
     return this.getCSRFToken().pipe(
       mergeMap((r: any) => {
@@ -52,6 +62,9 @@ export class AuthService {
     );
   }
   
+  getAuthorizations(pk:number): Observable<any> {
+    return this.http.get(baseURL + 'common/get_user_profiles_auth/'+pk, this.httpOptions)
+  }
 
 /* 
     return this.http.post(baseURL + 'accounts/login/', { username, password }, this.httpOptions)
