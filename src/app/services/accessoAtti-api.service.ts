@@ -33,5 +33,18 @@ export class AccessoAttiApiService {
   deleteAccess(id:number):Observable<any> {
     return this.httpClient.post<any>(this.basePath+"/api_accessoAtti/access_delete/"+id, this.httpOptions)
   }
+
+  check_AA_Authorization(): string {
+    // Retrieve the variable using the service
+    let authorized_aa = localStorage.getItem('authorized_aa');
+    if (authorized_aa == null) { authorized_aa = 'false'}
+    return authorized_aa;
+  }
+
+  check_PEG_Authorization(): string | null {
+    // Retrieve the variable using the service
+    let authorized_aa;
+    return authorized_aa = localStorage.getItem('authorized_aa');
+  }
   
 }

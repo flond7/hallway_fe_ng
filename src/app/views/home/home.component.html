@@ -23,7 +23,7 @@
     </div>
 
 
-    <div *ngIf="permission_accessoAtti" class="col-3 me-4 bg-primary-aa home-tile" routerLink="/aa-new-access">
+    <div *ngIf="permission_accessoAtti == 'true' " class="col-3 me-4 bg-primary-aa home-tile" routerLink="/aa-new-access">
       <div class="d-flex justify-content-center">
         <fa-icon [icon]='faBullseye' class="icon-bg"></fa-icon>
       </div>
