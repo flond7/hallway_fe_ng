@@ -33,14 +33,15 @@ export class AuthService {
     console.log('login auth service');
     
     //retrieve single apps authorization
-    let userid = 2;
-    this.getAuthorizations(userid).subscribe(r=> {
+    //let userid = 2;
+    
+/*     this.getAuthorizations(userid).subscribe(r=> {
       // Save variables to local storage
       Object.keys(r.data).forEach(key => {
         const value = r.data[key];
         localStorage.setItem(key, JSON.stringify(value));
       });
-    });
+    }); */
     
     // First, get the CSRF token and update the headers
     return this.getCSRFToken().pipe(
@@ -51,6 +52,7 @@ export class AuthService {
         this.httpOptions.headers = this.httpOptions.headers.set('X-CSRFToken', this.csrfToken);
         // Then, send the login request and return the observable
         return this.http.post(baseURL + 'common/user_log', { username, password }, this.httpOptions).pipe(
+
           catchError((error: any) => {
             // Handle the error here, and optionally, log it
             //console.error('Login failed:', error);

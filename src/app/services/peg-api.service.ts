@@ -34,4 +34,9 @@ export class PegApiService {
     return this.httpClient.post(`${baseURL}/user/create`, data);
   } */
   
+  check_PEG_Authorization(): string | null {
+    // Retrieve the variable using the service
+    let authorized_peg;
+    return authorized_peg = localStorage.getItem('authorized_peg');
+  }
 }

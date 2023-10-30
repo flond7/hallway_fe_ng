@@ -19,11 +19,13 @@ export class HomeComponent {
   permission_peg : string | null = "";
   permission_accessoAtti: string | null = "";
 
-  constructor (public api: PegApiService, public aaService: AccessoAttiApiService) {}
+  constructor (public aaService: AccessoAttiApiService, public pegService: PegApiService) {}
   ngOnInit(): void {
+    //reset authorizations
+    this.permission_accessoAtti = 'false';
+    this.permission_peg = 'false';
     //check authorizations
     this.permission_accessoAtti = this.aaService.check_AA_Authorization();
-    console.log(this.permission_accessoAtti);
-    this.permission_peg = 'true';
+    this.permission_peg = this.pegService.check_PEG_Authorization();
   }
 }

@@ -40,11 +40,5 @@ export class AccessoAttiApiService {
     if (authorized_aa == null) { authorized_aa = 'false'}
     return authorized_aa;
   }
-
-  check_PEG_Authorization(): string | null {
-    // Retrieve the variable using the service
-    let authorized_aa;
-    return authorized_aa = localStorage.getItem('authorized_aa');
-  }
   
 }
