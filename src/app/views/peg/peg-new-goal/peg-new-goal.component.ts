@@ -77,7 +77,7 @@ export class PegNewGoalComponent {
 
   focus(){
     this.searching = true;
-    this.filteredPAUserList = this.userList;
+    this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
   }
   blur(){
     this.searching = false;
@@ -86,18 +86,26 @@ export class PegNewGoalComponent {
 
   onSearchPAUser(event: any) {
     const query = event.target.value;
-    console.log(this.searching)
-    this.filteredPAUserList = this.userList.filter(user =>
+
+    //start with all the user then
+    //filter out elements already added
+    const usersNotAdded: PegPerson[]= this.userList.filter(user => !this.involved.some(addedUser => addedUser.id === user.id));
+    this.filteredPAUserList = usersNotAdded.filter(user =>
       user.name.toLowerCase().includes(query.toLowerCase()) ||
-      user.surname.toLowerCase().includes(query.toLowerCase())
+      user.surname.toLowerCase().includes(query.toLowerCase()) &&
+      (user.added !== true || user.added === undefined)
     );
+    console.log(this.filteredPAUserList)
   }
+
+
 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
     this.involved.push(person);
     this.searching = false;
     console.log(this.involved)
+    console.log(this.userList)
   }
 
   removeInvolvedPeople(person: PegPerson) {

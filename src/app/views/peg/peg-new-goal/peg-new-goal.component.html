@@ -50,7 +50,7 @@
                 <p class="mb-0 pb-0">Persone</p>
                 <div class="row">
                   <span class="d-flex w-auto" *ngFor="let person of this.involved">{{person.name}} {{person.surname}} 
-                    <div class="circle border border-secondary-peg mx-1 me-2"><fa-icon [icon]='faMinus' class="m-0"></fa-icon></div>
+                    <div class="circle border border-secondary-peg text-secondary-peg mx-1 me-2" (click)="removeInvolvedPeople(person)"><fa-icon [icon]='faMinus' class="m-0"></fa-icon></div>
                   </span>
                 </div>
                 <div class="d-flex justify-content-between">
