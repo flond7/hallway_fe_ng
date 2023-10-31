@@ -1,3 +1,5 @@
+<app-peg-menu></app-peg-menu>
+
 <div class="container">
   <div class="row w-100">
     <div class="col-12">
@@ -5,56 +7,79 @@
       <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
 
         <div class="row m-0">
-          <div class="col-2">
-            <label for="name" class="col-2 mt-2 h5">Nome</label>
-          </div>
-          <div class="col-8">
-            <input formControlName="name" id="name" type="text" class="col-8 form-control">
-          </div>
-          <div class="col-2">
-            <!-- <div *ngIf="goalForm.name.touched && goalForm.name.invalid" class="alert alert-danger">
-            <div *ngIf="goalForm.name.errors && goalForm.name.errors.required">Name is required.</div>
-            <div *ngIf="goalForm.name.errors && goalForm.name.errors.minlength">Name should be 3 character.</div>
-          </div> -->
-          </div>
+          <h2 class="border-bottom border-primary-peg">Obbiettivi straordinario</h2>
         </div>
 
-        <div class="row m-0 mt-3">
-          <div class="col-2">
-            <label for="description" class="border-muted-right h5">Descrizione</label>
-          </div>
-          <div class="col-8">
-            <textarea formControlName="description" id="description" type="textarea" rows="4"
-              class="col-10 form-control"></textarea>
-          </div>
-          <div class="col-2"></div>
-        </div>
+        <div class="row border-bottom-muted">
 
-        <div class="row m-0 mt-3">
-          <div class="col-2">
-            <label for="weight" class="border-muted-right h5">Difficoltà / Peso</label>
-          </div>
-          <div class="col-8">
-            <div class="d-flex">
-              <div *ngFor="let weight of this.goalWeight"
-                class="col-3 d-flex justify-content-center align-items-center me-3 rounded me-3"
-                [ngClass]="this.gf.weight.value === weight.text ? 'bg-primary-peg text-dark' : 'border border-primary-peg text-white btn'"
-                (click)="this.changeWeight(weight)">{{weight.text}}</div>
+          <div class="col-11 border-right">
+            <div class="row m-0">
+              <div class="col-4">
+                <p class="mb-0 pb-0">Nome</p>
+                <input formControlName="name" id="name" type="text" class="form-control">
+              </div>
+    
+              <div class="col-4">
+                <p class="mb-0 pb-0">Ufficio</p>
+                <div class="d-flex justify-content-between">
+                  <span>{{goal.office}}</span>
+                  <div class="btn btn border-primary-peg text-primary-peg" (click)="changeOffice()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
+                </div>
+                <!-- <input formControlName="name" id="name" type="text" class="form-control"> -->
+              </div>
+    
+              <div class="col-4">
+                <p class="mb-0 pb-0">Responsabile</p>
+                <div class="d-flex justify-content-between">
+                  <span>{{goal.responsable}}</span>
+                  <div class="btn border-primary-peg text-primary-peg" (click)="ChangeResponsable()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
+                </div>
+                <!-- <input formControlName="responsable" id="responsable" type="text" class="form-control"> -->
+              </div>
+          
             </div>
+    
+            <div class="row m-0">
+    
+              <div class="col-8">
+                <p class="mb-0 pb-0">Descrizione</p>
+                <textarea formControlName="description" id="description" type="textarea" rows="3" class="form-control"></textarea>
+              </div>
+    
+              <div class="col-4">
+                <p class="mb-0 pb-0">Persone</p>
+                <div class="d-flex">{{goal.people}}</div>
+                <div class="d-flex justify-content-between">
+                  <input id="" type="text" class="w-100 form-control me-3" (focus)="focus()" (blur)="blur()" (input)="onSearchPAUser($event)">
+                  <div class="btn border-primary-peg text-primary-peg" (click)="addInvolvedPeople()"><fa-icon [icon]='faSearch' class="icon-bg m-0"></fa-icon></div>
+
+  
+                </div>
+              
+
+                <div *ngIf="this.searching === true" [ngClass]="{'py-2': this.searching}"  class="search-results rounded px-3 mt-2">
+                  <div *ngFor="let person of filteredPAUserList" class="d-flex justify-content-between align-items-center border-bottom border-muted py-1 mb-1">
+                    <span class=""> {{person.name}} {{person.surname}}</span>
+                    <div class="btn border-primary-peg text-primary-peg"><fa-icon [icon]='faPlus' class="m-0"></fa-icon></div>
+                  </div>
+                </div>
+              </div>
+    
+    
+            </div>
+    
           </div>
-          <div class="col-2"></div>
+
+          <div class="col-1">
+            <p class="mb-0 pb-0">Peso</p>
+            <input formControlName="weight" id="weight" type="number" class="form-control">
+          </div>
+
         </div>
 
+        
+<!-- 
         <div class="row m-0 mt-3">
-          <div class="col-2">
-
-            <label for="description" class="col-2 border-muted-right h5">Personale</label>
-            <div class="small">Filtra per ufficio</div>
-            <select class="">
-              <option *ngFor="let office of this.offices; index as i" value="dog">{{office[1]}}</option>
-            </select>
-
-          </div>
           <div class="col-8 justify-content-between">
             <div *ngFor="let person of this.userList; index as i" class="col-3 d-flex justify-content-between">
               <div class="">{{person.name}} {{person.surname}}</div>
@@ -70,170 +95,12 @@
             </div>
           </div>
         </div>
+ -->
 
-        <div class="row m-0 mt-3">
-          <div class="col-2">
-            <label for="type" class="col-2 border-muted-right h5">Tipologia</label>
-          </div>
-          <div class="col-10 d-flex">
-            <div *ngFor="let type of this.goalType"
-              class="col-2 d-flex justify-content-center align-items-center rounded me-3"
-              [ngClass]="this.gf.type.value === type ? 'bg-primary-peg text-dark' : 'border border-primary-peg text-white btn'"
-              (click)="this.changeType(type)">{{type}}</div>
-          </div>
+
+        <div class="row justify-content-end">
+          <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" value="Submit" (click)="submit()">Salva</button>
         </div>
-
-        <div *ngIf="this.gf.type.value === 'Ordinario'">
-          <div class="row m-0 mt-3">
-            <div class="col-2">
-              <label for="marker" class="col-2 border-muted-right h5">Indicatori</label>
-              <div class="small">(es: pratiche evase)</div>
-              <div class="btn bg-primary-peg" (click)="addMarker()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
-              </div>
-            </div>
-            <div class="col-8">
-              <div formArrayName="markers">
-                <div class="d-flex">
-                  <div class="col-6 p-0 pe-2 small">Nome</div>
-                  <div class="col-2 p-0 pe-2 small">Valore previsto</div>
-                  <div class="col-2 p-0 pe-2 small">Valore reale</div>
-                  <div class="col-2 p-0 pe-2 small"></div>
-                </div>
-
-                <div *ngFor="let m of markerFormArray.controls; index as i">
-                  <div [formGroupName]="i" class="row p-0 m-0 mt-3">
-                    <div class="col-6 p-0 pe-2"><input formControlName="markerName" name="markerName" type="text"
-                        class="form-control"></div>
-                    <div class="col-2 p-0 pe-2"><input formControlName="markerExpectedValue" name="markerExpectedValue"
-                        type="integer" class="form-control"></div>
-                    <div class="col-2 p-0 pe-2"><input formControlName="markerRealValue" name="markerRealValue"
-                        type="integer" class="form-control"></div>
-                    <div class="col-2 p-0">
-                      <div *ngIf="m.value.markerDone === false" class="btn bg-primary-peg me-2"
-                        (click)="confirmMarker(m)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-                      <div *ngIf="m.value.markerDone === false" class="btn bg-danger text-white"
-                        (click)="deleteMarker(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                      <div *ngIf="m.value.markerDone !== false" class="btn bg-secondary-peg" (click)="editMarker(m)">
-                        <fa-icon [icon]='faPen' class=""></fa-icon></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="this.gf.type.value === 'Straordinario'">
-          <div class="row m-0 mt-3">
-            <div class="col-2">
-              <label for="description" class="mt-2 h5">Fasi dell'obbiettivo</label>
-              <div class="small">(es: Verifica, test...)</div>
-              <div class="btn bg-primary-peg" (click)="addPhase()">Aggiungi<fa-icon [icon]='faPlus' class=""></fa-icon>
-              </div>
-            </div>
-            <div class="col-8">
-              <div class="row m-0" formArrayName="phases">
-                <div *ngFor="let p of phasesFormArray.controls; index as i" class="d-flex p-0 m-0 border-bottom">
-                  <div [formGroupName]="i">
-
-                    <div class="d-flex mb-2">
-                      <div class="col-5 p-0 pe-2">
-                        <div class="mb-1 small text-muted">Nome</div>
-                        <input formControlName="phaseName" name="phaseName" type="text" class="form-control">
-                      </div>
-                      <div class="col-1 p-0 pe-2">
-                        <div class="mb-1 small text-muted">Valore</div>
-                        <input formControlName="phaseValue" name="phaseValue" type="text" class="form-control">
-                      </div>
-                      <div class="col-6 p-0 pe-2 d-flex">
-                        <div class="col-5 pe-2">
-                          <div class="mb-1 small text-muted">Inizio previsto</div>
-                          <input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date"
-                            class="form-control">
-                          <div class="mb-1 small text-muted">Fine prevista</div>
-                          <input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date"
-                            class="form-control">
-                        </div>
-                        <div class="col-5">
-                          <div class="mb-1 small text-muted">Inizio reale</div>
-                          <input formControlName="phaseRealStart" name="phaseRealStart" type="date"
-                            class="form-control">
-                          <div class="mb-1 small text-muted">Fine reale</div>
-                          <input formControlName="phaseRealEnd" name="phaseRealEnd" type="date" class="form-control">
-                        </div>
-                        <div class="col-2">
-                          <div *ngIf="p.value.phaseDone === false" class="btn bg-primary-peg me-2"(click)="confirmPhase(p)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-                            <div *ngIf="p.value.phaseDone === false" class="btn bg-danger text-white" (click)="deletePhase(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                            <div *ngIf="p.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editPhase(p)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
-                        </div>
-                      </div>
-
-
-                    </div>
-
-                    <!-- <div class="col-10">
-                          <div class="row p-0 m-0">
-                            <div class="col-10 p-0 pe-2"><small class="">Nome</small><input formControlName="phaseName" name="phaseName" type="text" class="form-control"></div>
-                            <div class="col-2 p-0"><small class="">Valore</small><input formControlName="phaseValue" name="phaseValue" type="text" class="form-control"></div>
-                          </div>
-                          <div class="row p-0 m-0">
-                            <div class="col-3 p-0 pe-2"><small class="mb-1">Inizio previsto</small><input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date" class="form-control"></div>
-                            <div class="col-3 p-0 pe-2"><small class="">Fine prevista</small><input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date" class="form-control"></div>
-                            <div class="col-3 p-0 pe-2"><small class="">Inizio reale</small><input formControlName="phaseRealStart" name="phaseRealStart" type="text" class="form-control"></div>
-                            <div class="col-3 p-0 "><small class="">Fine reale</small><input formControlName="phaseRealEnd" name="phaseRealEnd" type="text" class="form-control"></div>
-                          </div>
-                        </div>
-                        <div class="col-2 p-0">
-                          <div class="h7"> FASE {{i + 1}}</div>
-                          <div *ngIf="p.value.phaseDone === false" class="btn bg-primary-peg me-2" (click)="confirmMarker(p)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-                          <div *ngIf="p.value.phaseDone === false" class="btn bg-danger text-white" (click)="deleteMarker(i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                          <div *ngIf="p.value.phaseDone !== false" class="btn bg-secondary-peg" (click)="editMarker(p)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
-                        </div>  -->
-
-
-
-                    <!-- <div class="col-10 p-0 d-flex">
-                          <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedStart" name="phaseExpectedStart" type="date" class="form-control"></div>
-                          <div class="col-2 p-0 pe-2"><input formControlName="phaseExpectedEnd" name="phaseExpectedEnd" type="date" class="form-control"></div>
-                          <div class="col-2 p-0 pe-2"><input formControlName="phaseRealStart" name="phaseRealStart" type="text" class="form-control"></div>
-                          <div class="col-2 p-0 pe-2"><input formControlName="phaseRealEnd" name="phaseValphaseRealEndueEnd" type="text" class="form-control"></div>
-                          <div class="col-1 p-0 pe-2"><input formControlName="phaseValue" name="phaseValue" type="text" class="form-control"></div>
-                          <div class="col-2 p-0">
-                            <div *ngIf="m.value.phaseDone === false" class="btn bg-primary-peg me-2"
-                              (click)="confirmMarker(m, i)"><fa-icon [icon]='faCheck' class=""></fa-icon></div>
-                            <div *ngIf="m.value.phaseDone === false" class="btn bg-danger text-white"
-                              (click)="deleteMarker(m, i)"><fa-icon [icon]='faTrash' class=""></fa-icon></div>
-                            <div *ngIf="m.value.phaseDone !== false" class="btn bg-secondary-peg"
-                              (click)="editMarker(m, i)"><fa-icon [icon]='faPen' class=""></fa-icon></div>
-                          </div>
-                        </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-2">
-              
-            </div>
-          </div>
-
-        </div>
-
-
-
-
-
-
-        <div class="row m-0 mt-3">
-          <div class="col-2">
-          </div>
-        </div>
-        <div class="col-10 d-flex"></div>
-
-
-
-
-        <button value="Submit" (click)="submit()">Submit</button>
 
       </form>
 

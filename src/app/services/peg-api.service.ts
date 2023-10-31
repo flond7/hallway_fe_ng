@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
+import { BASE_URL } from '../../constants'
 
-const baseURL = 'http://172.20.34.75/peg-backend';
+const baseURL = BASE_URL;
+
 const djangoUserURL = 'http://127.0.0.1:8000/'; //python3 manage.py runserver
 
 @Injectable({
@@ -12,19 +14,22 @@ export class PegApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getOptions() {
-    let headers = new HttpHeaders;
-    headers = headers.append('Authorization','Bearer${this.auth.jwToken}');
-    return headers;
-  }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+      //'X-CSRFToken': this.csrfToken, // Access csrfToken within the object's properties.
+    }),
+  };
 
   getOfficeList() {
     return this.httpClient.get('http://127.0.0.1:8000/api_user/office_list')
   }
 
-  getUserList() {
-    return this.httpClient.get('http://127.0.0.1:8000/api_user/user_list')
+  getUserList():Observable<any> {
+    return this.httpClient.get(baseURL + 'api_user/pauser_list_peg')
   }
+
 
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)
