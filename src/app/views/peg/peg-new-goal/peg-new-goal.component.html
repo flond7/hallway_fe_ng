@@ -41,26 +41,30 @@
     
             <div class="row m-0">
     
-              <div class="col-8">
+              <div class="col-6">
                 <p class="mb-0 pb-0">Descrizione</p>
                 <textarea formControlName="description" id="description" type="textarea" rows="3" class="form-control"></textarea>
               </div>
     
-              <div class="col-4">
+              <div class="col-6">
                 <p class="mb-0 pb-0">Persone</p>
-                <div class="d-flex">{{goal.people}}</div>
+                <div class="row">
+                  <span class="d-flex w-auto" *ngFor="let person of this.involved">{{person.name}} {{person.surname}} 
+                    <div class="circle border border-secondary-peg mx-1 me-2"><fa-icon [icon]='faMinus' class="m-0"></fa-icon></div>
+                  </span>
+                </div>
                 <div class="d-flex justify-content-between">
-                  <input id="" type="text" class="w-100 form-control me-3" (focus)="focus()" (blur)="blur()" (input)="onSearchPAUser($event)">
-                  <div class="btn border-primary-peg text-primary-peg" (click)="addInvolvedPeople()"><fa-icon [icon]='faSearch' class="icon-bg m-0"></fa-icon></div>
+                  <input id="" type="text" class="w-100 form-control me-3" (focus)="focus()" (input)="onSearchPAUser($event)">
+                  <div class="btn border-primary-peg text-primary-peg"><fa-icon [icon]='faSearch' class="icon-bg m-0"></fa-icon></div>
 
   
                 </div>
               
 
                 <div *ngIf="this.searching === true" [ngClass]="{'py-2': this.searching}"  class="search-results rounded px-3 mt-2">
-                  <div *ngFor="let person of filteredPAUserList" class="d-flex justify-content-between align-items-center border-bottom border-muted py-1 mb-1">
+                  <div *ngFor="let person of filteredPAUserList" class="d-flex justify-content-between align-items-center border-bottom border-muted py-1 mb-1" (click)="addInvolvedPeople(person)">
                     <span class=""> {{person.name}} {{person.surname}}</span>
-                    <div class="btn border-primary-peg text-primary-peg"><fa-icon [icon]='faPlus' class="m-0"></fa-icon></div>
+                    <div class="text-primary-peg"><fa-icon [icon]='faPlus' class="m-0"></fa-icon></div>
                   </div>
                 </div>
               </div>

@@ -19,18 +19,16 @@ export class PegNewGoalComponent {
 
   goal = {
     'office': 'Segreteria',
-    'people': [],
     'responsable': 'Dott.ssa Patrizia Mascellino'
   }
 
   addedPAUserList = [];
 
   offices: any;                       //office list to retrive with API
-  involved: Array<PegPerson> = [];
-  //markers: Array<PegIndicator> = [];
   userList: PegPerson[] = [];
-  filteredPAUserList: Array<PegPerson> = [];
-  searching = false;
+  filteredPAUserList: PegPerson[] = [];
+  involved: PegPerson[] = [];
+  searching: boolean = false;
 
   // FA icons
   faPlus = faPlus;
@@ -94,17 +92,15 @@ export class PegNewGoalComponent {
       user.surname.toLowerCase().includes(query.toLowerCase())
     );
   }
-  addInvolvedPeople() {
-  }
 
-
-
-/*   addInvolvedPeople(person: PegPerson) {
+  addInvolvedPeople(person: PegPerson) {
     person.added = true;
     this.involved.push(person);
+    this.searching = false;
     console.log(this.involved)
   }
- */  removeInvolvedPeople(person: PegPerson) {
+
+  removeInvolvedPeople(person: PegPerson) {
     person.added = false;
     this.involved.forEach((el, index) => {
       if (el == person) this.involved.splice(index, 1);
