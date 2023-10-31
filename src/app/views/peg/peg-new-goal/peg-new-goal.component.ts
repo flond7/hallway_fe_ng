@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson } from '../../../../interfaces';
+import { PegPerson, PegGoal } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
 
@@ -120,7 +120,9 @@ export class PegNewGoalComponent {
   }
 
 
+  addGoal(){
 
+  }
 
 
   submit() {

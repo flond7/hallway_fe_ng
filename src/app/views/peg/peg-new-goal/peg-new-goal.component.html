@@ -4,7 +4,12 @@
   <div class="row w-100">
     <div class="col-12">
 
-      <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
+      <div class="row m-0">
+        <h2 class="border-bottom border-primary-peg">Obbiettivi straordinari</h2>
+      </div>
+      <app-peg-goal></app-peg-goal>
+
+      <!-- <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
 
         <div class="row m-0">
           <h2 class="border-bottom border-primary-peg">Obbiettivi straordinario</h2>
@@ -25,7 +30,7 @@
                   <span>{{goal.office}}</span>
                   <div class="btn btn border-primary-peg text-primary-peg" (click)="changeOffice()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
                 </div>
-                <!-- <input formControlName="name" id="name" type="text" class="form-control"> -->
+                <!-- <input formControlName="name" id="name" type="text" class="form-control"> --
               </div>
     
               <div class="col-4">
@@ -34,7 +39,7 @@
                   <span>{{goal.responsable}}</span>
                   <div class="btn border-primary-peg text-primary-peg" (click)="ChangeResponsable()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
                 </div>
-                <!-- <input formControlName="responsable" id="responsable" type="text" class="form-control"> -->
+                <!-- <input formControlName="responsable" id="responsable" type="text" class="form-control"> --
               </div>
           
             </div>
@@ -56,8 +61,6 @@
                 <div class="d-flex justify-content-between">
                   <input #searchInput id="" type="text" class="w-100 form-control me-3" (focus)="focus()" (input)="onSearchPAUser($event)">
                   <div class="btn border-primary-peg text-primary-peg"><fa-icon [icon]='faSearch' class="icon-bg m-0"></fa-icon></div>
-
-  
                 </div>
               
 
@@ -99,7 +102,7 @@
             </div>
           </div>
         </div>
- -->
+ --
 
 
         <div class="row justify-content-end">
@@ -107,6 +110,12 @@
         </div>
 
       </form>
+ -->
+
+ <div class="row justify-content-end">
+  <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
+  <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="submit()">Salva</button>
+</div>
 
     </div>
   </div>

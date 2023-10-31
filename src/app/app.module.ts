@@ -20,7 +20,6 @@ import { LoginComponent } from './views/login/login.component';
 import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
 import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-row.component';
-import { PegGoalGroupComponent } from './components/peg/peg-goal-group/peg-goal-group.component';
 import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
 import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
 import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.component';
@@ -33,6 +32,7 @@ import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list
 
 /* MODALS */
 import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
+import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
 
 
 @NgModule({
@@ -42,7 +42,6 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
     PegHomeComponent,
     PegMenuComponent,
     PegPhaseRowComponent,
-    PegGoalGroupComponent,
     PegNewGoalComponent,
     PegViewGoalComponent,
     PegViewUserComponent,
@@ -53,6 +52,7 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
     AaListRowComponent,
     FeedbackModalComponent,
     LoginComponent,
+    PegGoalComponent,
   ],
   imports: [
     BrowserModule,

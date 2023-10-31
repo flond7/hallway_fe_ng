@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PegGoalGroupComponent } from './peg-goal-group.component';
+import { PegGoalComponent } from './peg-goal.component';
 
-describe('PegGoalGroupComponent', () => {
-  let component: PegGoalGroupComponent;
-  let fixture: ComponentFixture<PegGoalGroupComponent>;
+describe('PegGoalComponent', () => {
+  let component: PegGoalComponent;
+  let fixture: ComponentFixture<PegGoalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PegGoalGroupComponent ]
+      declarations: [ PegGoalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PegGoalGroupComponent);
+    fixture = TestBed.createComponent(PegGoalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
