@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
@@ -16,6 +16,7 @@ import { disableDebugTools } from '@angular/platform-browser';
 export class PegNewGoalComponent {
 
   //@Input() phases: any;
+  @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
 
   goal = {
     'office': 'Segreteria',
@@ -62,7 +63,10 @@ export class PegNewGoalComponent {
   get markerFormArray() { return this.goalForm.get("markers") as FormArray; }
   get phasesFormArray() { return this.goalForm.get("phases") as FormArray; }
 
-  constructor(public api: PegApiService) { }
+  constructor(public api: PegApiService) { 
+    // Initialize searchInput to null
+    this.searchInput = new ElementRef(null);
+}
 
   ngOnInit(): void {
     //this.api.getOfficeList().subscribe(res =>{this.offices = res})
@@ -104,8 +108,8 @@ export class PegNewGoalComponent {
     person.added = true;
     this.involved.push(person);
     this.searching = false;
-    console.log(this.involved)
-    console.log(this.userList)
+    console.log(this.searchInput)
+    this.searchInput.nativeElement.value = ''; // Reset the input field
   }
 
   removeInvolvedPeople(person: PegPerson) {
