@@ -47,7 +47,7 @@ export class PegGoalComponent implements OnInit {
 
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
-  involved: PegPerson[] = [];
+  //involved: PegPerson[] = [];
   //usersNotAdded: PegPerson[] = [];
   responsables: PegPerson[] = [];
   searching: boolean = false;
@@ -65,10 +65,7 @@ export class PegGoalComponent implements OnInit {
   modalRef?: BsModalRef;
 
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService, ) { 
-    // Initialize searchInput to null
-    //this.searchInput = new ElementRef(null);
-}
+  constructor(public api: PegApiService, private bsModalService: BsModalService, ) { }
 
 
   ngOnInit() {
@@ -82,9 +79,9 @@ export class PegGoalComponent implements OnInit {
   
   blur() {
     //it is called evrytime the user exit one input field and updates the object emitting it to the parent component
-    console.log(this.inputGoal);
     this.goalUpdated.emit(this.inputGoal)
   }
+
   focus(){
     this.searching = true;
     this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
@@ -103,22 +100,21 @@ export class PegGoalComponent implements OnInit {
       user.name.toLowerCase().includes(this.searchInput.toLowerCase()) ||
       user.surname.toLowerCase().includes(this.searchInput.toLowerCase())
     );
-    console.log(this.filteredPAUserList)
   }
 
 
 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
-    this.involved.push(person);
+    this.inputGoal.involvedPeople.push(person);
     this.searching = false;
     this.searchInput = '';
   }
 
   removeInvolvedPeople(person: PegPerson) {
     person.added = false;
-    this.involved.forEach((el, index) => {
-      if (el == person) this.involved.splice(index, 1);
+    this.inputGoal.involvedPeople.forEach((el, index) => {
+      if (el == person) this.inputGoal.involvedPeople.splice(index, 1);
     });
   }
 

@@ -52,83 +52,13 @@
 
     <div class="row d-flex m-0 px-0 pb-2 mb-2">
         <p class="small py-0 my-0"><small>Persone coinvolte: </small></p>
-        <span class="d-flex w-auto" *ngFor="let person of this.involved">{{person.name}}
+        <span class="d-flex w-auto" *ngFor="let person of this.inputGoal.involvedPeople">{{person.name}}
             {{person.surname}}
             <div class="circle small-circle bg-secondary-peg text-white mx-1 me-2"
                 (click)="removeInvolvedPeople(person)"><fa-icon [icon]='faMinus' class="m-0"></fa-icon>
             </div>
         </span>
     </div>
-
-
-
-    <!-- <div class="col-11 border-bootom border-muted">
-
-        <div class="row m-0">
-            <div class="col-2">
-                <p class="mb-0 pb-0">Nome</p>
-            </div>
-            <div class="col-10">
-                <input id="name" type="text" class="form-control" [(ngModel)]="goal.name">
-            </div>
-        </div>
-
-        <div class="row m-0 mt-2">
-            <div class="col-2">
-                <p class="mb-0 pb-0">Responsabile</p>
-            </div>
-            <div class="col-4">
-                <select *ngIf="this.responsables" [(ngModel)]="goal.responsable" name="responsable"
-                    class="form-control text-white">
-                    <option *ngFor="let r of this.responsables" value="r.id">{{r.name}} {{r.surname}}</option>
-                </select>
-            </div>
-
-            <div class="col-2">
-                <p class="mb-0 pb-0">Ufficio</p>
-            </div>
-            <div class="col-4">
-                <select *ngIf="this.responsables" [(ngModel)]="goal.responsable" name="responsable"
-                    class="form-control text-white">
-                    <option *ngFor="let r of this.responsables" value="r.id">{{r.name}} {{r.surname}}</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row m-0 mt-2">
-            <div class="col-2">
-                <p class="mb-0 pb-0">Persone coinvolte</p>
-            </div>
-            <div class="col-7">
-                <div class="row m-0 px-0 d-flex">
-                    <span class="d-flex w-auto" *ngFor="let person of this.involved">{{person.name}}
-                        {{person.surname}}
-                        <div class="circle border border-secondary-peg text-secondary-peg mx-1 me-2"
-                            (click)="removeInvolvedPeople(person)"><fa-icon [icon]='faMinus' class="m-0"></fa-icon>
-                        </div>
-                    </span>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-between">
-                <input #searchInput placeholder="cerca persone" id="" type="text" class="w-100 form-control me-3 bg-none" (focus)="focus()"
-                (input)="onSearchPAUser($event)">
-                <div class="text-primary-peg mt-2"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
-            </div>
-            <div *ngIf="this.searching === true" [ngClass]="{'py-2': this.searching}"  class="search-results rounded px-3 mt-2">
-                <div *ngFor="let person of filteredPAUserList" class="d-flex justify-content-between align-items-center border-bottom border-muted py-1 mb-1" (click)="addInvolvedPeople(person)">
-                  <span class=""> {{person.name}} {{person.surname}}</span>
-                  <div class="text-primary-peg"><fa-icon [icon]='faPlus' class="m-0"></fa-icon></div>
-                </div>
-              </div>
-        </div>
-
-    </div>
-
-    <div class="col-1 justify-content-center align-items-center m-auto">
-        <p class="m-0 p-0">Peso</p>
-        <input id="weight" type="number" class="form-control">
-    </div> -->
-
 </div>
 
 
