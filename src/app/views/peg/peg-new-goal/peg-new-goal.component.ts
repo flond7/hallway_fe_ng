@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
@@ -7,6 +7,7 @@ import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
 // Modal imports
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalService } from '../../../services/modals.service';
 
 
 
@@ -16,9 +17,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./peg-new-goal.component.sass']
 })
 export class PegNewGoalComponent {
-
-  //@Input() phases: any;
-  /* @ViewChild('searchInput', { static: false }) searchInput: ElementRef; */
 
   // Modal
   modalRef?: BsModalRef;
@@ -90,10 +88,7 @@ export class PegNewGoalComponent {
   get markerFormArray() { return this.goalForm.get("markers") as FormArray; }
   get phasesFormArray() { return this.goalForm.get("phases") as FormArray; } */
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService) { 
-/*     // Initialize searchInput to null
-    this.searchInput = new ElementRef(null); */
-}
+  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.api.getUserList().subscribe(res => {this.userList = res.data;})
@@ -137,30 +132,29 @@ export class PegNewGoalComponent {
 
   addGoal(){
     this.goalList.push({...this.emptyGoal})         //use this form in order to create a new instance otherwise it would reference to the same space in memory
-    console.log(this.goalList)
   }
 
   updateGoal(updatedGoal: PegGoal, i: number) {
-    console.log(updatedGoal)
     this.goalList[i] = updatedGoal;
-    console.log(this.goalList)
   }
 
   openInstructions(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
   }
 
-  submit() {
-    
-  }
 
   saveGoals() {
     //check sum of weight is 100
-    let weightSum = 0;
-    /* this.goalList.map(goal => {
-      weightSum =+ goal.weight;
-      console.log(weightSum)
-    }) */
+    let weightSum = this.goalList.reduce((sum, goal) => sum + goal.weight, 0)
+    console.log(weightSum);
+    let data = GC.PEG_ALERT_WEIGHT;
+    if (weightSum < 100) {
+      this.modalService.openFeedbackModal(false, data)
+    } else {
+
+    }
   }
+
+
 
 }

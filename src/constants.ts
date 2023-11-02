@@ -19,6 +19,7 @@ export const INFO_GOAL_TYPE = "Gli obbiettivi possono essere ordinari, in questo
 export const INFO_GOAL_PHASE = "";
 
 //PEG
+export const PEG_ALERT_WEIGHT = "La somma del peso di tutti gli obbiettivi deve essere 100"
 export const PEG_INSTRUCTIONS = {
   'weight': "valore compreso tra 1 e 100, indica l'importanza dell'obbiettivo parametrato a tutte le attività elencate e svolte dall'ufficio. I valori di tutti gli obbiettivi elencati devono essere pari a 100",
   'percent_3006': "percentuale dell'obbiettivo raggiunta al 30/06",
