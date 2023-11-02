@@ -17,8 +17,10 @@ export interface PegGoal {
     name: string;
     description: string;
     weight: number;
-    responsable: PegPerson;
-    office: PegOffice;
+    responsable: PegPerson | null;
+    office: PegOffice | null;
     year: number;
-    involvedPeopls: PegPerson[];
+    involvedPeople: PegPerson[];
+    completation3006: number;
+    completation3112: number;
 }

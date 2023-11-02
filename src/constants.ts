@@ -18,6 +18,16 @@ export const MAXIMUM_NUMBER = 10;
 export const INFO_GOAL_TYPE = "Gli obbiettivi possono essere ordinari, in questo caso hanno degli indicatori (es: numero di pratiche edilizie, numero di accessi agli atti...), oppure straordinari (es: preparazione e approvazione di un nuovo regolamento, gestione di bando straordinario...)";
 export const INFO_GOAL_PHASE = "";
 
+//PEG
+export const PEG_INSTRUCTIONS = {
+  'weight': "valore compreso tra 1 e 100, indica l'importanza dell'obbiettivo parametrato a tutte le attività elencate e svolte dall'ufficio. I valori di tutti gli obbiettivi elencati devono essere pari a 100",
+  'percent_3006': "percentuale dell'obbiettivo raggiunta al 30/06",
+  'weight_3006': "valore calcolato automaticamente: peso parametrato alla percentuale obbiettivo raggiunta al 30/06",
+  'percent_3112': "percentuale dell'obbiettivo raggiunta al 31/12",
+  'weight_3112': "valore calcolato automaticamente: peso parametrato alla percentuale obbiettivo raggiunta al 31712",
+}
+
+
 //ACCESSO AGLI ATTI
 export const AA_APPLICANT_TYPE: Array<string> = ['Privato cittadino', 'Ente pubblico'];
 export const AA_TYPES: Array<string> = ['Accesso civico c.d. semplice ex art. 5, c.1 del D.Lgs. 33/2013', 'Accesso civico generalizzato ex art. 5, c.2 del D.Lgs. 33/2013 (Foia)'];

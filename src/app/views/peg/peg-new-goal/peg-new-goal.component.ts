@@ -1,10 +1,12 @@
-import { Component, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson, PegGoal } from '../../../../interfaces';
+import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
+// Modal imports
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 
 
@@ -18,14 +20,12 @@ export class PegNewGoalComponent {
   //@Input() phases: any;
   @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
 
-  goal = {
-    'office': 'Segreteria',
-    'responsable': 'Dott.ssa Patrizia Mascellino'
-  }
+  // Modal
+  modalRef?: BsModalRef;
+  pegInstructions = GC.PEG_INSTRUCTIONS;
 
-  addedPAUserList = [];
-
-  offices: any;                       //office list to retrive with API
+  goalList: PegGoal[] = [];
+  officeList: PegOffice[] = [];                       //office list to retrive with API
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
   involved: PegPerson[] = [];
@@ -63,7 +63,7 @@ export class PegNewGoalComponent {
   get markerFormArray() { return this.goalForm.get("markers") as FormArray; }
   get phasesFormArray() { return this.goalForm.get("phases") as FormArray; }
 
-  constructor(public api: PegApiService) { 
+  constructor(public api: PegApiService, private bsModalService: BsModalService) { 
     // Initialize searchInput to null
     this.searchInput = new ElementRef(null);
 }
@@ -124,7 +124,9 @@ export class PegNewGoalComponent {
 
   }
 
-
+  openInstructions(template: TemplateRef<any>) {
+    this.modalRef = this.bsModalService.show(template)
+  }
   submit() {
     console.log(this.goalForm.value)
     console.log(this.markers)
