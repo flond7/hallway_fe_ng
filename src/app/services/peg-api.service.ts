@@ -30,6 +30,15 @@ export class PegApiService {
     return this.httpClient.get(baseURL + 'api_user/pauser_list_peg')
   }
 
+  getPoList():Observable<any> {
+    return this.httpClient.get(baseURL + 'api_user/pauser_po_list_peg')
+  }
+
+  
+  getConstants():Observable<any> {
+    return this.httpClient.get(baseURL + 'api_user/user_constants_list')
+  }
+
 
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)

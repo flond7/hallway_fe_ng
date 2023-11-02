@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
+import { PegPerson, PegGoal } from '../../../../interfaces';
 // Modal imports
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -20,14 +20,13 @@ export class PegGoalComponent implements OnInit {
     description: '',
     weight: 0,
     responsable: null,
-    office: null,
+    office: '',
     year: 0,
     involvedPeople: [],
     completation3006: 0,
     completation3112: 0,
   };
 
-  officeList: PegOffice[] = [];                       //office list to retrive with API
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
   involved: PegPerson[] = [];

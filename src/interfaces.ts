@@ -3,13 +3,9 @@ export interface PegPerson {
     name: string;
     surname: string;
     jobCategory: string;
+    responsable: boolean;
+    responsableOffice: Array<Array <string>>;
     added?: boolean
-}
-
-export interface PegOffice {
-    id: number;
-    name: string;
-    responsable: PegPerson;
 }
 
 export interface PegGoal {
@@ -18,7 +14,7 @@ export interface PegGoal {
     description: string;
     weight: number;
     responsable: PegPerson | null;
-    office: PegOffice | null;
+    office: string;
     year: number;
     involvedPeople: PegPerson[];
     completation3006: number;

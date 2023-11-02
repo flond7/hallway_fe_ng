@@ -2,7 +2,7 @@ import { Component, Input, ElementRef, ViewChild, TemplateRef } from '@angular/c
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
+import { PegPerson, PegGoal } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
 // Modal imports
@@ -18,18 +18,34 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class PegNewGoalComponent {
 
   //@Input() phases: any;
-  @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
+  /* @ViewChild('searchInput', { static: false }) searchInput: ElementRef; */
 
   // Modal
   modalRef?: BsModalRef;
   pegInstructions = GC.PEG_INSTRUCTIONS;
 
   goalList: PegGoal[] = [];
-  officeList: PegOffice[] = [];                       //office list to retrive with API
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
   involved: PegPerson[] = [];
   searching: boolean = false;
+
+
+  // Resonsable select
+  responsables: PegPerson[] = [];
+  selectedResponsable: PegPerson = {
+    id: 0,
+    name: '',
+    surname: '',
+    jobCategory: '',
+    responsable: true, 
+    responsableOffice: [],
+  };
+
+  // Office select
+  selectedOffices = [];
+  constants = {main_office_choices: []}
+
 
   // FA icons
   faPlus = faPlus;
@@ -64,33 +80,40 @@ export class PegNewGoalComponent {
   get phasesFormArray() { return this.goalForm.get("phases") as FormArray; }
 
   constructor(public api: PegApiService, private bsModalService: BsModalService) { 
-    // Initialize searchInput to null
-    this.searchInput = new ElementRef(null);
+/*     // Initialize searchInput to null
+    this.searchInput = new ElementRef(null); */
 }
 
   ngOnInit(): void {
-    //this.api.getOfficeList().subscribe(res =>{this.offices = res})
-    this.api.getUserList().subscribe(res => { this.userList = res.data; })
+    this.api.getUserList().subscribe(res => { 
+      this.userList = res.data;})
 
+    this.api.getPoList().subscribe(res => { 
+      this.responsables = res.data; console.log(this.responsables)})
+
+    this.api.getConstants().subscribe(res => {this.constants = res; console.log(res)})
   }
 
 
   changeOffice() { }
-  ChangeResponsable() { }
 
+  changeResponsable() {
+    this.selectedOffices = this.constants.main_office_choices.filter(office => this.selectedResponsable.responsableOffice.includes(office[0]));
+    console.log(this.selectedOffices)
+  }
+   
 
   focus(){
     this.searching = true;
     this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
   }
-  blur(){
+  /* blur(){
     this.searching = false;
     this.filteredPAUserList = [];
-  }
+  } */
 
-  onSearchPAUser(event: any) {
+  /* onSearchPAUser(event: any) {
     const query = event.target.value;
-
     //start with all the user then
     //filter out elements already added
     const usersNotAdded: PegPerson[]= this.userList.filter(user => !this.involved.some(addedUser => addedUser.id === user.id));
@@ -100,10 +123,10 @@ export class PegNewGoalComponent {
       (user.added !== true || user.added === undefined)
     );
     console.log(this.filteredPAUserList)
-  }
+  } */
 
 
-
+/* 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
     this.involved.push(person);
@@ -117,19 +140,24 @@ export class PegNewGoalComponent {
     this.involved.forEach((el, index) => {
       if (el == person) this.involved.splice(index, 1);
     });
-  }
+  } */
 
 
   addGoal(){
-
+    this.goalList.push()
   }
 
   openInstructions(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
   }
+
   submit() {
     console.log(this.goalForm.value)
     console.log(this.markers)
+  }
+
+  saveGoals() {
+    //check sum of weight is 100
   }
 
 }

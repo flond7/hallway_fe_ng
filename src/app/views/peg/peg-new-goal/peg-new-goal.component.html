@@ -7,6 +7,51 @@
       <div class="row">
         <h2 class="border-bottom border-primary-peg">Obbiettivi straordinari</h2>
       </div>
+
+      <div class="row my-2">
+        <div class="col-4">
+          <p class="small my-0 py-0"><small>Anno</small></p>
+          <input id="year" type="number" class="col-2 w-100 form-control">
+        </div>
+
+        <div class="col-4">
+          <p class="small my-0 py-0"><small>Responsabile</small></p>
+          <select name="office" class="col-2 form-control text-white" (change)="changeResponsable()" [(ngModel)]="selectedResponsable">
+            <option *ngFor="let r of this.responsables" [ngValue]="r">{{r.name}} {{r.surname}}</option>
+          </select>
+        </div>
+
+        <div class="col-4">
+          <p class="small my-0 py-0"><small>Ufficio</small></p>
+          <select name="office" class="col-2 form-control text-white">
+            <option *ngFor="let o of this.selectedOffices" value="o[0]">{{o[1]}}</option>
+          </select>
+        </div>
+        
+      </div>
+
+
+      <div class="row m-0 border-bottom border-muted-peg  pb-1">
+        <div class="col-5 m-0 p-0">
+            <p class="small my-0 py-0"><small>Nome</small></p>
+        </div>
+        <div class="col-1">
+          <p class="small my-0 py-0"><small>Peso</small></p>
+        </div>
+        <div class="col-1">
+            <p class="small my-0 py-0"><small>% 30/06</small></p>
+        </div>
+        <div class="col-1">
+            <p class="small my-0 py-0"><small>Peso</small></p>
+        </div>
+        <div class="col-1">
+            <p class="small my-0 py-0"><small>% 31/12</small></p>
+        </div>
+        <div class="col-1">
+            <p class="small my-0 py-0"><small></small></p>
+        </div>
+    </div>
+
       <app-peg-goal></app-peg-goal>
 
       <!-- <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
@@ -112,11 +157,12 @@
       </form>
  -->
 
- <div class="row justify-content-end border-top border-primary-peg pt-3 mt-3">
-  <button class="w-auto h-2 rounded border border-secondary-peg bg-dark text-white mx-2" (click)="openInstructions(instructionModal)">Istruzioni</button>
-  <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
-  <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="submit()">Salva</button>
-</div>
+      <div class="row justify-content-end border-top border-primary-peg pt-3 mt-3">
+        <button class="w-auto h-2 rounded border-0 bg-secondary-peg bg-dark text-white mx-2"
+          (click)="openInstructions(instructionModal)">Istruzioni</button>
+        <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
+        <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="submit()">Salva</button>
+      </div>
 
     </div>
   </div>
@@ -126,15 +172,15 @@
 
 <ng-template #instructionModal>
   <div class="modal-body bg-dark px-5">
-      <p><strong>Peso:</strong> {{pegInstructions.weight}}</p>
-      <p><strong>% al 30/06:</strong> {{pegInstructions.percent_3006}}</p>
-      <p><strong>Peso al 30/06:</strong> {{pegInstructions.weight_3006}}</p>
-      <p><strong>% al 31/12:</strong> {{pegInstructions.percent_3112}}</p>
-      <p><strong>Peso al 31/12:</strong> {{pegInstructions.weight_3112}}</p>
-      
+    <p><strong>Peso:</strong> {{pegInstructions.weight}}</p>
+    <p><strong>% al 30/06:</strong> {{pegInstructions.percent_3006}}</p>
+    <p><strong>Peso al 30/06:</strong> {{pegInstructions.weight_3006}}</p>
+    <p><strong>% al 31/12:</strong> {{pegInstructions.percent_3112}}</p>
+    <p><strong>Peso al 31/12:</strong> {{pegInstructions.weight_3112}}</p>
 
-      <div class="row justify-content-center px-5 pt-4">
-          <div class="w-auto btn bg-secondary-peg" (click)="modalRef?.hide()">Chiudi</div>
-      </div>
+
+    <div class="row justify-content-center px-5 pt-4">
+      <div class="w-auto btn bg-secondary-peg" (click)="modalRef?.hide()">Chiudi</div>
+    </div>
   </div>
 </ng-template>
