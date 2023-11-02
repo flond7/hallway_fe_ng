@@ -11,20 +11,20 @@
       <div class="row my-2">
         <div class="col-4">
           <p class="small my-0 py-0"><small>Anno</small></p>
-          <input id="year" type="number" class="col-2 w-100 form-control">
+          <input id="year" type="number" class="col-2 w-100 form-control" [(ngModel)]="year">
         </div>
 
         <div class="col-4">
           <p class="small my-0 py-0"><small>Responsabile</small></p>
           <select name="office" class="col-2 form-control text-white" (change)="changeResponsable()" [(ngModel)]="selectedResponsable">
-            <option *ngFor="let r of this.responsables" [ngValue]="r">{{r.name}} {{r.surname}}</option>
+            <option *ngFor="let r of this.managers" [ngValue]="r">{{r.name}} {{r.surname}}</option>
           </select>
         </div>
 
         <div class="col-4">
           <p class="small my-0 py-0"><small>Ufficio</small></p>
-          <select name="office" class="col-2 form-control text-white">
-            <option *ngFor="let o of this.selectedOffices" value="o[0]">{{o[1]}}</option>
+          <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedOffice">
+            <option *ngFor="let o of this.filteredOffices" [ngValue]="o[0]">{{o[1]}}</option>
           </select>
         </div>
         

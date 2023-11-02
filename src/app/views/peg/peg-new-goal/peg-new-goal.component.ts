@@ -29,7 +29,7 @@ export class PegNewGoalComponent {
 
 
   // Resonsable select
-  responsables: PegPerson[] = [];
+  managers: PegPerson[] = [];
   selectedResponsable: PegPerson = {
     id: 0,
     name: '',
@@ -40,7 +40,8 @@ export class PegNewGoalComponent {
   };
 
   // Office select
-  selectedOffices = [];
+  filteredOffices = [];
+  selectedOffice: string = '';            // this is the o1, o2, o3... value for the office
   constants = {main_office_choices: []}
 
   // goal
@@ -59,6 +60,7 @@ export class PegNewGoalComponent {
     percent_3112: 0,
     weight_3112: 0,
   };
+  year: number = 0;
 
   // FA icons
   faPlus = faPlus;
@@ -91,17 +93,23 @@ export class PegNewGoalComponent {
   constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService) { }
 
   ngOnInit(): void {
+    //get user list, po list and constant list
     this.api.getUserList().subscribe(res => {this.userList = res.data;})
-    this.api.getPoList().subscribe(res => {this.responsables = res.data;})
+    this.api.getPoList().subscribe(res => {this.managers = res.data;})
     this.api.getConstants().subscribe(res => {this.constants = res;})
+    //calculate the current year to show it as default value
+    const currentDate = new Date();
+    this.year = currentDate.getFullYear();
+    //add the first empty goal
     this.addGoal()
   }
 
   changeOffice() { }
 
   changeResponsable() {
-    this.selectedOffices = this.constants.main_office_choices.filter(office => this.selectedResponsable.responsableOffice.includes(office[0]));
-    console.log(this.selectedOffices)
+    //filter offices from the whole list with the list of offices listed in the responsable
+    this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedResponsable.responsableOffice.includes(office[0]));
+  
   }
 
   focus(){
@@ -153,6 +161,17 @@ export class PegNewGoalComponent {
     } else {
 
     }
+
+    // add the year, responsable and office key: value
+    let updatedGoals = this.goalList.map(goal => ({
+      ...goal,            // Copy the existing properties of the object
+      year: this.year,
+      responsable: this.selectedResponsable,
+      office: this.selectedOffice
+    }))
+
+    console.log(updatedGoals)
+    
   }
 
 
