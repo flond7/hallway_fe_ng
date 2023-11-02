@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
@@ -11,9 +11,25 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./peg-goal.component.sass']
 })
 export class PegGoalComponent implements OnInit {
+  @Input() inputGoal: PegGoal = {
+    id: 0,
+    name: '',
+    description: '',
+    weight: 0,
+    responsable: null,
+    office: '',
+    year: 0,
+    involvedPeople: [],
+    percent_3006: 0,
+    weight_3006: 0,
+    percent_3112: 0,
+    weight_3112: 0,
+  };; 
+  @Output() goalUpdated = new EventEmitter<PegGoal>();
 
   //@ViewChild('searchInput', { static: false }) searchInput: ElementRef;
 
+/* 
   goal: PegGoal = {
     id: 0,
     name: '',
@@ -23,9 +39,11 @@ export class PegGoalComponent implements OnInit {
     office: '',
     year: 0,
     involvedPeople: [],
-    completation3006: 0,
-    completation3112: 0,
-  };
+    percent_3006: 0,
+    weight_3006: 0,
+    percent_3112: 0,
+    weight_3112: 0,
+  }; */
 
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
@@ -61,20 +79,16 @@ export class PegGoalComponent implements OnInit {
     })
   }
 
-  changeOffice(){  }
-  ChangeResponsable() { }
-
   
-
+  blur() {
+    //it is called evrytime the user exit one input field and updates the object emitting it to the parent component
+    console.log(this.inputGoal);
+    this.goalUpdated.emit(this.inputGoal)
+  }
   focus(){
     this.searching = true;
     this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
   }
-  blur(){
-    this.searching = false;
-    this.filteredPAUserList = [];
-  }
-
   /* filterUserList() {
     this.usersNotAdded = this.userList.filter(user => !this.involved.some(addedUser => addedUser.id === user.id));
     console.log(this.usersNotAdded);
@@ -99,8 +113,6 @@ export class PegGoalComponent implements OnInit {
     this.involved.push(person);
     this.searching = false;
     this.searchInput = '';
-    //this.filterUserList();
-    //this.searchInput.nativeElement.value = ''; // Reset the input field
   }
 
   removeInvolvedPeople(person: PegPerson) {

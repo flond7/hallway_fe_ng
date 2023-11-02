@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
 import * as GC from '../../../../constants'
@@ -24,7 +24,6 @@ export class PegNewGoalComponent {
   modalRef?: BsModalRef;
   pegInstructions = GC.PEG_INSTRUCTIONS;
 
-  goalList: PegGoal[] = [];
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
   involved: PegPerson[] = [];
@@ -46,17 +45,29 @@ export class PegNewGoalComponent {
   selectedOffices = [];
   constants = {main_office_choices: []}
 
+  // goal
+  goalList: PegGoal[] = [];
+  emptyGoal: PegGoal = {
+    id: 0,
+    name: '',
+    description: '',
+    weight: 0,
+    responsable: null,
+    office: '',
+    year: 0,
+    involvedPeople: [],
+    percent_3006: 0,
+    weight_3006: 0,
+    percent_3112: 0,
+    weight_3112: 0,
+  };
 
   // FA icons
   faPlus = faPlus;
   faMinus = faMinus;
-  faCheck = faCheck;
-  faPen = faPen;
-  faTrash = faTrash;
-  faSearch = faSearch;
 
   /* REACTIVE FORM */
-  goalForm = new FormGroup({
+  /* goalForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     weight: new FormControl('', [Validators.required]),
@@ -77,7 +88,7 @@ export class PegNewGoalComponent {
 
   get gf() { return this.goalForm.controls; }
   get markerFormArray() { return this.goalForm.get("markers") as FormArray; }
-  get phasesFormArray() { return this.goalForm.get("phases") as FormArray; }
+  get phasesFormArray() { return this.goalForm.get("phases") as FormArray; } */
 
   constructor(public api: PegApiService, private bsModalService: BsModalService) { 
 /*     // Initialize searchInput to null
@@ -85,15 +96,11 @@ export class PegNewGoalComponent {
 }
 
   ngOnInit(): void {
-    this.api.getUserList().subscribe(res => { 
-      this.userList = res.data;})
-
-    this.api.getPoList().subscribe(res => { 
-      this.responsables = res.data; console.log(this.responsables)})
-
-    this.api.getConstants().subscribe(res => {this.constants = res; console.log(res)})
+    this.api.getUserList().subscribe(res => {this.userList = res.data;})
+    this.api.getPoList().subscribe(res => {this.responsables = res.data;})
+    this.api.getConstants().subscribe(res => {this.constants = res;})
+    this.addGoal()
   }
-
 
   changeOffice() { }
 
@@ -101,7 +108,6 @@ export class PegNewGoalComponent {
     this.selectedOffices = this.constants.main_office_choices.filter(office => this.selectedResponsable.responsableOffice.includes(office[0]));
     console.log(this.selectedOffices)
   }
-   
 
   focus(){
     this.searching = true;
@@ -126,25 +132,18 @@ export class PegNewGoalComponent {
   } */
 
 
-/* 
-  addInvolvedPeople(person: PegPerson) {
-    person.added = true;
-    this.involved.push(person);
-    this.searching = false;
-    console.log(this.searchInput)
-    this.searchInput.nativeElement.value = ''; // Reset the input field
-  }
 
-  removeInvolvedPeople(person: PegPerson) {
-    person.added = false;
-    this.involved.forEach((el, index) => {
-      if (el == person) this.involved.splice(index, 1);
-    });
-  } */
 
 
   addGoal(){
-    this.goalList.push()
+    this.goalList.push({...this.emptyGoal})         //use this form in order to create a new instance otherwise it would reference to the same space in memory
+    console.log(this.goalList)
+  }
+
+  updateGoal(updatedGoal: PegGoal, i: number) {
+    console.log(updatedGoal)
+    this.goalList[i] = updatedGoal;
+    console.log(this.goalList)
   }
 
   openInstructions(template: TemplateRef<any>) {
@@ -152,12 +151,16 @@ export class PegNewGoalComponent {
   }
 
   submit() {
-    console.log(this.goalForm.value)
-    console.log(this.markers)
+    
   }
 
   saveGoals() {
     //check sum of weight is 100
+    let weightSum = 0;
+    /* this.goalList.map(goal => {
+      weightSum =+ goal.weight;
+      console.log(weightSum)
+    }) */
   }
 
 }

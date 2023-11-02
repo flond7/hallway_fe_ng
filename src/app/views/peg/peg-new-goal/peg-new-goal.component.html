@@ -52,7 +52,7 @@
         </div>
     </div>
 
-      <app-peg-goal></app-peg-goal>
+      <app-peg-goal *ngFor="let goal of this.goalList; index as i" [inputGoal]="goal" (goalUpdated)="updateGoal($event, i)"></app-peg-goal>
 
       <!-- <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
 
@@ -161,7 +161,7 @@
         <button class="w-auto h-2 rounded border-0 bg-secondary-peg bg-dark text-white mx-2"
           (click)="openInstructions(instructionModal)">Istruzioni</button>
         <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
-        <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="submit()">Salva</button>
+        <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="saveGoals()">Salva</button>
       </div>
 
     </div>

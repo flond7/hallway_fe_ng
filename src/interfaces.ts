@@ -17,6 +17,8 @@ export interface PegGoal {
     office: string;
     year: number;
     involvedPeople: PegPerson[];
-    completation3006: number;
-    completation3112: number;
+    percent_3006: number;
+    weight_3006?: number;
+    percent_3112: number;
+    weight_3112?: number;
 }
