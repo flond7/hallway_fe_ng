@@ -109,8 +109,6 @@ export class PegNewGoalComponent {
   changeManager() {
     //filter offices from the whole list with the list of offices listed in the manager
     this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOffice.includes(office[0]));
-    console.log(this.filteredOffices)
-
   }
 
   focus() {
@@ -164,7 +162,7 @@ export class PegNewGoalComponent {
       let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the id from all the other key:values
         ...goal,                                                          // copy the other key: values in the new object
         year: this.year,
-        manager: this.selectedManager,
+        manager: this.selectedManager.id,
         office: this.selectedOffice
       }))
 

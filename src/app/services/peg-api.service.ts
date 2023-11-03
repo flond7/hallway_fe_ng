@@ -39,9 +39,9 @@ export class PegApiService {
   }
 
   createGoals(goals: any):Observable<any> {
-    let jsonData = JSON.stringify(goals);
-    console.log(jsonData);
-    return this.httpClient.post(baseURL + 'api_peg/goals_new', jsonData, this.httpOptions)
+    /* let jsonData = JSON.stringify(goals);
+    console.log(jsonData); */
+    return this.httpClient.post(baseURL + 'api_peg/goals_new', goals, this.httpOptions)
   }
 
   /* findSingleUser(cf:any) {
