@@ -161,8 +161,8 @@ export class PegNewGoalComponent {
       this.modalService.openFeedbackModal(false, data)
     } else {
       // add the year, manager and office key: value
-      let updatedGoals = this.goalList.map(goal => ({
-        ...goal,            // Copy the existing properties of the object
+      let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the id from all the other key:values
+        ...goal,                                                          // copy the other key: values in the new object
         year: this.year,
         manager: this.selectedManager,
         office: this.selectedOffice

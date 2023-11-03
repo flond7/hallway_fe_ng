@@ -16,7 +16,7 @@ export interface PegGoal {
     manager: PegPerson | null;
     office: string;
     year: number;
-    involvedPeople: PegPerson[];
+    involvedPeople: number[];
     percent_3006: number;
     weight_3006?: number;
     percent_3112: number;

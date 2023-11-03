@@ -52,6 +52,8 @@ export class PegGoalComponent implements OnInit {
   managers: PegPerson[] = [];
   searching: boolean = false;
   searchInput = '';
+
+  involvedForVisualization: PegPerson[] = [];
   
   // FA icons
   faPlus = faPlus;
@@ -106,15 +108,21 @@ export class PegGoalComponent implements OnInit {
 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
-    this.inputGoal.involvedPeople.push(person);
+    //this.inputGoal.involvedPeople.push(person);
+    this.inputGoal.involvedPeople.push(person.id);
+    this.involvedForVisualization.push(person)    //needed because in the actual object to send back to save and edit, only the ids are required
     this.searching = false;
     this.searchInput = '';
   }
 
   removeInvolvedPeople(person: PegPerson) {
     person.added = false;
+    this.involvedForVisualization.forEach((el, index) => {
+      if (el == person) this.involvedForVisualization.splice(index, 1);
+    });
+    console.log(this.involvedForVisualization)
     this.inputGoal.involvedPeople.forEach((el, index) => {
-      if (el == person) this.inputGoal.involvedPeople.splice(index, 1);
+      if (el == person.id) this.inputGoal.involvedPeople.splice(index, 1);
     });
   }
 
