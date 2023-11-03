@@ -109,10 +109,10 @@ export class PegNewGoalComponent {
 
   /* changeOffice() { } */
 
-  changeManager() {
+  /* changeManager() {
     //filter offices from the whole list with the list of offices listed in the manager
     this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOfOffices.includes(office[0]));
-  }
+  } */
 
   focus() {
     this.searching = true;
@@ -151,7 +151,6 @@ export class PegNewGoalComponent {
   openInstructions(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
   }
-
 
   saveGoals() {
     //check sum of weight is 100

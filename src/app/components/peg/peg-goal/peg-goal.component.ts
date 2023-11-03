@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, TemplateRef } from '@angular/core';
-import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation} from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
 // Modal imports
@@ -49,19 +49,22 @@ export class PegGoalComponent implements OnInit {
   filteredPAUserList: PegPerson[] = [];
   //involved: PegPerson[] = [];
   //usersNotAdded: PegPerson[] = [];
-  managers: PegPerson[] = [];
+  //managers: PegPerson[] = [];
   searching: boolean = false;
   searchInput = '';
 
   involvedForVisualization: PegPerson[] = [];
   
+  // weight computation
+  weight_midvalue = 0;
+
   // FA icons
   faPlus = faPlus;
   faMinus = faMinus;
   faCheck = faCheck;
   faPen = faPen;
   faTrash = faTrash;
-  faSearch = faSearch; faUserPlus = faUserPlus;
+  faSearch = faSearch; faUserPlus = faUserPlus; faXmark=faXmark;faExclamation=faExclamation;
 
   // Modal
   modalRef?: BsModalRef;
@@ -69,19 +72,29 @@ export class PegGoalComponent implements OnInit {
 
   constructor(public api: PegApiService, private bsModalService: BsModalService, ) { }
 
+  /* 
+    when the user exits an input field blur() emits all teh goals values so they can be updated in the parent
+  */
 
   ngOnInit() {
     this.api.getUserList().subscribe(res => { 
       this.userList = res.data;
       this.filteredPAUserList = this.userList;
-      this.managers = this.userList;
+      this.inputGoal.weight_3006 = 0.0
+      this.inputGoal.weight_3112 = 0.0
+      //this.managers = this.userList;
     })
   }
 
+  computeWeights() {
+    this.weight_midvalue = this.inputGoal.weight / 2;
+    this.inputGoal.weight_3006 = (this.inputGoal.percent_3006 / 100) * this.inputGoal.weight;
+    this.inputGoal.weight_3112 = (this.inputGoal.percent_3112 / 100) * this.inputGoal.weight;
+  }
   
   blur() {
-    //it is called evrytime the user exit one input field and updates the object emitting it to the parent component
     this.goalUpdated.emit(this.inputGoal)
+    this.computeWeights()
   }
 
   focus(){

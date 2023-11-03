@@ -33,16 +33,28 @@
             <input id="weight" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.weight">
         </div>
         <div class="col-1">
-            <input id="weight" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.percent_3006">
+            <input id="percent_3006" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.percent_3006">
+        </div>
+        <div class="col-1 d-flex align-items-center justify-content-center">
+            <div *ngIf="inputGoal.weight_3006">
+                <span *ngIf="inputGoal.weight_3006 <= weight_midvalue" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                <span *ngIf="inputGoal.weight_3006 > this.weight_midvalue && inputGoal.weight_3006 < this.inputGoal.weight," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                <span *ngIf="inputGoal.weight_3006 === inputGoal.weight" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                <span class="px-1">{{inputGoal.weight_3006 | number: '1.1-1'}}</span>
+                <!-- <input id="weight_3006" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.weight_3006"> -->
+            </div>
         </div>
         <div class="col-1">
-            <input id="weight" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.weight_3006">
+            <input id="percent_3112" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.percent_3112">
         </div>
-        <div class="col-1">
-            <input id="weight" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.percent_3112">
-        </div>
-        <div class="col-1">
-            <input id="weight" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.weight_3112">
+        <div class="col-1 d-flex align-items-center justify-content-center">
+            <div *ngIf="inputGoal.weight_3112">
+                <span *ngIf="inputGoal.weight_3112 <= this.weight_midvalue" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                <span *ngIf="inputGoal.weight_3112 > this.weight_midvalue && inputGoal.weight_3112 < this.inputGoal.weight," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                <span *ngIf="inputGoal.weight_3112 === this.inputGoal.weight" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                <span class="px-1">{{inputGoal.weight_3112 | number: '1.1-1'}}</span>
+                <!-- <input id="weight_3112" type="number" class="form-control" (blur)="blur()" [(ngModel)]="inputGoal.weight_3112"> -->
+            </div>
         </div>
         <div class="col-2 d-flex justify-content-end">
             <div class="btn bg-primary-peg me-3" (click)="openModalPeople(peopleModal)"><fa-icon [icon]='faUserPlus' class="m-0"></fa-icon></div>

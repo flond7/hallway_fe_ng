@@ -16,7 +16,8 @@
 
         <div class="col-4">
           <p class="small my-0 py-0"><small>Responsabile</small></p>
-          <select name="office" class="col-2 form-control text-white" (change)="changeManager()" [(ngModel)]="selectedManager">
+          <!-- <select name="office" class="col-2 form-control text-white" (change)="changeManager()" [(ngModel)]="selectedManager"> -->
+          <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedManager">
             <option *ngFor="let r of this.managers" [ngValue]="r">{{r.name}} {{r.surname}}</option>
           </select>
         </div>
@@ -43,13 +44,13 @@
             <p class="small my-0 py-0"><small>% 30/06</small></p>
         </div>
         <div class="col-1">
-            <p class="small my-0 py-0"><small>Peso</small></p>
+            <p class="small my-0 py-0"><small>Peso (30/06)</small></p>
         </div>
         <div class="col-1">
             <p class="small my-0 py-0"><small>% 31/12</small></p>
         </div>
         <div class="col-1">
-            <p class="small my-0 py-0"><small></small></p>
+            <p class="small my-0 py-0"><small> Peso (31/12)</small></p>
         </div>
     </div>
 
