@@ -24,7 +24,8 @@
         <div class="col-4">
           <p class="small my-0 py-0"><small>Ufficio</small></p>
           <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedOffice">
-            <option *ngFor="let o of this.filteredOffices" [ngValue]="o[0]">{{o[1]}}</option>
+            <!-- <option *ngFor="let o of this.filteredOffices" [ngValue]="o[0]">{{o[1]}}</option> -->
+            <option *ngFor="let office of this.selectedManager.managerOfOffices" [ngValue]="office.id">{{office.name}}</option>
           </select>
         </div>
         

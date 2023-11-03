@@ -1,10 +1,15 @@
+export interface PegOffice {
+    id: number;
+    name: string;
+}
+
 export interface PegPerson {
     id: number;
     name: string;
     surname: string;
     jobCategory: string;
     manager: boolean;
-    managerOffice: Array<Array <string>>;
+    managerOfOffices: Array<PegOffice>;
     added?: boolean
 }
 

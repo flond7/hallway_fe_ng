@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson, PegGoal } from '../../../../interfaces';
+import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
 import * as GC from '../../../../constants'
 import { disableDebugTools } from '@angular/platform-browser';
 // Modal imports
@@ -36,12 +36,15 @@ export class PegNewGoalComponent {
     surname: '',
     jobCategory: '',
     manager: true,
-    managerOffice: [],
+    managerOfOffices: []
   };
 
   // Office select
   filteredOffices = [];
-  selectedOffice: string = '';            // this is the o1, o2, o3... value for the office
+  selectedOffice: PegOffice = {
+    id: 0,
+    name: ''
+  };            // this is the o1, o2, o3... value for the office
   constants = { main_office_choices: [] }
 
   // goal
@@ -108,7 +111,7 @@ export class PegNewGoalComponent {
 
   changeManager() {
     //filter offices from the whole list with the list of offices listed in the manager
-    this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOffice.includes(office[0]));
+    this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOfOffices.includes(office[0]));
   }
 
   focus() {
@@ -152,10 +155,9 @@ export class PegNewGoalComponent {
 
   saveGoals() {
     //check sum of weight is 100
-    let weightSum = this.goalList.reduce((sum, goal) => sum + goal.weight, 0)
-    console.log(weightSum);
+    let weightSum = this.goalList.reduce((sum, goal) => sum + goal.weight, 0);
     let data = GC.PEG_ALERT_WEIGHT;
-    if (weightSum < 100) {
+    if (weightSum != 100) {
       this.modalService.openFeedbackModal(false, data)
     } else {
       // add the year, manager and office key: value
@@ -163,11 +165,8 @@ export class PegNewGoalComponent {
         ...goal,                                                          // copy the other key: values in the new object
         year: this.year,
         manager: this.selectedManager.id,
-        office: this.selectedOffice
+        office: this.selectedOffice.id
       }))
-
-      console.log(updatedGoals)
-
       this.api.createGoals(updatedGoals).subscribe(r => console.log(r))
     }
   }
