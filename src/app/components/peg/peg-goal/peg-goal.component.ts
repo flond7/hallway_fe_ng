@@ -16,7 +16,7 @@ export class PegGoalComponent implements OnInit {
     name: '',
     description: '',
     weight: 0,
-    responsable: null,
+    manager: null,
     office: '',
     year: 0,
     involvedPeople: [],
@@ -35,7 +35,7 @@ export class PegGoalComponent implements OnInit {
     name: '',
     description: '',
     weight: 0,
-    responsable: null,
+    manager: null,
     office: '',
     year: 0,
     involvedPeople: [],
@@ -49,7 +49,7 @@ export class PegGoalComponent implements OnInit {
   filteredPAUserList: PegPerson[] = [];
   //involved: PegPerson[] = [];
   //usersNotAdded: PegPerson[] = [];
-  responsables: PegPerson[] = [];
+  managers: PegPerson[] = [];
   searching: boolean = false;
   searchInput = '';
   
@@ -72,7 +72,7 @@ export class PegGoalComponent implements OnInit {
     this.api.getUserList().subscribe(res => { 
       this.userList = res.data;
       this.filteredPAUserList = this.userList;
-      this.responsables = this.userList;
+      this.managers = this.userList;
     })
   }
 

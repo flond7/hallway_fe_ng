@@ -3,8 +3,8 @@ export interface PegPerson {
     name: string;
     surname: string;
     jobCategory: string;
-    responsable: boolean;
-    responsableOffice: Array<Array <string>>;
+    manager: boolean;
+    managerOffice: Array<Array <string>>;
     added?: boolean
 }
 
@@ -13,7 +13,7 @@ export interface PegGoal {
     name: string;
     description: string;
     weight: number;
-    responsable: PegPerson | null;
+    manager: PegPerson | null;
     office: string;
     year: number;
     involvedPeople: PegPerson[];

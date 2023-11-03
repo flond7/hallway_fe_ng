@@ -5,7 +5,7 @@ import { BASE_URL } from '../../constants'
 
 const baseURL = BASE_URL;
 
-const djangoUserURL = 'http://127.0.0.1:8000/'; //python3 manage.py runserver
+//const djangoUserURL = 'http://127.0.0.1:8000/'; //python3 manage.py runserver
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +17,10 @@ export class PegApiService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
-      //'X-CSRFToken': this.csrfToken, // Access csrfToken within the object's properties.
+      'Cache-Control': 'no-cache'
     }),
   };
+
 
   getOfficeList() {
     return this.httpClient.get('http://127.0.0.1:8000/api_user/office_list')
@@ -34,11 +34,14 @@ export class PegApiService {
     return this.httpClient.get(baseURL + 'api_user/pauser_po_list_peg')
   }
 
-  
   getConstants():Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/user_constants_list')
   }
 
+  createGoals(goals: any):Observable<any> {
+    let jsonData = JSON.stringify(goals);
+    return this.httpClient.post(baseURL + 'api_peg/goals_new', jsonData[0], this.httpOptions)
+  }
 
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)

@@ -30,19 +30,19 @@ export class PegNewGoalComponent {
 
   // Resonsable select
   managers: PegPerson[] = [];
-  selectedResponsable: PegPerson = {
+  selectedManager: PegPerson = {
     id: 0,
     name: '',
     surname: '',
     jobCategory: '',
-    responsable: true, 
-    responsableOffice: [],
+    manager: true,
+    managerOffice: [],
   };
 
   // Office select
   filteredOffices = [];
   selectedOffice: string = '';            // this is the o1, o2, o3... value for the office
-  constants = {main_office_choices: []}
+  constants = { main_office_choices: [] }
 
   // goal
   goalList: PegGoal[] = [];
@@ -51,7 +51,7 @@ export class PegNewGoalComponent {
     name: '',
     description: '',
     weight: 0,
-    responsable: null,
+    manager: null,
     office: '',
     year: 0,
     involvedPeople: [],
@@ -94,9 +94,9 @@ export class PegNewGoalComponent {
 
   ngOnInit(): void {
     //get user list, po list and constant list
-    this.api.getUserList().subscribe(res => {this.userList = res.data;})
-    this.api.getPoList().subscribe(res => {this.managers = res.data;})
-    this.api.getConstants().subscribe(res => {this.constants = res;})
+    this.api.getUserList().subscribe(res => { this.userList = res.data; })
+    this.api.getPoList().subscribe(res => { this.managers = res.data; })
+    this.api.getConstants().subscribe(res => { this.constants = res; })
     //calculate the current year to show it as default value
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
@@ -104,15 +104,16 @@ export class PegNewGoalComponent {
     this.addGoal()
   }
 
-  changeOffice() { }
+  /* changeOffice() { } */
 
-  changeResponsable() {
-    //filter offices from the whole list with the list of offices listed in the responsable
-    this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedResponsable.responsableOffice.includes(office[0]));
-  
+  changeManager() {
+    //filter offices from the whole list with the list of offices listed in the manager
+    this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOffice.includes(office[0]));
+    console.log(this.filteredOffices)
+
   }
 
-  focus(){
+  focus() {
     this.searching = true;
     this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
   }
@@ -138,7 +139,7 @@ export class PegNewGoalComponent {
 
 
 
-  addGoal(){
+  addGoal() {
     this.goalList.push({...this.emptyGoal})         //use this form in order to create a new instance otherwise it would reference to the same space in memory
   }
 
@@ -159,21 +160,19 @@ export class PegNewGoalComponent {
     if (weightSum < 100) {
       this.modalService.openFeedbackModal(false, data)
     } else {
+      // add the year, manager and office key: value
+      let updatedGoals = this.goalList.map(goal => ({
+        ...goal,            // Copy the existing properties of the object
+        year: this.year,
+        manager: this.selectedManager,
+        office: this.selectedOffice
+      }))
 
+      console.log(updatedGoals)
+
+      this.api.createGoals(updatedGoals).subscribe(r => console.log(r))
     }
-
-    // add the year, responsable and office key: value
-    let updatedGoals = this.goalList.map(goal => ({
-      ...goal,            // Copy the existing properties of the object
-      year: this.year,
-      responsable: this.selectedResponsable,
-      office: this.selectedOffice
-    }))
-
-    console.log(updatedGoals)
-    
   }
-
 
 
 }

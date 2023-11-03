@@ -16,7 +16,7 @@
 
         <div class="col-4">
           <p class="small my-0 py-0"><small>Responsabile</small></p>
-          <select name="office" class="col-2 form-control text-white" (change)="changeResponsable()" [(ngModel)]="selectedResponsable">
+          <select name="office" class="col-2 form-control text-white" (change)="changeManager()" [(ngModel)]="selectedManager">
             <option *ngFor="let r of this.managers" [ngValue]="r">{{r.name}} {{r.surname}}</option>
           </select>
         </div>
@@ -81,10 +81,10 @@
               <div class="col-4">
                 <p class="mb-0 pb-0">Responsabile</p>
                 <div class="d-flex justify-content-between">
-                  <span>{{goal.responsable}}</span>
-                  <div class="btn border-primary-peg text-primary-peg" (click)="ChangeResponsable()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
+                  <span>{{goal.manager}}</span>
+                  <div class="btn border-primary-peg text-primary-peg" (click)="ChangeManager()"><fa-icon [icon]='faPen' class="icon-bg m-0"></fa-icon></div>
                 </div>
-                <!-- <input formControlName="responsable" id="responsable" type="text" class="form-control"> --
+                <!-- <input formControlName="manager" id="manager" type="text" class="form-control"> --
               </div>
           
             </div>
