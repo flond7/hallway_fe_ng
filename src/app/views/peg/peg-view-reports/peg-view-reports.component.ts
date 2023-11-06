@@ -7,4 +7,24 @@ import { Component } from '@angular/core';
 })
 export class PegViewReportsComponent {
 
+  // initial tab values
+  tab = {
+  reportPerson: true,
+  reportManager: false,
+  reportOffice: false,
+  reportPa: false
+  }
+
+  selectTab(tabSelected: string) {
+    for (const key in this.tab) {
+      if (key === tabSelected) {
+        (this.tab as any)[key] = true;
+      } else {
+        (this.tab as any)[key] = false;
+      }
+    }
+  }
+
+
+
 }

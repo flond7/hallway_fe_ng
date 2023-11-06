@@ -5,18 +5,26 @@
     <div class="col-12">
 
       <div class="row mt-3 border-bottom border-primary-peg">
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === true}"
-          (click)="extraordinary = true">{{extraordinaryTitle}}</div>
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === false}"
-          (click)="extraordinary = false">{{ordinaryTitle}}</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPerson === true}" (click)="selectTab('reportPerson')">Report Persona</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportManager === true}" (click)="selectTab('reportManager')">Report P.O.</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportOffice === true}" (click)="selectTab('reportOffice')">Report Ufficio</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPa === true}" (click)="selectTab('reportPa')">Report Ente</div>
       </div>
 
-      <div *ngIf="extraordinary === true" class="tab">
-        <app-peg-goal-tab [title]="extraordinaryTitle" [type]="'extraordinary'"></app-peg-goal-tab>
+      <div *ngIf="tab.reportPerson === true" class="tab">
+        
       </div>
 
-      <div *ngIf="extraordinary === false" class="tab">
-        <app-peg-goal-tab [title]="ordinaryTitle" [type]="'ordinary'"></app-peg-goal-tab>
+      <div *ngIf="tab.reportManager === true" class="tab">
+        
+      </div>
+
+      <div *ngIf="tab.reportOffice === true" class="tab">
+        
+      </div>
+
+      <div *ngIf="tab.reportPa === true" class="tab">
+        
       </div>
 
     </div>
