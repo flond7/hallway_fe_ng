@@ -26,4 +26,5 @@ export interface PegGoal {
     weight_3006?: number;
     percent_3112: number;
     weight_3112?: number;
+    type: string;
 }
