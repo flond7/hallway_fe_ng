@@ -25,11 +25,14 @@ export class PegGoalComponent implements OnInit {
     percent_3112: 0,
     weight_3112: 0,
     type: '',
-  };; 
+  }; 
   @Output() goalUpdated = new EventEmitter<PegGoal>();
 
+  // Users list
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
+
+  // Searching
   searching: boolean = false;
   searchInput = '';
 
@@ -50,7 +53,7 @@ export class PegGoalComponent implements OnInit {
   modalRef?: BsModalRef;
 
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService, ) { }
+  constructor(public api: PegApiService, private bsModalService: BsModalService,) { }
 
   /* 
     when the user exits an input field blur() emits all the goals values so they can be updated in the parent
@@ -111,7 +114,7 @@ export class PegGoalComponent implements OnInit {
 
   openModalPeople(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
-  }
+  } 
 
   openModalDelete() {
     //.modalRef = this.bsModalService.show(template)
