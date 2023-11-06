@@ -53,6 +53,11 @@ export class PegApiService {
     return this.httpClient.post(baseURL + 'api_peg/goals_new', goals, this.httpOptions)
   }
 
+  getReportPerson(data: any):Observable<any> {
+    return this.httpClient.post(baseURL + 'api_peg/get_person_results', data, this.httpOptions)
+  }
+
+
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)
   }

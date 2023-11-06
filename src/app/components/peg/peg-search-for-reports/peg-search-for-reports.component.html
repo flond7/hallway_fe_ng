@@ -1,7 +1,8 @@
-<div *ngIf="this.userList$.length > 0" class="">
+<div *ngIf="this.userList$.length > 0" class="pb-3">
 
     <select name="selectedUSer" class="col-2 form-control text-white" [(ngModel)]="selectedUser">
         <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
     </select>
 
+    <div class="btn bg-primary-peg" (click)="searchPerson()"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
 </div>

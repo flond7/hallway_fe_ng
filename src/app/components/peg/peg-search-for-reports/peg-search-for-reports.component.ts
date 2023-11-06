@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson } from 'src/interfaces';
+import { faSearch} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-peg-search-for-reports',
@@ -20,8 +21,16 @@ selectedUser: PegPerson = {
   managerOfOffices: []
 };
 
+// FA icons
+faSearch = faSearch;
+
 constructor(private api: PegApiService) {
   api.userListData$.subscribe(r=> {this.userList$ = r; console.log(this.userList$)});
+ }
+
+ searchPerson() {
+  let data = {year: 2023, id: this.selectedUser.id}
+  this.api.getReportPerson(data).subscribe(r => console.log(r))
  }
 
 }
