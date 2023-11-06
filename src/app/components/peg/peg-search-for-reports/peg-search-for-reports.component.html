@@ -1,0 +1,7 @@
+<div *ngIf="this.userList$.length > 0" class="">
+
+    <select name="selectedUSer" class="col-2 form-control text-white" [(ngModel)]="selectedUser">
+        <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
+    </select>
+
+</div>
