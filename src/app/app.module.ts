@@ -34,6 +34,7 @@ import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list
 import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
 import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
 import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.component';
+import { SearchModalComponent } from './components/modals/search-modal/search-modal.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.
     LoginComponent,
     PegGoalComponent,
     PegGoalTabComponent,
+    SearchModalComponent,
   ],
   imports: [
     BrowserModule,
