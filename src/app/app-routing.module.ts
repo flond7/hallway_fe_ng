@@ -19,8 +19,6 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
 
   { path: 'peg-home', component: PegHomeComponent },
-  { path: 'peg-view-goal', component: PegViewGoalComponent },
-  { path: 'peg-view-year', component: PegViewYearComponent },
   { path: 'peg-view-reports', component: PegViewReportsComponent },
   { path: 'peg-new-goal', component: PegNewGoalComponent },
   
