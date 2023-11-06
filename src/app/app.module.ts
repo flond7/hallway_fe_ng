@@ -35,6 +35,7 @@ import { FeedbackModalComponent } from './components/modals/feedback-modal/feedb
 import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
 import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.component';
 import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-reports.component';
+import { PegSearchForReportsComponent } from './components/peg/peg-search-for-reports/peg-search-for-reports.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-r
     PegGoalComponent,
     PegGoalTabComponent,
     PegViewReportsComponent,
+    PegSearchForReportsComponent,
   ],
   imports: [
     BrowserModule,
