@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation} from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
@@ -24,32 +24,12 @@ export class PegGoalComponent implements OnInit {
     weight_3006: 0,
     percent_3112: 0,
     weight_3112: 0,
+    type: '',
   };; 
   @Output() goalUpdated = new EventEmitter<PegGoal>();
 
-  //@ViewChild('searchInput', { static: false }) searchInput: ElementRef;
-
-/* 
-  goal: PegGoal = {
-    id: 0,
-    name: '',
-    description: '',
-    weight: 0,
-    manager: null,
-    office: '',
-    year: 0,
-    involvedPeople: [],
-    percent_3006: 0,
-    weight_3006: 0,
-    percent_3112: 0,
-    weight_3112: 0,
-  }; */
-
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
-  //involved: PegPerson[] = [];
-  //usersNotAdded: PegPerson[] = [];
-  //managers: PegPerson[] = [];
   searching: boolean = false;
   searchInput = '';
 
@@ -73,7 +53,7 @@ export class PegGoalComponent implements OnInit {
   constructor(public api: PegApiService, private bsModalService: BsModalService, ) { }
 
   /* 
-    when the user exits an input field blur() emits all teh goals values so they can be updated in the parent
+    when the user exits an input field blur() emits all the goals values so they can be updated in the parent
   */
 
   ngOnInit() {
@@ -82,7 +62,6 @@ export class PegGoalComponent implements OnInit {
       this.filteredPAUserList = this.userList;
       this.inputGoal.weight_3006 = 0.0
       this.inputGoal.weight_3112 = 0.0
-      //this.managers = this.userList;
     })
   }
 
@@ -101,12 +80,6 @@ export class PegGoalComponent implements OnInit {
     this.searching = true;
     this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
   }
-  /* filterUserList() {
-    this.usersNotAdded = this.userList.filter(user => !this.involved.some(addedUser => addedUser.id === user.id));
-    console.log(this.usersNotAdded);
-    //remove already added users from this list
-    return this.usersNotAdded
-  } */
 
   onSearchPAUser(event:any) {
     this.searchInput = event?.target.value
@@ -116,8 +89,6 @@ export class PegGoalComponent implements OnInit {
       user.surname.toLowerCase().includes(this.searchInput.toLowerCase())
     );
   }
-
-
 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
@@ -142,7 +113,6 @@ export class PegGoalComponent implements OnInit {
   onSearchOffice(event: any){
     console.log(event)
   }
-  focusOffice(){}
 
   openModalPeople(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)

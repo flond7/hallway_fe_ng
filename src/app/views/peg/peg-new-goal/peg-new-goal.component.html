@@ -4,6 +4,40 @@
   <div class="row w-100">
     <div class="col-12">
 
+
+      <div class="row mt-3 border-bottom border-primary-peg">
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === true}"
+          (click)="extraordinary = true">{{extraordinaryTitle}}</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === false}"
+          (click)="extraordinary = false">{{ordinaryTitle}}</div>
+      </div>
+
+      <div *ngIf="extraordinary === true" class="tab">
+        <app-peg-goal-tab [title]="extraordinaryTitle" [type]="'extraordinary'"></app-peg-goal-tab>
+      </div>
+
+      <div *ngIf="extraordinary === false" class="tab">
+        <app-peg-goal-tab [title]="ordinaryTitle" [type]="'ordinary'"></app-peg-goal-tab>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
       <div class="row">
         <h2 class="border-bottom border-primary-peg">Obbiettivi straordinari</h2>
       </div>
@@ -16,7 +50,6 @@
 
         <div class="col-4">
           <p class="small my-0 py-0"><small>Responsabile</small></p>
-          <!-- <select name="office" class="col-2 form-control text-white" (change)="changeManager()" [(ngModel)]="selectedManager"> -->
           <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedManager">
             <option *ngFor="let r of this.managers" [ngValue]="r">{{r.name}} {{r.surname}}</option>
           </select>
@@ -25,7 +58,6 @@
         <div class="col-4">
           <p class="small my-0 py-0"><small>Ufficio</small></p>
           <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedOffice">
-            <!-- <option *ngFor="let o of this.filteredOffices" [ngValue]="o[0]">{{o[1]}}</option> -->
             <option *ngFor="let office of this.selectedManager.managerOfOffices" [ngValue]="office.id">{{office.name}}</option>
           </select>
         </div>
@@ -52,11 +84,17 @@
         <div class="col-1">
             <p class="small my-0 py-0"><small> Peso (31/12)</small></p>
         </div>
-    </div>
+      </div>
 
       <app-peg-goal *ngFor="let goal of this.goalList; index as i" [inputGoal]="goal" (goalUpdated)="updateGoal($event, i)"></app-peg-goal>
 
-      <!-- <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
+
+
+ -->
+
+
+
+<!-- <form [formGroup]="goalForm" (ngSubmit)="submit()" class="">
 
         <div class="row m-0">
           <h2 class="border-bottom border-primary-peg">Obbiettivi straordinario</h2>
@@ -159,7 +197,7 @@
       </form>
  -->
 
-      <div class="row justify-content-end border-top border-primary-peg pt-3 mt-3">
+<!--   <div class="row justify-content-end border-top border-primary-peg pt-3 mt-3">
         <button class="w-auto h-2 rounded border-0 bg-secondary-peg bg-dark text-white mx-2"
           (click)="openInstructions(instructionModal)">Istruzioni</button>
         <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
@@ -185,4 +223,4 @@
       <div class="w-auto btn bg-secondary-peg" (click)="modalRef?.hide()">Chiudi</div>
     </div>
   </div>
-</ng-template>
+</ng-template> -->

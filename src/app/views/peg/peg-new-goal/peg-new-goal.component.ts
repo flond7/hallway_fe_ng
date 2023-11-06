@@ -1,10 +1,10 @@
 import { Component, Input, ViewChild, TemplateRef } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+//import { FormGroup, FormControl, FormArray, Validators } from "@angular/forms";
+//import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
 import * as GC from '../../../../constants'
-import { disableDebugTools } from '@angular/platform-browser';
+// import { disableDebugTools } from '@angular/platform-browser';
 // Modal imports
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalService } from '../../../services/modals.service';
@@ -18,8 +18,13 @@ import { ModalService } from '../../../services/modals.service';
 })
 export class PegNewGoalComponent {
 
+  // tab control
+  extraordinary: boolean = true;
+  extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
+  ordinaryTitle: string = GC.PEG_GOAL_ORDINARY_TITLE;
+
   // Modal
-  modalRef?: BsModalRef;
+/*   modalRef?: BsModalRef;
   pegInstructions = GC.PEG_INSTRUCTIONS;
 
   userList: PegPerson[] = [];
@@ -45,9 +50,9 @@ export class PegNewGoalComponent {
     id: 0,
     name: ''
   };            // this is the o1, o2, o3... value for the office
-  constants = { main_office_choices: [] }
+  constants = { main_office_choices: [] } */
 
-  // goal
+  /* // goal
   goalList: PegGoal[] = [];
   emptyGoal: PegGoal = {
     id: 0,
@@ -62,12 +67,13 @@ export class PegNewGoalComponent {
     weight_3006: 0,
     percent_3112: 0,
     weight_3112: 0,
+    type: '',
   };
-  year: number = 0;
+  year: number = 0; */
 
   // FA icons
-  faPlus = faPlus;
-  faMinus = faMinus;
+/*   faPlus = faPlus;
+  faMinus = faMinus; */
 
   /* REACTIVE FORM */
   /* goalForm = new FormGroup({
@@ -95,7 +101,7 @@ export class PegNewGoalComponent {
 
   constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService) { }
 
-  ngOnInit(): void {
+  /* ngOnInit(): void {
     //get user list, po list and constant list
     this.api.getUserList().subscribe(res => { this.userList = res.data; })
     this.api.getPoList().subscribe(res => { this.managers = res.data; })
@@ -106,18 +112,17 @@ export class PegNewGoalComponent {
     //add the first empty goal
     this.addGoal()
   }
+  focus() {
+    this.searching = true;
+    this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
+  } */
 
-  /* changeOffice() { } */
 
   /* changeManager() {
     //filter offices from the whole list with the list of offices listed in the manager
     this.filteredOffices = this.constants.main_office_choices.filter(office => this.selectedManager.managerOfOffices.includes(office[0]));
   } */
 
-  focus() {
-    this.searching = true;
-    this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
-  }
   /* blur(){
     this.searching = false;
     this.filteredPAUserList = [];
@@ -137,7 +142,7 @@ export class PegNewGoalComponent {
   } */
 
 
-
+/* 
 
 
   addGoal() {
@@ -168,7 +173,7 @@ export class PegNewGoalComponent {
       }))
       this.api.createGoals(updatedGoals).subscribe(r => console.log(r))
     }
-  }
+  } */
 
 
 }

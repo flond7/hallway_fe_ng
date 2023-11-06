@@ -33,6 +33,7 @@ import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list
 /* MODALS */
 import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
 import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
+import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
     FeedbackModalComponent,
     LoginComponent,
     PegGoalComponent,
+    PegGoalTabComponent,
   ],
   imports: [
     BrowserModule,
