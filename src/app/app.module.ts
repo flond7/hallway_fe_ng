@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgChartsModule } from 'ng2-charts';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 /* GENERAL */
@@ -65,6 +65,7 @@ import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-r
     HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    NgChartsModule,
     HttpClientXsrfModule,
   ],
   providers: [
