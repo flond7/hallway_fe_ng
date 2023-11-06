@@ -1,0 +1,24 @@
+<app-peg-menu></app-peg-menu>
+
+<div class="container">
+  <div class="row w-100">
+    <div class="col-12">
+
+      <div class="row mt-3 border-bottom border-primary-peg">
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === true}"
+          (click)="extraordinary = true">{{extraordinaryTitle}}</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === false}"
+          (click)="extraordinary = false">{{ordinaryTitle}}</div>
+      </div>
+
+      <div *ngIf="extraordinary === true" class="tab">
+        <app-peg-goal-tab [title]="extraordinaryTitle" [type]="'extraordinary'"></app-peg-goal-tab>
+      </div>
+
+      <div *ngIf="extraordinary === false" class="tab">
+        <app-peg-goal-tab [title]="ordinaryTitle" [type]="'ordinary'"></app-peg-goal-tab>
+      </div>
+
+    </div>
+  </div>
+</div>
