@@ -92,7 +92,6 @@ export class PegGoalComponent implements OnInit {
 
   addInvolvedPeople(person: PegPerson) {
     person.added = true;
-    //this.inputGoal.involvedPeople.push(person);
     this.inputGoal.involvedPeople.push(person.id);
     this.involvedForVisualization.push(person)    //needed because in the actual object to send back to save and edit, only the ids are required
     this.searching = false;
@@ -108,10 +107,6 @@ export class PegGoalComponent implements OnInit {
     this.inputGoal.involvedPeople.forEach((el, index) => {
       if (el == person.id) this.inputGoal.involvedPeople.splice(index, 1);
     });
-  }
-
-  onSearchOffice(event: any){
-    console.log(event)
   }
 
   openModalPeople(template: TemplateRef<any>) {
