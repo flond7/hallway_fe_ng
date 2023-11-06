@@ -6,7 +6,7 @@ import * as GC from '../../../../constants'
 import * as pdfFonts from 'pdfmake/build/vfs_fonts'; */
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { single } from 'rxjs';
+//import { single } from 'rxjs';
 
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
