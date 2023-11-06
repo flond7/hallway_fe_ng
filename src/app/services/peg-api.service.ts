@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
-import { BASE_URL } from '../../constants'
+import { Observable, BehaviorSubject } from 'rxjs';
+import { BASE_URL } from '../../constants';
+import { PegPerson } from '../../interfaces';
 
 const baseURL = BASE_URL;
 
@@ -12,7 +13,15 @@ const baseURL = BASE_URL;
 })
 export class PegApiService {
 
-  constructor(private httpClient: HttpClient) { }
+  // User list accessable from everywhere
+  private userListSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public userListData$: Observable<PegPerson[]> = this.userListSubject.asObservable();
+
+  constructor(private httpClient: HttpClient) { 
+    this.getUserList().subscribe(userList => {
+      this.userListSubject.next(userList.data);
+    });
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
