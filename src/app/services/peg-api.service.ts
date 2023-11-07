@@ -18,8 +18,8 @@ export class PegApiService {
   public userListData$: Observable<PegPerson[]> = this.userListSubject.asObservable();
 
   // PO list accessable from everywhere
-  private managerListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegOffice[]>([]);
-  public managerListData$: Observable<PegOffice[]> = this.managerListSubject.asObservable();
+  private managerListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegPerson[]>([]);
+  public managerListData$: Observable<PegPerson[]> = this.managerListSubject.asObservable();
 
   // Office list accessable from everywhere
   private officeListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegOffice[]>([]);
