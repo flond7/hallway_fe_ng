@@ -78,12 +78,11 @@
     <div class="modal-body bg-dark px-5">
 
         <div class="d-flex justify-content-between py-4">
-            <input placeholder="cerca persone" id="" type="text" class="w-100 form-control me-3 bg-none"
-                (focus)="focus()" (input)="onSearchPAUser($event)" [(ngModel)]="this.searchInput">
+            <input placeholder="cerca persone" id="" type="text" class="w-100 form-control me-3 bg-none" (input)="onSearchPAUser($event)" [(ngModel)]="this.searchInput">
+                <!-- (focus)="focus()" (input)="onSearchPAUser($event)" [(ngModel)]="this.searchInput"> -->
             <div class="text-primary-peg mt-2"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
         </div>
-        <div *ngFor="let person of filteredPAUserList"
-            class="border-bottom border-muted-peg py-1 mb-1">
+        <div *ngFor="let person of filteredPAUserList" class="border-bottom border-muted-peg py-1 mb-1">
             <div *ngIf="!person.added" class="w-100 d-flex justify-content-between align-items-center" (click)="addInvolvedPeople(person)">
                 <span class=""> {{person.name}} {{person.surname}}</span>
                 <div class="text-primary-peg"><fa-icon [icon]='faPlus' class="m-0"></fa-icon></div>

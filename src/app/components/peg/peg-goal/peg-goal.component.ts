@@ -10,6 +10,11 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './peg-goal.component.html',
   styleUrls: ['./peg-goal.component.sass']
 })
+
+/* 
+    when the user exits an input field blur() emits all the goals values so they can be updated in the parent
+*/
+
 export class PegGoalComponent implements OnInit {
   @Input() inputGoal: PegGoal = {
     id: 0,
@@ -55,20 +60,27 @@ export class PegGoalComponent implements OnInit {
   // Modal
   modalRef?: BsModalRef;
 
+  constructor(public api: PegApiService, private bsModalService: BsModalService,) {
+    api.userListData$.subscribe(r => { 
+      this.userList = r; 
+      this.filteredPAUserList = [...r];
+    })
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService,) { }
-
-  /* 
-    when the user exits an input field blur() emits all the goals values so they can be updated in the parent
-  */
+    // Initialize the involvedForVisualization array for each instance
+    this.involvedForVisualization = [];
+   }
 
   ngOnInit() {
-    this.api.getUserList().subscribe(res => { 
-      this.userList = res.data;
-      this.filteredPAUserList = this.userList;
-      this.inputGoal.weight_3006 = 0.0
-      this.inputGoal.weight_3112 = 0.0
-    })
+    //set to zero the weights we have to calculate later
+    this.inputGoal.weight_3006 = 0.0;
+    this.inputGoal.weight_3112 = 0.0;
+
+    //reset the involved person array to empty
+    this.inputGoal.involvedPeople = [];
+
+    console.log(this.inputGoal)
+    console.log(this.involvedForVisualization)
+
   }
 
   computeWeights() {
@@ -82,11 +94,6 @@ export class PegGoalComponent implements OnInit {
     this.computeWeights()
   }
 
-  focus(){
-    this.searching = true;
-    this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
-  }
-
   onSearchPAUser(event:any) {
     this.searchInput = event?.target.value
     //start with all the user then
@@ -96,12 +103,18 @@ export class PegGoalComponent implements OnInit {
     );
   }
 
+  
   addInvolvedPeople(person: PegPerson) {
-    person.added = true;
+    person.added = true;                            //added is needed to change from (+) add person to (-) remove person in html
     this.inputGoal.involvedPeople.push(person.id);
-    this.involvedForVisualization.push(person)    //needed because in the actual object to send back to save and edit, only the ids are required
+    this.involvedForVisualization.push(person)      //needed because in the actual object to send back to save and edit, only the ids are required
+    
+    //reset searching params
     this.searching = false;
     this.searchInput = '';
+
+    //reset filteredList for a new research
+    this.filteredPAUserList = [...this.userList];
   }
 
   removeInvolvedPeople(person: PegPerson) {

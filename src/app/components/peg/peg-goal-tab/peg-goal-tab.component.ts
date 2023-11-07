@@ -89,21 +89,19 @@ export class PegGoalTabComponent {
   }
 
   addGoal() {
+    console.log(this.emptyGoal)
     this.goalList.push({ ...this.emptyGoal })         //use this form in order to create a new instance otherwise it would reference to the same space in memory
   }
 
   updateGoal(updatedGoal: PegGoal, i: number) {
     this.goalList[i] = updatedGoal;
+    console.log(updatedGoal)
+    console.log(i)
   }
 
   openInstructions(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
   }
-
-/*   focus() {
-    this.searching = true;
-    this.filteredPAUserList = this.filteredPAUserList.filter(user => user.added !== true)
-  } */
 
   saveGoals() {
     //check if po and office are selected
@@ -126,10 +124,10 @@ export class PegGoalTabComponent {
         type: this.type
       }))
       console.log(updatedGoals);
-      this.api.createGoals(updatedGoals).subscribe(r => {
+      /* this.api.createGoals(updatedGoals).subscribe(r => {
         console.log(r);
         this.router.navigate(['/peg-home']);
-      })
+      }) */
     }
   }
 
