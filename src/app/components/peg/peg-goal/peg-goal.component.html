@@ -1,30 +1,6 @@
 <div class="row border-bottom-muted">
 
-    <!-- <div class="row m-0 border-bottom border-muted-peg small pb-1">
-        <div class="col-5 m-0 p-0">
-            <p class="mb-0 pb-0">Nome</p>
-        </div>
-        <div class="col-1">
-            <p class="mb-0 pb-0">Peso</p>
-        </div>
-        <div class="col-1">
-            <p class="mb-0 pb-0">% 30/06</p>
-        </div>
-        <div class="col-1">
-            <p class="mb-0 pb-0">Peso</p>
-        </div>
-        <div class="col-1">
-            <p class="mb-0 pb-0">% 31/12</p>
-        </div>
-        <div class="col-1">
-            <p class="mb-0 pb-0">Peso</p>
-        </div>
-    </div> -->
-
     <div class="row m-0 my-2">
-
-
-
         
         <div class="col-5 m-0 p-0">
             <input id="weight" type="text" class="w-100 form-control" (blur)="blur()" [(ngModel)]="inputGoal.name">
@@ -79,8 +55,7 @@
 
         <div class="d-flex justify-content-between py-4">
             <input placeholder="cerca persone" id="" type="text" class="w-100 form-control me-3 bg-none" (input)="onSearchPAUser($event)" [(ngModel)]="this.searchInput">
-                <!-- (focus)="focus()" (input)="onSearchPAUser($event)" [(ngModel)]="this.searchInput"> -->
-            <div class="text-primary-peg mt-2"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
+                <div class="text-primary-peg mt-2"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
         </div>
         <div *ngFor="let person of filteredPAUserList" class="border-bottom border-muted-peg py-1 mb-1">
             <div *ngIf="!person.added" class="w-100 d-flex justify-content-between align-items-center" (click)="addInvolvedPeople(person)">
