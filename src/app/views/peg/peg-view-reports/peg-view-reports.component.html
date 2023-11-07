@@ -5,45 +5,47 @@
     <div class="col-12">
 
       <div class="row mt-3 border-bottom border-primary-peg">
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPerson === true}" (click)="selectTab('reportPerson')">Report Persona</div>
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportManager === true}" (click)="selectTab('reportManager')">Report P.O.</div>
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportOffice === true}" (click)="selectTab('reportOffice')">Report Ufficio</div>
-        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPa === true}" (click)="selectTab('reportPa')">Report Ente</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPerson === true}"
+          (click)="selectTab('reportPerson')">Report Persona</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportManager === true}"
+          (click)="selectTab('reportManager')">Report P.O.</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportOffice === true}"
+          (click)="selectTab('reportOffice')">Report Ufficio</div>
+        <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : tab.reportPa === true}"
+          (click)="selectTab('reportPa')">Report Ente</div>
       </div>
 
       <div *ngIf="tab.reportPerson === true" class="tab">
-        <div class="row">Search person
-            <app-peg-search-for-reports></app-peg-search-for-reports>
-     
+        <div class="row mt-3">
+          <app-peg-search-for-reports (goalListPerson)="getlist($event)"></app-peg-search-for-reports>
         </div>
-
-        <div class="row">
-            <div class="col-4">Obbiettivo nome</div>
-            <div class="col-1">Peso</div>
-            <div class="col-1">% (31/12)</div> 
-            <div class="col-3"></div>
-            <div class="col-3"> 
-              <canvas baseChart [datasets]="doughnutChartDatasets" [options]="doughnutChartOptions" [type]="'doughnut'"></canvas>
-              <div class=""></div>
-            </div>
-
-        </div>
-
-        
       </div>
 
-      <div *ngIf="tab.reportManager === true" class="tab">
-        
+      <div *ngFor="let g of goalListPerson" class="row border-bottom border-muted-peg">
+        <div class="col-4">{{g.name}}</div>
+        <div class="col-1">{{g.weight}}</div>
+        <div class="col-1">{{g.percent_3112}}</div>
+      </div>
+      <div class="col-3">
+        <canvas baseChart [datasets]="doughnutChartDatasets" [options]="doughnutChartOptions"
+          [type]="'doughnut'"></canvas>
+        <div class="">{{this.totalWeight_3112}} / {{this.totalWeight}}</div>
       </div>
 
-      <div *ngIf="tab.reportOffice === true" class="tab">
-        
-      </div>
-
-      <div *ngIf="tab.reportPa === true" class="tab">
-        
-      </div>
 
     </div>
+
+    <div *ngIf="tab.reportManager === true" class="tab">
+
+    </div>
+
+    <div *ngIf="tab.reportOffice === true" class="tab">
+
+    </div>
+
+    <div *ngIf="tab.reportPa === true" class="tab">
+
+    </div>
+
   </div>
 </div>

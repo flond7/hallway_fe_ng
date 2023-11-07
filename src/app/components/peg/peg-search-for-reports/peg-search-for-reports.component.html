@@ -1,8 +1,17 @@
-<div *ngIf="this.userList$.length > 0" class="pb-3">
+<div *ngIf="this.userList$.length > 0" class="row d-flex pb-3">
 
-    <select name="selectedUSer" class="col-2 form-control text-white" [(ngModel)]="selectedUser">
-        <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
-    </select>
+    <div class="col-3">
+        <p class="small my-0 py-0"><small>Persona *</small></p>
+        <select name="selectedUSer" class="form-control text-white" [(ngModel)]="selectedUser">
+            <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
+        </select>
+    </div>
 
-    <div class="btn bg-primary-peg" (click)="searchPerson()"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
+    <div class="col-1">
+        <p class="small my-0 py-0"><small>Anno *</small></p>
+        <input id="year" type="number" class="col-2 w-100 form-control" [(ngModel)]="year">
+    </div>
+
+    <div class="w-auto btn bg-primary-peg" (click)="searchPerson()"><fa-icon [icon]='faSearch' class="m-0"></fa-icon>
+    </div>
 </div>

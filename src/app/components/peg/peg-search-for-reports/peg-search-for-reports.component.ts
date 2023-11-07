@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson } from 'src/interfaces';
-import { faSearch} from '@fortawesome/free-solid-svg-icons';
+import { PegPerson, PegGoal } from 'src/interfaces';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-peg-search-for-reports',
@@ -9,28 +9,43 @@ import { faSearch} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./peg-search-for-reports.component.sass']
 })
 export class PegSearchForReportsComponent {
+  
+  @Output() goalListPerson = new EventEmitter<PegGoal[]>();
 
-// selected user for reasearch
-userList$: PegPerson[] = []
-selectedUser: PegPerson = {
-  id: 0,
-  name: '',
-  surname: '',
-  jobCategory: '',
-  manager: false,
-  managerOfOffices: []
-};
+  // selected user for reasearch
+  userList$: PegPerson[] = []
+  selectedUser: PegPerson = {
+    id: 0,
+    name: '',
+    surname: '',
+    jobCategory: '',
+    manager: false,
+    managerOfOffices: []
+  };
 
-// FA icons
-faSearch = faSearch;
+  // goal list
+  goalList: PegGoal[] = [];
 
-constructor(private api: PegApiService) {
-  api.userListData$.subscribe(r=> {this.userList$ = r; console.log(this.userList$)});
- }
+  // year
+  year: number = 0;
 
- searchPerson() {
-  let data = {year: 2023, id: this.selectedUser.id}
-  this.api.getReportPerson(data).subscribe(r => console.log(r))
- }
+  // FA icons
+  faSearch = faSearch;
+
+  constructor(private api: PegApiService) {
+    const currentDate = new Date();
+    this.year = currentDate.getFullYear();
+    api.userListData$.subscribe(r => { this.userList$ = r; console.log(this.userList$) });
+  }
+
+  searchPerson() {
+    let data = { year: this.year, id: this.selectedUser.id }
+    this.api.getReportPerson(data).subscribe(r => {
+      this.goalList = r.data;
+      this.goalListPerson.emit(this.goalList)
+    })
+  }
+
+  
 
 }

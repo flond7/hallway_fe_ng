@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { PegApiService } from '../../../services/peg-api.service';
-import { PegPerson } from 'src/interfaces';
+import { PegPerson, PegGoal } from 'src/interfaces';
 
 @Component({
   selector: 'app-peg-view-reports',
@@ -35,9 +35,17 @@ export class PegViewReportsComponent {
     manager: false,
     managerOfOffices: []
   };
+
+  // goal list
+  goalListPerson: PegGoal[] = [];
   
-  constructor(private api: PegApiService) {
-   }
+
+
+  //results
+  totalWeight: number = 0;
+  totalWeight_3112: number = 0;
+
+  constructor(private api: PegApiService) {}
 
   selectTab(tabSelected: string) {
     for (const key in this.tab) {
@@ -49,6 +57,19 @@ export class PegViewReportsComponent {
     }
   }
 
+  personPointsCalculation() {
+    this.totalWeight_3112 = this.goalListPerson.reduce((sum, goal) => {
+      if (goal.weight_3112 !== undefined) {
+        return sum + goal.weight_3112;
+      }
+      return sum;
+    }, 0);
+    this.totalWeight = this.goalListPerson.reduce((sum, goal) => sum + goal.weight,0);
+  }
 
+  getlist(e: any) {
+    this.goalListPerson = e;
+    console.log(e)
+  }
 
 }
