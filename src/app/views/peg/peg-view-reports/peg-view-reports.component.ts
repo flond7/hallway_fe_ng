@@ -38,6 +38,8 @@ export class PegViewReportsComponent {
 
   // goal list
   goalListPerson: PegGoal[] = [];
+  ordinaryGoal: PegGoal[] = [];
+  extraordinaryGoal: PegGoal[] = [];
   
 
 
@@ -67,9 +69,18 @@ export class PegViewReportsComponent {
     this.totalWeight = this.goalListPerson.reduce((sum, goal) => sum + goal.weight,0);
   }
 
-  getlist(e: any) {
+  getlist(e: PegGoal[]) {
     this.goalListPerson = e;
+
+    //separate goals in ordinary and extraordinary
+    this.ordinaryGoal = e.filter(g => g.type === "ordinary");
+    this.extraordinaryGoal = e.filter(g => g.type === "extraordinary");
+
+
+
     console.log(e)
+    console.log(this.ordinaryGoal)
+    console.log(this.extraordinaryGoal)
   }
 
 }

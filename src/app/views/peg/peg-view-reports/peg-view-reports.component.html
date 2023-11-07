@@ -21,16 +21,39 @@
         </div>
       </div>
 
-      <div *ngFor="let g of goalListPerson" class="row border-bottom border-muted-peg">
-        <div class="col-4">{{g.name}}</div>
-        <div class="col-1">{{g.weight}}</div>
-        <div class="col-1">{{g.percent_3112}}</div>
+      <h2 class="border-bottom border-primary-peg">Obbiettivi straordinari</h2>
+
+      <div class="row">
+        <div class="col-8">
+          <div *ngFor="let g of extraordinaryGoal"
+            class="d-flex border-bottom border-muted-peg h-2 align-content-center">
+            <div class="col-10">{{g.name}}</div>
+            <div class="col-1">{{g.weight}}</div>
+            <div class="col-1">{{g.percent_3112}}</div>
+          </div>
+        </div>
+        <div class="col-3">
+          <canvas baseChart [datasets]="doughnutChartDatasets" [options]="doughnutChartOptions"
+            [type]="'doughnut'"></canvas>
+          <div class="">{{this.totalWeight_3112}} / {{this.totalWeight}}</div>
+        </div>
       </div>
-      <div class="col-3">
-        <canvas baseChart [datasets]="doughnutChartDatasets" [options]="doughnutChartOptions"
-          [type]="'doughnut'"></canvas>
-        <div class="">{{this.totalWeight_3112}} / {{this.totalWeight}}</div>
+
+      <h2 class="border-bottom border-primary-peg">Obbiettivi ordinari</h2>
+
+      <div class="row">
+        <div *ngFor="let g of ordinaryGoal" class="col-8 border-bottom border-muted-peg h2 align-content-center">
+          <div class="col-4">{{g.name}}</div>
+          <div class="col-1">{{g.weight}}</div>
+          <div class="col-1">{{g.percent_3112}}</div>
+        </div>
+        <div class="col-3">
+          <canvas baseChart [datasets]="doughnutChartDatasets" [options]="doughnutChartOptions"
+            [type]="'doughnut'"></canvas>
+          <div class="">{{this.totalWeight_3112}} / {{this.totalWeight}}</div>
+        </div>
       </div>
+
 
 
     </div>
