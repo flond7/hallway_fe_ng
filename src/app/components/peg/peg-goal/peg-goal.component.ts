@@ -17,7 +17,10 @@ export class PegGoalComponent implements OnInit {
     description: '',
     weight: 0,
     manager: null,
-    office: '',
+    office: {
+      id: 0,
+      name: ''
+    },
     year: 0,
     involvedPeople: [],
     percent_3006: 0,

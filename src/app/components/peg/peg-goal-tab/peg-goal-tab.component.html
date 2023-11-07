@@ -19,7 +19,7 @@
         <div class="col-4">
             <p class="small my-0 py-0"><small>Ufficio</small></p>
             <select name="office" class="col-2 form-control text-white" [(ngModel)]="selectedOffice">
-                <option *ngFor="let office of this.selectedManager.managerOfOffices" [ngValue]="office.id">
+                <option *ngFor="let office of this.selectedManager.managerOfOffices" [ngValue]="office">
                     {{office.name}}
                 </option>
             </select>

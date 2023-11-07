@@ -19,7 +19,7 @@ export interface PegGoal {
     description: string;
     weight: number;
     manager: PegPerson | null;
-    office: string;
+    office: PegOffice;
     year: number;
     involvedPeople: number[];
     percent_3006: number;
