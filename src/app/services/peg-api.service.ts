@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { BASE_URL } from '../../constants';
-import { PegPerson } from '../../interfaces';
+import { PegPerson, PegOffice } from '../../interfaces';
 
 const baseURL = BASE_URL;
 
@@ -14,14 +14,26 @@ const baseURL = BASE_URL;
 export class PegApiService {
 
   // User list accessable from everywhere
-  private userListSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  private userListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegPerson[]>([]);
   public userListData$: Observable<PegPerson[]> = this.userListSubject.asObservable();
 
-  constructor(private httpClient: HttpClient) { 
+  // Office list accessable from everywhere
+  private officeListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegOffice[]>([]);
+  public officeListData$: Observable<PegOffice[]> = this.officeListSubject.asObservable();
+
+
+  constructor(private httpClient: HttpClient) {
     this.getUserList().subscribe(userList => {
       this.userListSubject.next(userList.data);
     });
+
+    this.getOfficeList().subscribe(officeList => {
+      this.officeListSubject.next(officeList);
+    });
+
+    
   }
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -31,29 +43,29 @@ export class PegApiService {
   };
 
 
-  getOfficeList() {
-    return this.httpClient.get('http://127.0.0.1:8000/api_user/office_list')
+  getOfficeList(): Observable<any>{
+    return this.httpClient.get(baseURL + 'api_user/office_list')
   }
 
-  getUserList():Observable<any> {
+  getUserList(): Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/pauser_list_peg')
   }
 
-  getPoList():Observable<any> {
+  getPoList(): Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/pauser_po_list_peg')
   }
 
-  getConstants():Observable<any> {
+  getConstants(): Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/user_constants_list')
   }
 
-  createGoals(goals: any):Observable<any> {
+  createGoals(goals: any): Observable<any> {
     /* let jsonData = JSON.stringify(goals);
     console.log(jsonData); */
     return this.httpClient.post(baseURL + 'api_peg/goals_new', goals, this.httpOptions)
   }
 
-  getReportPerson(data: any):Observable<any> {
+  getReportPerson(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/get_person_results', data, this.httpOptions)
   }
 
@@ -65,7 +77,7 @@ export class PegApiService {
   createUser(data:any): Observable<any> {
     return this.httpClient.post(`${baseURL}/user/create`, data);
   } */
-  
+
   check_PEG_Authorization(): string | null {
     // Retrieve the variable using the service
     let authorized_peg;
