@@ -44,7 +44,7 @@ export class PegApiService {
 
 
   getOfficeList(): Observable<any>{
-    return this.httpClient.get(baseURL + 'api_user/office_list')
+    return this.httpClient.get(baseURL + 'api_user/paoffice_list')
   }
 
   getUserList(): Observable<any> {
