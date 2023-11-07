@@ -1,4 +1,5 @@
 //GENERAL
+export const NAME_PA: string = 'Magnifica comunità montana';
 export const BASE_URL: string = 'http://127.0.0.1:8000/';
 export const HTTP_OPTIONS = {
     'Content-Type': 'application/json',
