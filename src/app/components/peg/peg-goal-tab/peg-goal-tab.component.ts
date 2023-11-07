@@ -105,6 +105,11 @@ export class PegGoalTabComponent {
   } */
 
   saveGoals() {
+    //check if po and office are selected
+    if (this.selectedManager.id === 0 || this.selectedOffice.id === 0) {
+      this.modalService.openFeedbackModal(false, GC.PEG_ALERT_PO_OFFICE)
+    }
+
     //check sum of weight is 100
     let weightSum = this.goalList.reduce((sum, goal) => sum + goal.weight, 0);
     let data = GC.PEG_ALERT_WEIGHT;
