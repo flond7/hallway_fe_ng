@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
-import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation} from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
 // Modal imports
@@ -33,7 +33,7 @@ export class PegGoalComponent implements OnInit {
     percent_3112: 0,
     weight_3112: 0,
     type: '',
-  }; 
+  };
   @Output() goalUpdated = new EventEmitter<PegGoal>();
 
   // Users list
@@ -45,7 +45,7 @@ export class PegGoalComponent implements OnInit {
   searchInput = '';
 
   involvedForVisualization: PegPerson[] = [];
-  
+
   // weight computation
   weight_midvalue = 0;
 
@@ -55,20 +55,21 @@ export class PegGoalComponent implements OnInit {
   faCheck = faCheck;
   faPen = faPen;
   faTrash = faTrash;
-  faSearch = faSearch; faUserPlus = faUserPlus; faXmark=faXmark;faExclamation=faExclamation;
+  faSearch = faSearch; faUserPlus = faUserPlus; faXmark = faXmark; faExclamation = faExclamation;
 
   // Modal
   modalRef?: BsModalRef;
 
   constructor(public api: PegApiService, private bsModalService: BsModalService,) {
-    api.userListData$.subscribe(r => { 
-      this.userList = r; 
+    api.userListData$.subscribe(r => {
+      this.userList = r;
       this.filteredPAUserList = [...r];
+
     })
 
     // Initialize the involvedForVisualization array for each instance
     this.involvedForVisualization = [];
-   }
+  }
 
   ngOnInit() {
     //set to zero the weights we have to calculate later
@@ -77,9 +78,10 @@ export class PegGoalComponent implements OnInit {
 
     //reset the involved person array to empty
     this.inputGoal.involvedPeople = [];
+    // Initialize the local filteredPAUserList with the localUserList
+    this.filteredPAUserList = [...this.userList];
 
-    console.log(this.inputGoal)
-    console.log(this.involvedForVisualization)
+    console.log(this.filteredPAUserList)
 
   }
 
@@ -88,13 +90,13 @@ export class PegGoalComponent implements OnInit {
     this.inputGoal.weight_3006 = (this.inputGoal.percent_3006 / 100) * this.inputGoal.weight;
     this.inputGoal.weight_3112 = (this.inputGoal.percent_3112 / 100) * this.inputGoal.weight;
   }
-  
+
   blur() {
     this.goalUpdated.emit(this.inputGoal)
     this.computeWeights()
   }
 
-  onSearchPAUser(event:any) {
+  onSearchPAUser(event: any) {
     this.searchInput = event?.target.value
     //start with all the user then
     this.filteredPAUserList = this.userList.filter(user =>
@@ -103,18 +105,18 @@ export class PegGoalComponent implements OnInit {
     );
   }
 
-  
   addInvolvedPeople(person: PegPerson) {
     person.added = true;                            //added is needed to change from (+) add person to (-) remove person in html
     this.inputGoal.involvedPeople.push(person.id);
     this.involvedForVisualization.push(person)      //needed because in the actual object to send back to save and edit, only the ids are required
-    
+
     //reset searching params
     this.searching = false;
     this.searchInput = '';
 
     //reset filteredList for a new research
     this.filteredPAUserList = [...this.userList];
+    
   }
 
   removeInvolvedPeople(person: PegPerson) {
@@ -130,7 +132,7 @@ export class PegGoalComponent implements OnInit {
 
   openModalPeople(template: TemplateRef<any>) {
     this.modalRef = this.bsModalService.show(template)
-  } 
+  }
 
   openModalDelete() {
     //.modalRef = this.bsModalService.show(template)
