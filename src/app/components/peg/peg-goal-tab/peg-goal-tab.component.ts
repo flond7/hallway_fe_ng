@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal, PegOffice } from '../../../../interfaces';
@@ -74,7 +75,7 @@ export class PegGoalTabComponent {
   faPlus = faPlus;
   faMinus = faMinus;
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService) { }
+  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     //get user list, po list and constant list
@@ -125,7 +126,10 @@ export class PegGoalTabComponent {
         type: this.type
       }))
       console.log(updatedGoals);
-      this.api.createGoals(updatedGoals).subscribe(r => console.log(r))
+      this.api.createGoals(updatedGoals).subscribe(r => {
+        console.log(r);
+        this.router.navigate(['/peg-home']);
+      })
     }
   }
 
