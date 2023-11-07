@@ -28,7 +28,7 @@ export class PegApiService {
     });
 
     this.getOfficeList().subscribe(officeList => {
-      this.officeListSubject.next(officeList);
+      this.officeListSubject.next(officeList.data);
     });
 
     
