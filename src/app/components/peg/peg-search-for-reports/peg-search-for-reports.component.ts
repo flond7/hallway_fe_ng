@@ -35,7 +35,7 @@ export class PegSearchForReportsComponent {
   constructor(private api: PegApiService) {
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
-    api.userListData$.subscribe(r => { this.userList$ = r; console.log(this.userList$) });
+    api.userListData$.subscribe(r => { this.userList$ = r; });
   }
 
   searchPerson() {
