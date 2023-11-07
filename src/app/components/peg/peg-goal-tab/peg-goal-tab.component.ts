@@ -31,7 +31,7 @@ export class PegGoalTabComponent {
   // Manage users in selects and involved people
   userList: PegPerson[] = [];
   filteredPAUserList: PegPerson[] = [];
-  involved: PegPerson[] = [];
+  //involved: PegPerson[] = [];
 
   // Manager select
   managers: PegPerson[] = [];
@@ -75,12 +75,17 @@ export class PegGoalTabComponent {
   faPlus = faPlus;
   faMinus = faMinus;
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService, private router: Router, private route: ActivatedRoute) { 
+    api.userListData$.subscribe(r => { 
+      this.userList = r; 
+    })
 
-  ngOnInit(): void {
-    //get user list, po list and constant list
-    this.api.getUserList().subscribe(res => { this.userList = res.data; })
-    this.api.getPoList().subscribe(res => { this.managers = res.data; })
+    api.managerListData$.subscribe(r => { 
+      this.managers = r; 
+    })
+  }
+
+  ngOnInit(): void {    
     //calculate the current year to show it as default value
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
@@ -89,14 +94,11 @@ export class PegGoalTabComponent {
   }
 
   addGoal() {
-    console.log(this.emptyGoal)
     this.goalList.push({ ...this.emptyGoal })         //use this form in order to create a new instance otherwise it would reference to the same space in memory
   }
 
   updateGoal(updatedGoal: PegGoal, i: number) {
     this.goalList[i] = updatedGoal;
-    console.log(updatedGoal)
-    console.log(i)
   }
 
   openInstructions(template: TemplateRef<any>) {
