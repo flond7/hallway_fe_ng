@@ -11,6 +11,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 export class PegSearchForReportsComponent {
   
   @Output() goalListPerson = new EventEmitter<PegGoal[]>();
+  @Output() selectedUserOutput = new EventEmitter<PegPerson>();
 
   // selected user for reasearch
   userList$: PegPerson[] = []
@@ -43,6 +44,7 @@ export class PegSearchForReportsComponent {
     this.api.getReportPerson(data).subscribe(r => {
       this.goalList = r.data;
       this.goalListPerson.emit(this.goalList)
+      this.selectedUserOutput.emit(this.selectedUser)
     })
   }
 

@@ -31,6 +31,8 @@ export const PEG_INSTRUCTIONS = {
   'percent_3112': "percentuale dell'obbiettivo raggiunta al 31/12",
   'weight_3112': "valore calcolato automaticamente: peso parametrato alla percentuale obbiettivo raggiunta al 31712",
 }
+export const PEG_PDF_ACCESS_KEYS: Array<string> = ['Nome','Ufficio', 'Peso', '% (31/12)']
+export const PEG_PDF_STATS_TEXT: string = "Percentuale di obbiettivi assegnati e realizzati al 31/12: "
 
 
 //ACCESSO AGLI ATTI
@@ -53,5 +55,9 @@ export const PDF_STYLE = {
   subheader: {
     fontSize: 18,
     bold: true
+  },
+  h2: {
+    fontSize: 18,
+    bold: false
   }
 }

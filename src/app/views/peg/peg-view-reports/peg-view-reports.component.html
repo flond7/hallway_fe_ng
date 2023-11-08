@@ -17,7 +17,7 @@
 
       <div *ngIf="tab.reportPerson === true" class="tab">
         <div class="row mt-3">
-          <app-peg-search-for-reports (goalListPerson)="getlist($event)"></app-peg-search-for-reports>
+          <app-peg-search-for-reports (goalListPerson)="getlist($event)" (selectedUserOutput)="this.selectedUser = $event"></app-peg-search-for-reports>
         </div>
       </div>
 
@@ -90,8 +90,14 @@
         <div class="col-4 pt-5">
           <canvas *ngIf="totalShowChart === true" baseChart [datasets]="totalChartData" [options]="doughnutChartOptions"
             [type]="'doughnut'"></canvas>
+          <h1 class="text-center strong">{{this.totalPercent}} %</h1>
           <p class="text-center">{{this.totalWeight_3112}} / {{this.totalWeight}}</p>
         </div>
+
+        <div class="row justify-content-end mt-2 ">
+          <div class="w-auto btn bg-primary-aa mt-4" (click)="generatePdf()">Estrai PDF</div>
+      </div>
+
       </div>
 
 
