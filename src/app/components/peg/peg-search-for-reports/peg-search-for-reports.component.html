@@ -1,13 +1,18 @@
-<div *ngIf="this.userList$.length > 0" class="row d-flex pb-3">
+<div *ngIf="this.userList$.length > 0" class="d-flex pb-3">
 
-    <div class="col-3">
+    <div class="col-3 me-2">
         <p class="small my-0 py-0"><small>Persona *</small></p>
         <select name="selectedUSer" class="form-control text-white" [(ngModel)]="selectedUser">
             <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
         </select>
     </div>
+    
+    <div class="row pb-1 pe-2">
+        <p class="small my-0 py-0"><small>PO</small></p>
+        <input id="managerItIs" type="checkbox" class="col-1" [(ngModel)]="managerItIs">
+    </div>
 
-    <div class="col-1">
+    <div class="col-1 me-2">
         <p class="small my-0 py-0"><small>Anno *</small></p>
         <input id="year" type="number" class="col-2 w-100 form-control" [(ngModel)]="year">
     </div>
