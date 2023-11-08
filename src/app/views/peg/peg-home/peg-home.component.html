@@ -8,9 +8,16 @@
         <div class="h4 mb-0 py-2">{{namePA}} - Anno {{year}}</div>
       </div>
 
-      <div *ngFor="let office of officeList$" class="row h-3 align-content-center border-bottom border-muted-peg">
-        <div class="col-8">{{office.name}}</div>
-        <div class="col-2">si no</div>
+      <div class="row h-1 align-content-center text-muted-peg mt-3 small">
+        <div class="col-8">Ufficio</div>
+        <div class="col-2">Ordinari</div>
+        <div class="col-2">Straordinari</div>
+      </div>
+
+      <div *ngFor="let office of officeGoals" class="row h-3 align-content-center border-bottom border-muted-peg">
+        <div class="col-8 ">{{office.name}}</div>
+        <div class="col-2">{{office.ordinary}}</div>
+        <div class="col-2">{{office.extraordinary}}</div>
       </div>
 
     </div>

@@ -12,9 +12,7 @@ export class PegHomeComponent {
 
   namePA: string = GC.NAME_PA;
 
-  // selected user for reasearch
-  officeList$: PegOffice[] = []
-
+  officeGoals: Array<{ name: string; ordinary: number, extraordinary: number }> = [];
 
   //year
   year: number = 0;
@@ -22,7 +20,8 @@ export class PegHomeComponent {
   constructor(private api: PegApiService) {
       const currentDate = new Date();
       this.year = currentDate.getFullYear();
-      api.officeListData$.subscribe(r => { this.officeList$ = r; console.log(this.officeList$) });
+      this.api.getGoalNumbers({year: this.year}).subscribe(r => {console.log(r);this.officeGoals = r})
+      //api.officeListData$.subscribe(r => { this.officeList$ = r; console.log(this.officeList$) });
     }
 
 }
