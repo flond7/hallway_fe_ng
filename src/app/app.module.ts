@@ -23,7 +23,6 @@ import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-r
 import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
 import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
 import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.component';
-import { PegViewYearComponent } from './views/peg/peg-view-year/peg-view-year.component';
 
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
 import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
@@ -49,7 +48,6 @@ import { PegReportGoalListComponent } from './components/peg/peg-report-goal-lis
     PegNewGoalComponent,
     PegViewGoalComponent,
     PegViewUserComponent,
-    PegViewYearComponent,
     AaNewAccessComponent,
     AaMenuComponent,
     AaListAccessComponent,
