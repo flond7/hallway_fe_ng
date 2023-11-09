@@ -17,7 +17,7 @@ export class PegViewReportsComponent {
     reportPa: false
   }
 
-  // selected user for reasearch
+  // selected entities for reasearch
   selectedUser: PegPerson = {
     id: 0,
     name: '',
@@ -55,10 +55,6 @@ export class PegViewReportsComponent {
         (this.tab as any)[key] = false;
       }
     }
-  }
-
-  inputPersonName() {
-   // this.
   }
 
 }
