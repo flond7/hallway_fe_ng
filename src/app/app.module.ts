@@ -36,6 +36,7 @@ import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.
 import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-reports.component';
 import { PegSearchForReportsComponent } from './components/peg/peg-search-for-reports/peg-search-for-reports.component';
 import { PegReportGoalListComponent } from './components/peg/peg-report-goal-list/peg-report-goal-list.component';
+import { PegEditComponent } from './views/peg/peg-edit/peg-edit.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { PegReportGoalListComponent } from './components/peg/peg-report-goal-lis
     PegViewReportsComponent,
     PegSearchForReportsComponent,
     PegReportGoalListComponent,
+    PegEditComponent,
   ],
   imports: [
     BrowserModule,
