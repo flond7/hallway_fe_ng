@@ -64,11 +64,8 @@ export class PegSearchForReportsComponent implements OnInit {
   }
 
   searchReport() {
-    console.log(this.tab);
     if (this.tab.reportManager === true) {
       let data = { year: this.year, id: this.selectedManager.id }
-      console.log('user');
-      console.log(data);
       this.api.getReportPo(data).subscribe(r => {
         this.goalList = r.data;
         this.goalListPerson.emit(this.goalList)
@@ -76,8 +73,6 @@ export class PegSearchForReportsComponent implements OnInit {
       })
     } else if (this.tab.reportPerson === true) {
       let data = { year: this.year, id: this.selectedUser.id }
-      console.log('user');
-      console.log(data);
       this.api.getReportPerson(data).subscribe(r => {
         this.goalList = r.data;
         this.goalListPerson.emit(this.goalList)

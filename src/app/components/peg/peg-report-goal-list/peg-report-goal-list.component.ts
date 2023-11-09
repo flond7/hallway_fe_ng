@@ -22,6 +22,7 @@ enum PageOrientation {
 export class PegReportGoalListComponent {
   
   @Input() list: PegGoal[] = [];
+  @Input() name: string = '';       //the parent passes the name of the person / po / office according to the tab where it is. Needed for the PDF
   //@Output() goalListPerson = new EventEmitter<PegGoal[]>();
 
   // Doughnut charts options
@@ -142,7 +143,7 @@ export class PegReportGoalListComponent {
    }
  
    generatePdf() {
-     this.pdfTitle = this.selectedUser.name + " " + this.selectedUser.surname + " - anno: " + this.year;
+     this.pdfTitle = this.name + " - anno: " + this.year;
      const documentDefinition = {
        pageOrientation: PageOrientation.Portrait,
        content: [
