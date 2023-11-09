@@ -1,16 +1,38 @@
 <div *ngIf="this.userList$.length > 0" class="d-flex pb-3">
 
+    <ng-container *ngIf="this.tab.reportPerson === true">
+        <div class="col-3 me-2">
+            <p class="small my-0 py-0"><small>Persona *</small></p>
+            <select name="selectedUser" class="form-control text-white" [(ngModel)]="selectedUser">
+                <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
+            </select>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="this.tab.reportManager === true">
+        <div class="col-3 me-2">
+            <p class="small my-0 py-0"><small>Responsabile *</small></p>
+            <select name="selectedManager" class="form-control text-white" [(ngModel)]="selectedManager">
+                <option *ngFor="let u of this.managerList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
+            </select>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="this.tab.reportOffice === true">
     <div class="col-3 me-2">
-        <p class="small my-0 py-0"><small>Persona *</small></p>
-        <select name="selectedUSer" class="form-control text-white" [(ngModel)]="selectedUser">
-            <option *ngFor="let u of this.userList$" [ngValue]="u">{{u.name}} {{u.surname}}</option>
+        <p class="small my-0 py-0"><small>Ufficio *</small></p>
+        <select name="selectedOffice" class="form-control text-white" [(ngModel)]="selectedOffice">
+            <option *ngFor="let o of this.officeList$" [ngValue]="o">{{o.name}}</option>
         </select>
     </div>
-    
+    </ng-container>
+
+    <!-- <ng-container *ngIf="this.tab.reportPerson === true">
     <div class="row pb-1 pe-2">
         <p class="small my-0 py-0"><small>PO</small></p>
         <input id="managerItIs" type="checkbox" class="col-1" [(ngModel)]="managerItIs">
     </div>
+    </ng-container> -->
 
     <div class="col-1 me-2">
         <p class="small my-0 py-0"><small>Anno *</small></p>
@@ -18,8 +40,8 @@
     </div>
 
     <div class="col-1 align-items-baseline d-flex flex-column justify-content-end">
-        <div class="w-auto btn bg-primary-peg" (click)="searchPerson()"><fa-icon [icon]='faSearch' class="m-0"></fa-icon>
+        <div class="w-auto btn bg-primary-peg" (click)="searchReport()"><fa-icon [icon]='faSearch' class="m-0"></fa-icon></div>
     </div>
 
-   </div>
+
 </div>

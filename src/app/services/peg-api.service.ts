@@ -80,6 +80,10 @@ export class PegApiService {
   getReportPo(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/get_po_results', data, this.httpOptions)
   }
+  
+  getReportOffice(data: any): Observable<any> {
+    return this.httpClient.post(baseURL + 'api_peg/get_office_results', data, this.httpOptions)
+  }
 
   getGoalNumbers(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/get_goals_numbers', data, this.httpOptions)
