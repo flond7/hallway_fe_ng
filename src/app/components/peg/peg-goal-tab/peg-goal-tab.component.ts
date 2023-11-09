@@ -16,7 +16,14 @@ import { ModalService } from '../../../services/modals.service';
 export class PegGoalTabComponent {
   @Input() title: string = '';
   @Input() type: string = '';
-  @Input() goalListInput: PegGoal[] = [];
+
+  // reuse the component for edit
+  @Input() goalListInput: PegGoal[] = [];     //needed to get the input list  
+  @Input() addNew: boolean = true;            //needed to change the api call with the save button
+  @Input() selectedOfficeInput: PegOffice = {
+    id: 0,
+    name: ''
+  };  
 
   @Output() goalListUpdated = new EventEmitter<PegGoal>();
 
@@ -48,7 +55,7 @@ export class PegGoalTabComponent {
   selectedOffice: PegOffice = {
     id: 0,
     name: '',           // this is the o1, o2, o3... value for the office
-  };  
+  };
 
   // goal
   goalList: PegGoal[] = [];
@@ -75,22 +82,44 @@ export class PegGoalTabComponent {
   faPlus = faPlus;
   faMinus = faMinus;
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService, private router: Router, private route: ActivatedRoute) { 
-    api.userListData$.subscribe(r => { 
-      this.userList = r; 
+  constructor(public api: PegApiService, private bsModalService: BsModalService, public modalService: ModalService, private router: Router, private route: ActivatedRoute) {
+    api.userListData$.subscribe(r => {
+      this.userList = r;
     })
 
-    api.managerListData$.subscribe(r => { 
-      this.managers = r; 
+    api.managerListData$.subscribe(r => {
+      this.managers = r;
     })
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     //calculate the current year to show it as default value
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
-    //add the first empty goal
-    this.addGoal()
+
+    
+    console.log(this.goalListInput);
+    //if it's the add page add the first epty goal
+    if (this.addNew === true) {
+      this.addGoal()
+    } else {
+      //if it's the edit page
+      this.goalList = this.goalListInput;
+      // set the selected manager because the office is set as a consequence of that
+      const foundManager = this.managers.find(manager => manager.id === this.goalList[0].manager!.id);
+      if(foundManager !== undefined) {
+        this.selectedManager = foundManager;
+        //set the office
+        const foundOffice = this.selectedManager.managerOfOffices.find(office => office.id === this.goalList[0].office.id);
+        if (foundOffice !== undefined) {
+          this.selectedOffice = foundOffice;
+        }
+      }
+      
+
+      
+      console.log(typeof(this.goalList[0].manager));
+    }
   }
 
   addGoal() {
@@ -117,19 +146,25 @@ export class PegGoalTabComponent {
     if (weightSum != 100) {
       this.modalService.openFeedbackModal(false, data)
     } else {
-      // add the year, manager and office key: value
-      let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the id from all the other key:values
-        ...goal,                                                          // copy the other key: values in the new object
-        year: this.year,
-        manager: this.selectedManager.id,
-        office: this.selectedOffice.id,
-        type: this.type
-      }))
-      console.log(updatedGoals);
-      /* this.api.createGoals(updatedGoals).subscribe(r => {
-        console.log(r);
-        this.router.navigate(['/peg-home']);
-      }) */
+
+      // if it's the add page
+      if (this.addNew === true) {
+        // add the year, manager and office key: value
+        let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the fake id (0) from all the other key:values and leaves to the BE to create it 
+          ...goal,                                                          // copy the other key: values in the new object
+          year: this.year,
+          manager: this.selectedManager.id,
+          office: this.selectedOffice.id,
+          type: this.type
+        }))
+        console.log('creating')
+        this.api.createGoals(updatedGoals).subscribe(r => {
+          console.log(r);
+          this.router.navigate(['/peg-home']);
+        })
+      } else {
+        console.log('updating')
+      }
     }
   }
 

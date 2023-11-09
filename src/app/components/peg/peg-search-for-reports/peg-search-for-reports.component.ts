@@ -60,7 +60,7 @@ export class PegSearchForReportsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.tab);
+    //console.log(this.tab);
   }
 
   searchReport() {
