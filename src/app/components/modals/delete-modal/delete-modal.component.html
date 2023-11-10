@@ -1,0 +1,7 @@
+<div class="modal-body">
+    <p class="text-dark text-center">{{message}}</p>
+    <div class="row justify-content-center px-5 pt-4">
+        <div class="w-auto btn bg-secondary-peg me-3" (click)="cancelModal()">Annulla</div>
+        <div class="w-auto btn bg-danger" (click)="deleteElement()"><fa-icon [icon]='faTrash' class="me-2"></fa-icon>Elimina</div>
+    </div>
+</div>

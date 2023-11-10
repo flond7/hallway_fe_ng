@@ -7,11 +7,8 @@ export const HTTP_OPTIONS = {
     'Skip-Interceptor': 'true'
 };
 
-
-/* export class globalConstants {
-  public static GOAL_WEIGHT: Array<string> = ['Facile', 'Media difficoltà', 'Alta difficoltà'];
-  public static MAXIMUM_NUMBER = 10;
-}; */
+//MODALS
+export const MODAL_DELETE: string = 'Vuoi davvero cancellare questo elemento?';
 
 export const MAXIMUM_NUMBER = 10;
 
