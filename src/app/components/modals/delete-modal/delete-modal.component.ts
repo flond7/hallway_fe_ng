@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 // Modal imports
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,7 +12,7 @@ import { ModalService } from '../../../services/modals.service'
 export class DeleteModalComponent {
 
   /*
-  To be reusable the modal works receiving as input a boolean variable confirm = false
+  To be reusable the modal works with a boolean variable confirm = false
   If the user conferms the value is changed to true and goes back to the parent component
   the parent checks the value and proceeds deleting the element.
 
@@ -22,7 +22,6 @@ export class DeleteModalComponent {
   */
 
   @Input() message: string = "";  // message to display on modal
-  @Output() confirmOutput = new EventEmitter<boolean>()
 
   faTrash = faTrash; 
 
@@ -30,9 +29,7 @@ export class DeleteModalComponent {
 
 
   deleteElement() {
-    this.confirmOutput.emit(true)
-    this.modalService.hideDeleteModal(false);
-    this.confirmOutput.emit(true);
+    this.modalService.hideDeleteModal(true);
   }
 
   cancelModal() {
