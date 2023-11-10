@@ -4,11 +4,9 @@
     <div class="d-flex w-100">
         <div class="col-12">
 
-            <!-- <ng-container *ngIf="goalList.length === 0"> -->
                 <div class="row mt-3">
                     <app-peg-search-for-reports [tab]="tab" (goalListPerson)="goalList = $event" (selectedOfficeOutput)="selectedOffice = $event"></app-peg-search-for-reports>
                 </div>
-            <!-- </ng-container> -->
 
             <ng-container *ngIf="goalList.length > 0">
 
