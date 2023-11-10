@@ -23,7 +23,7 @@ export class PegGoalTabComponent {
   @Input() selectedOfficeInput: PegOffice = {
     id: 0,
     name: ''
-  };  
+  };
 
   @Output() goalListUpdated = new EventEmitter<PegGoal>();
 
@@ -79,7 +79,7 @@ export class PegGoalTabComponent {
   };
 
   // Delete element
-  deleteArray: Number[] = [];
+  deleteArray: number[] = [];
 
   // FA icons
   faPlus = faPlus;
@@ -100,8 +100,6 @@ export class PegGoalTabComponent {
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
 
-    
-    console.log(this.goalListInput);
     //if it's the add page add the first epty goal
     if (this.addNew === true) {
       this.addGoal()
@@ -110,7 +108,7 @@ export class PegGoalTabComponent {
       this.goalList = this.goalListInput;
       // set the selected manager because the office is set as a consequence of that
       const foundManager = this.managers.find(manager => manager.id === this.goalList[0].manager!.id);
-      if(foundManager !== undefined) {
+      if (foundManager !== undefined) {
         this.selectedManager = foundManager;
         //set the office
         const foundOffice = this.selectedManager.managerOfOffices.find(office => office.id === this.goalList[0].office.id);
@@ -118,8 +116,8 @@ export class PegGoalTabComponent {
           this.selectedOffice = foundOffice;
         }
       }
-      
-      console.log(typeof(this.goalList[0].manager));
+
+      console.log(typeof (this.goalList[0].manager));
     }
   }
 
@@ -147,17 +145,33 @@ export class PegGoalTabComponent {
     if (weightSum != 100) {
       this.modalService.openFeedbackModal(false, data)
     } else {
+      // if id = 0 the record is new therefore delete the id field from goal
+      // otherwise leave id because it's a record that needs to be update
+      
+      let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the fake id (0) from all the other key:values and leaves to the BE to create it 
+        ...goal,                                                          // copy the other key: values in the new object
+        ...(id !== 0 ? { id } : {}),                                      // if id !==0 then leave id otherwhise take out the key:value pair
+        year: this.year,
+        manager: this.selectedManager.id,
+        office: this.selectedOffice.id,
+        type: this.type
+      }))
+
+
+
+
 
       // if it's the add page
       if (this.addNew === true) {
+        console.log(this.selectedOffice)
         // add the year, manager and office key: value
-        let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the fake id (0) from all the other key:values and leaves to the BE to create it 
+        /* let updatedGoals = this.goalList.map(({ id, ...goal }) => ({        // this separetes the fake id (0) from all the other key:values and leaves to the BE to create it 
           ...goal,                                                          // copy the other key: values in the new object
           year: this.year,
           manager: this.selectedManager.id,
           office: this.selectedOffice.id,
           type: this.type
-        }))
+        })) */
         console.log('creating')
         this.api.createGoals(updatedGoals).subscribe(r => {
           console.log(r);
@@ -165,13 +179,43 @@ export class PegGoalTabComponent {
         })
       } else {
         console.log('updating')
+        /* let updatedGoals = this.goalList.map(goal => ({
+          ...goal,                                                          // copy the other key: values in the new object
+          year: this.year,
+          manager: this.selectedManager.id,     
+          office: this.selectedOffice.id,       
+          type: this.type
+        })) */
+        console.log(updatedGoals)
+        //delete the records in the delete array and empty the array
+        if (this.deleteArray.length > 0) {
+
+          console.log(this.deleteArray);
+          console.log(typeof this.deleteArray);
+          this.api.deleteGoals(this.deleteArray).subscribe(r => {
+            console.log(r);
+            this.deleteArray = [];
+            //update the records and handle eventual creation of new goals
+            this.justUpdateGoals(updatedGoals)
+          })
+        } else {
+          //if there is nothing to be deleted just update the records
+          this.justUpdateGoals(updatedGoals)
+        }
+
       }
     }
   }
 
+  justUpdateGoals(updatedGoals: any) {
+    this.api.updateGoals(updatedGoals).subscribe(r => {
+      console.log(r);
+      this.modalService.openFeedbackModal(true, GC.MODAL_MESSAGE_CREATION_OK)
+      this.router.navigate(['/peg-home']);
+    })
+  }
+
   deleteGoal(id: number, i: number) {
-    console.log(id, i);
-    console.log(this.goalList)
     //add the id to the delete array
     this.deleteArray.push(id);
     //slice the element from goalList
