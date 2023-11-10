@@ -9,6 +9,7 @@ export const HTTP_OPTIONS = {
 
 //MODALS
 export const MODAL_DELETE: string = 'Vuoi davvero cancellare questo elemento?';
+export const MODAL_MESSAGE_CREATION_OK: string = 'I record sono stati creati correttamente';
 
 export const MAXIMUM_NUMBER = 10;
 
