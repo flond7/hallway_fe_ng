@@ -2,8 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@an
 import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
+import * as GC from '../../../../constants'
 // Modal imports
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalService } from '../../../services/modals.service'
 
 @Component({
   selector: 'app-peg-goal',
@@ -35,6 +37,7 @@ export class PegGoalComponent implements OnInit {
     type: '',
   };
   @Output() goalUpdated = new EventEmitter<PegGoal>();
+  @Output() sliceElement = new EventEmitter<number>();   //used to send back the info that the element has to be sliced by the parent
 
   // Users list
   userList: PegPerson[] = [];
@@ -56,7 +59,10 @@ export class PegGoalComponent implements OnInit {
   // Modal
   modalRef?: BsModalRef;
 
-  constructor(public api: PegApiService, private bsModalService: BsModalService,) {
+  // Delete elements
+  confirmDelete: boolean = false;
+
+  constructor(public api: PegApiService, private bsModalService: BsModalService, private modalService: ModalService,) {
     //initialize modalUsers here to create an instance-level var
     this.filteredPAUserList = [];
     api.userListData$.subscribe(r => {
@@ -90,7 +96,7 @@ export class PegGoalComponent implements OnInit {
 
   onSearchPAUser(event: any) {
     this.searchInput = event?.target.value
-    
+
     this.filteredPAUserList = this.userList.filter(user =>
       user.name.toLowerCase().includes(this.searchInput.toLowerCase()) ||
       user.surname.toLowerCase().includes(this.searchInput.toLowerCase())
@@ -103,7 +109,7 @@ export class PegGoalComponent implements OnInit {
     this.involvedForVisualization.push(person)      //needed because in the actual object to send back to save and edit, only the ids are required
     //reset searching params
     this.searching = false;
-    this.searchInput = '';    
+    this.searchInput = '';
   }
 
   removeInvolvedPeople(person: PegPerson) {
@@ -130,6 +136,14 @@ export class PegGoalComponent implements OnInit {
   }
 
   openModalDelete() {
-    //.modalRef = this.bsModalService.show(template)
+    const modalResults$ = this.modalService.openDeleteModal(GC.MODAL_DELETE);
+
+    modalResults$.subscribe((result: boolean) => {
+      if (result) {
+        // if the modal emitted true (deletion confirmed) emit the id to the parent so it can 
+        // add the id to the delete array (to delete it in the BE) and slice it from the array visualized on the FE
+        this.sliceElement.emit(this.inputGoal.id);
+      }
+    });
   }
 }

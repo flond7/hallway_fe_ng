@@ -46,10 +46,10 @@
         </div>
     </div>
 
-    <app-peg-goal *ngFor="let goal of this.goalList; index as i" [inputGoal]="goal" (goalUpdated)="updateGoal($event, i)"></app-peg-goal>
+    <app-peg-goal *ngFor="let goal of this.goalList; index as i" [inputGoal]="goal" (goalUpdated)="updateGoal($event, i)" (sliceElement)="deleteGoal($event, i)"></app-peg-goal>
 
     <div class="row justify-content-end border-top border-primary-peg pt-3 mt-3">
-        <button class="w-auto h-2 rounded border-0 bg-secondary-peg bg-dark text-white mx-2"
+        <button class="w-auto h-2 rounded border border-secondary-peg bg-dark text-white mx-2"
             (click)="openInstructions(instructionModal)">Istruzioni</button>
         <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="addGoal()">Aggiungi obbiettivo</button>
         <button class="w-auto h-2 rounded border-0 bg-primary-peg mx-2" (click)="saveGoals()">Salva</button>

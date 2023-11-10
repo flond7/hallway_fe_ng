@@ -78,6 +78,9 @@ export class PegGoalTabComponent {
     type: '',
   };
 
+  // Delete element
+  deleteArray: Number[] = [];
+
   // FA icons
   faPlus = faPlus;
   faMinus = faMinus;
@@ -115,8 +118,6 @@ export class PegGoalTabComponent {
           this.selectedOffice = foundOffice;
         }
       }
-      
-
       
       console.log(typeof(this.goalList[0].manager));
     }
@@ -168,5 +169,13 @@ export class PegGoalTabComponent {
     }
   }
 
+  deleteGoal(id: number, i: number) {
+    console.log(id, i);
+    console.log(this.goalList)
+    //add the id to the delete array
+    this.deleteArray.push(id);
+    //slice the element from goalList
+    this.goalList.splice(i, 1);
+  }
 
 }
