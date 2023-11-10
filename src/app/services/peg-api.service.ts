@@ -73,7 +73,10 @@ export class PegApiService {
     return this.httpClient.post(baseURL + 'api_peg/create_multiple_goals', goals, this.httpOptions)
   }
   deleteGoals(goal_ids: any): Observable<any> {
-    return this.httpClient.post(baseURL + 'api_peg/delete_multiple_goals', goal_ids, this.httpOptions)
+    return this.httpClient.delete(baseURL + 'api_peg/delete_multiple_goals', goal_ids)
+  }
+  updateGoals(goal_ids: any): Observable<any> {
+    return this.httpClient.put(baseURL + 'api_peg/update_multiple_goals', goal_ids, this.httpOptions)
   }
   getReportPerson(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/get_person_results', data, this.httpOptions)
