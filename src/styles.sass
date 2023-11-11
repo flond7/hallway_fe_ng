@@ -8,8 +8,14 @@
 //@import "../node_modules/bootstrap/scss/helpers"
 //@import "../node_modules/bootstrap/scss/utilities/api"
 
-// Create your own colors and map
+@font-face
+    font-family: 'Quicksand'
+    src: url('assets/fonts/Quicksand-Regular.ttf') format('truetype')
+    font-weight: normal
+    font-style: normal
 
+
+// Create your own colors and map
 $light: #F8F9FA
 $muted: #e9ecef
 //$dark: #1e1e25
@@ -74,8 +80,9 @@ textarea
     cursor: pointer
 
 .big
+  font-family: Quicksand
   font-size: 4rem
-  line-height: 0.7
+  line-height: 0.9
 /* .bg-card
   background-color: #00000038 */
 .bg-card
