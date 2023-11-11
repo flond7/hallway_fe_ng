@@ -7,6 +7,11 @@ export const HTTP_OPTIONS = {
     'Skip-Interceptor': 'true'
 };
 
+//COLORS
+export const COLOR_PRIMARY_PEG: string = '#fecf6c';
+export const COLOR_DARK: string = '#22252f';
+export const COLOR_WHITE: string = '#ffffff';
+
 //MODALS
 export const MODAL_DELETE: string = 'Vuoi davvero cancellare questo elemento?';
 export const MODAL_MESSAGE_CREATION_OK: string = 'I record sono stati creati correttamente';
@@ -38,7 +43,7 @@ export const AA_APPLICANT_TYPE: Array<string> = ['Privato cittadino', 'Ente pubb
 export const AA_TYPES: Array<string> = ['Accesso civico c.d. semplice ex art. 5, c.1 del D.Lgs. 33/2013', 'Accesso civico generalizzato ex art. 5, c.2 del D.Lgs. 33/2013 (Foia)'];
 export const AA_RESULT: Array<string> = ['Positivo', 'Negativo', 'Accolta parzialmente'];
 
-//PDF 
+//PDF
 /* export const PDF_ACCESS_KEYS: Array<string> = [
   'id', 'Prot', 'Data protocollo', 'Richiedente', 'Tipo richiesta', 'Oggetto', 'Controinteressati', 'Responsabile', 'Esito', 'Protocollo risposta', 'answerDate', 'Note'
 ] */
