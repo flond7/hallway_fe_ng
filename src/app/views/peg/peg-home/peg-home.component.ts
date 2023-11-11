@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ChartConfiguration } from 'chart.js';
+import { ChartOptions, ChartType, ChartDataset } from 'chart.js';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegOffice } from 'src/interfaces';
 import * as GC from '../../../../constants'
@@ -14,6 +16,14 @@ export class PegHomeComponent {
   primarypeg = GC.COLOR_PRIMARY_PEG;
   dark = GC.COLOR_DARK;
   white = GC.COLOR_WHITE;
+
+  public barChartOptions: ChartOptions = {responsive: true,};
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartData: ChartDataset[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Ordinari', stack: 'a' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Straordinari', stack: 'a' }
+  ];
 
   officeGoals: Array<{ name: string; ordinary: number, extraordinary: number }> = [];
 

@@ -23,8 +23,14 @@
       </div>
 
       <div class="row">
-        <div class="">
-
+          <div class="d-block h-12">
+            <canvas baseChart
+              [datasets]="barChartData"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [type]="barChartType">
+            </canvas>
+          <!-- <canvas baseChart [datasets]="totalChartData" [options]="doughnutChartOptions" [type]="'bar'"></canvas> -->
         </div>
       </div>
 
