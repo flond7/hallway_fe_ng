@@ -4,30 +4,73 @@
   <div class="row w-100">
     <div class="col-12">
 
-      <div class="row">
+      <div class="row py-5">
         <div class="col-4">
-          <div class="row">{{year}}</div>
+          <div class="row border-bottom border-primary-peg mb-3 pb-2 h4">{{year}}</div>
           <div class="row big text-bold me-2">{{selectedOffice.name}}</div>
         </div>
-        <div class="col-1">
+        <div class="col-2 d-flex flex-column justify-content-end">
           <div class="btn border border-primary-peg text-primary-peg" (click)="this.bsModalService.show(officeModal)">Scegli ></div>
+        </div>
+        <div class="col">
+          <app-peg-card title="Personale coinvolto" [number]="100" icon="faUser" [bgcolor]="white2" [textcolor]="dark"></app-peg-card>
+        </div>
+        <div class="col">
+          <app-peg-card title="Obbiettivi ordinari" [number]="100" icon="faBullseye" [bgcolor]="white1" [textcolor]="dark"></app-peg-card>
+        </div>
+        <div class="col">
+          <app-peg-card title="Obbiettivi straordinari" [number]="100" icon="faBullseye" [bgcolor]="white1" [textcolor]="dark"></app-peg-card>
         </div>
       </div>
 
-      <div class="row mt-3 border-bottom border-primary-peg">
+      <div class="">
+        <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{extraordinaryTitle}}</div>
+        <div class="row header small text-muted">
+          <div class="col-5">Nome</div>
+          <div class="col-1 text-center">Valore pt</div>
+          <div class="col-2 text-center">Realizzazione %</div>
+          <div class="col-2 text-center">Punti raggiunti</div>
+        </div>
+        <div class="row header small text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">[1..100]</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+        </div>
+
+        <app-peg-goal *ngFor="let goal of this.goalList; index as i" [inputGoal]="goal"></app-peg-goal>
+        <app-peg-goal ></app-peg-goal>
+
+        <div class="row border-top border-muted-peg pt-2 text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">{{extraordinaryTotalWeight}}</div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center">{{extraordinaryWeight3006}}</div>
+          <div class="col-1 text-center">{{extraordinaryWeight3112}}</div>
+        </div>
+
+
+      </div>
+
+
+
+      <!--       <div class="row mt-3 border-bottom border-primary-peg">
         <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === true}"
           (click)="extraordinary = true">{{extraordinaryTitle}}</div>
         <div class="col-3 h6 mb-0 py-2" [ngClass]="{'bg-primary-peg text-dark' : extraordinary === false}"
           (click)="extraordinary = false">{{ordinaryTitle}}</div>
-      </div>
+      </div> -->
 
-      <div *ngIf="extraordinary === true" class="tab">
+      <!-- <div *ngIf="extraordinary === true" class="tab">
         <app-peg-goal-tab [title]="extraordinaryTitle" [type]="'extraordinary'"></app-peg-goal-tab>
       </div>
 
       <div *ngIf="extraordinary === false" class="tab">
         <app-peg-goal-tab [title]="ordinaryTitle" [type]="'ordinary'"></app-peg-goal-tab>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -38,11 +81,11 @@
 <ng-template #officeModal>
   <div class="modal-body bg-dark px-5">
 
-    <div class="d-flex flex-column justify-content-between py-4">
+    <div class="row flex-column justify-content-between py-4">
       <label class="h4 pb-1">Anno</label>
-      <input placeholder="anno" id="" type="text" class="col-3 form-control border-bottom border-primary-peg me-3" [(ngModel)]="year">
+      <input placeholder="anno" id="" type="text" class="col-4 form-control w-6 text-center border-bottom border-primary-peg me-3" [(ngModel)]="year">
     </div>
-    <label class="pt-4">Uffici</label>
+    <label class="h4 pt-4">Uffici</label>
     <div *ngFor="let office of officeList$" class="border-bottom border-muted-peg py-1 mb-1">
       <div class="w-100 d-flex justify-content-between align-items-center" (click)="selectedOffice = office">
         <span class=""> {{office.name}}</span>

@@ -13,6 +13,7 @@
     src: url('assets/fonts/Quicksand-Regular.ttf') format('truetype')
     font-weight: normal
     font-style: normal
+    letter-spacing: 0.1rem
 
 
 // Create your own colors and map
@@ -40,6 +41,12 @@ $raisin-black: #352d39ff
 
 
 @import "../node_modules/bootstrap/scss/bootstrap"
+
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button
+    -webkit-appearance: none
+    margin: 0
 
 body
   background-color: $dark
@@ -117,10 +124,13 @@ p, h1, h2
 .h-12
   height: 12rem
 
+.w-6
+  width: 6rem !important
+
 .text-bold
   font-weight: 600
 .text-light
-  font-weight: light
+  font-weight: 200
 
 .search-results
     background: rgba(255,255,255,0.1)
