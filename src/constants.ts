@@ -12,6 +12,10 @@ export const COLOR_PRIMARY_PEG: string = '#fecf6c';
 export const COLOR_DARK: string = '#22252f';
 export const COLOR_WHITE: string = '#ffffff';
 
+export const COLOR_WHITE_ONE: string = 'rgba(255,255,255,0.8)';
+export const COLOR_WHITE_TWO: string = 'rgba(255,255,255,0.4)';
+export const COLOR_WHITE_THREE: string = 'rgba(255,255,255,0.2)';
+
 //MODALS
 export const MODAL_DELETE: string = 'Vuoi davvero cancellare questo elemento?';
 export const MODAL_MESSAGE_CREATION_OK: string = 'I record sono stati creati correttamente';
