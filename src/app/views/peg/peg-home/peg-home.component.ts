@@ -11,6 +11,9 @@ import * as GC from '../../../../constants'
 export class PegHomeComponent {
 
   namePA: string = GC.NAME_PA;
+  primarypeg = GC.COLOR_PRIMARY_PEG;
+  dark = GC.COLOR_DARK;
+  white = GC.COLOR_WHITE;
 
   officeGoals: Array<{ name: string; ordinary: number, extraordinary: number }> = [];
 
