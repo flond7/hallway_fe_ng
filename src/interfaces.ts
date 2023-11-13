@@ -3,6 +3,16 @@ export interface PegOffice {
     name: string;
 }
 
+export interface PegPoOffice {
+    id: number;
+    name: string;
+    manager: {
+        id: number;
+        name: string;
+        surname: string;
+    }
+    
+}
 export interface PegPerson {
     id: number;
     name: string;
