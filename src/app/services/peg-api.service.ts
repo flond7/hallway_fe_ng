@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { BASE_URL } from '../../constants';
-import { PegPerson, PegOffice } from '../../interfaces';
+import { PegPerson, PegOffice, PegPoOffice } from '../../interfaces';
 
 const baseURL = BASE_URL;
 
@@ -27,8 +27,8 @@ export class PegApiService {
 
   
   // Office list accessable from everywhere
-  private officeAndPoListSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  public officeAndPoListData$: Observable<any[]> = this.officeAndPoListSubject.asObservable();
+  private officeAndPoListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegPoOffice[]>([]);
+  public officeAndPoListData$: Observable<PegPoOffice[]> = this.officeAndPoListSubject.asObservable();
 
 
   constructor(private httpClient: HttpClient) {
@@ -44,8 +44,8 @@ export class PegApiService {
       this.managerListSubject.next(managerList.data);
     });
 
-    this.getOfficeAndPOList().subscribe(managerList => {
-      this.officeAndPoListSubject.next(managerList.data);
+    this.getOfficeAndPOList().subscribe(officeList => {
+      this.officeAndPoListSubject.next(officeList.data);
     });
 
     
