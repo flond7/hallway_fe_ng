@@ -19,6 +19,7 @@ export const COLOR_WHITE_THREE: string = 'rgba(255,255,255,0.2)';
 //MODALS
 export const MODAL_DELETE: string = 'Vuoi davvero cancellare questo elemento?';
 export const MODAL_MESSAGE_CREATION_OK: string = 'I record sono stati creati correttamente';
+export const MODAL_NO_INPUT: string = 'Non hai inserito dati da salvare';
 
 export const MAXIMUM_NUMBER = 10;
 
@@ -30,7 +31,7 @@ export const INFO_GOAL_PHASE = "";
 export const PEG_GOAL_EXTRAORDINARY_TITLE: string = "Obbiettivi straordinari"
 export const PEG_GOAL_ORDINARY_TITLE: string = "Obbiettivi ordinari"
 export const PEG_ALERT_WEIGHT: string = "La somma del peso di tutti gli obbiettivi deve essere 100"
-export const PEG_ALERT_PO_OFFICE: string = "Devi selezionare il responsabile e l'ufficio"
+export const PEG_ALERT_PO_OFFICE: string = "Devi selezionare l'ufficio"
 export const PEG_INSTRUCTIONS = {
   'weight': "valore compreso tra 1 e 100, indica l'importanza dell'obbiettivo parametrato a tutte le attività elencate e svolte dall'ufficio. I valori di tutti gli obbiettivi elencati devono essere pari a 100",
   'percent_3006': "percentuale dell'obbiettivo raggiunta al 30/06",
