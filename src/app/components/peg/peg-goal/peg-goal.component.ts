@@ -18,6 +18,7 @@ import { ModalService } from '../../../services/modals.service'
 */
 
 export class PegGoalComponent implements OnInit {
+  @Input() typeInput: string = '';
   @Input() inputGoal: PegGoal = {
     id: 0,
     name: '',
@@ -78,6 +79,9 @@ export class PegGoalComponent implements OnInit {
     //set to zero the weights we have to calculate later
     this.inputGoal.weight_3006 = 0.0;
     this.inputGoal.weight_3112 = 0.0;
+
+    //set the typeù
+    this.inputGoal.type = this.typeInput;
 
     //reset the involved person array to empty
     this.inputGoal.involvedPeople = [];
