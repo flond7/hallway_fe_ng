@@ -6,12 +6,7 @@ export interface PegOffice {
 export interface PegPoOffice {
     id: number;
     name: string;
-    manager: {
-        id: number;
-        name: string;
-        surname: string;
-    }
-    
+    manager: PegPerson;    
 }
 export interface PegPerson {
     id: number;
