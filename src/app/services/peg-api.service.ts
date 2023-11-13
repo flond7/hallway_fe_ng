@@ -22,8 +22,13 @@ export class PegApiService {
   public managerListData$: Observable<PegPerson[]> = this.managerListSubject.asObservable();
 
   // Office list accessable from everywhere
-  private officeListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegOffice[]>([]);
+  private officeListSubject: BehaviorSubject<any[]> = new BehaviorSubject<PegOffice[]>([]);                           //TO DELETE AND UsE officeAndPO, cleaning in order!!!
   public officeListData$: Observable<PegOffice[]> = this.officeListSubject.asObservable();
+
+  
+  // Office list accessable from everywhere
+  private officeAndPoListSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  public officeAndPoListData$: Observable<any[]> = this.officeAndPoListSubject.asObservable();
 
 
   constructor(private httpClient: HttpClient) {
@@ -37,6 +42,10 @@ export class PegApiService {
 
     this.getPoList().subscribe(managerList => {
       this.managerListSubject.next(managerList.data);
+    });
+
+    this.getOfficeAndPOList().subscribe(managerList => {
+      this.officeAndPoListSubject.next(managerList.data);
     });
 
     
@@ -55,6 +64,10 @@ export class PegApiService {
     return this.httpClient.get(baseURL + 'api_user/paoffice_list')
   }
 
+  getOfficeAndPOList(): Observable<any>{
+    return this.httpClient.get(baseURL + 'api_user/paoffice_and_po_list')
+  }
+  
   getUserList(): Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/pauser_list_peg')
   }
