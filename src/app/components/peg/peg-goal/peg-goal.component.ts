@@ -150,7 +150,8 @@ export class PegGoalComponent implements OnInit {
     const modalResults$ = this.modalService.openDeleteModal(GC.MODAL_DELETE);
 
     modalResults$.subscribe((result: boolean) => {
-      if (result) {
+      console.log(result)
+      if (result === true) {
         // if the modal emitted true (deletion confirmed) emit the id to the parent so it can 
         // add the id to the delete array (to delete it in the BE) and slice it from the array visualized on the FE
         this.sliceElement.emit(this.inputGoal.id);

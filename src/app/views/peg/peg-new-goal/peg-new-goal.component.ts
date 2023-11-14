@@ -79,6 +79,9 @@ export class PegNewGoalComponent {
   extraordinaryTotals: number[] = [];   //these arrays contain the result of getTotals(), weight, weight3006, weight3112, so you can access them as xxxxTotal[0], [1] or [2] in the template
   ordinaryTotals: number[] = [];
 
+  // Delete element
+  deleteArray: number[] = [];
+
   // FA icons
   faFloppyDisk = faFloppyDisk; faPlus = faPlus;
 
@@ -201,15 +204,44 @@ export class PegNewGoalComponent {
       } else {
         //if addNew === false this is the edit page
         console.log('editing')
-        this.api.updateGoals(updatedGoals).subscribe(r => {
-          console.log(r);
-          this.router.navigate(['/peg-home']);
-        })
+        //if there are items to delay deley them, empty the delete array and then update the remaining ones
+        if (this.deleteArray.length > 0) {
+          this.api.deleteGoals(this.deleteArray).subscribe(r => {
+            this.deleteArray = [];
+            //update the records and handle eventual creation of new goals
+            this.api.updateGoals(updatedGoals).subscribe(r => {
+              console.log(r);
+              this.router.navigate(['/peg-home']);
+            })
+          })
+        } else {
+          //if there is nothing to be deleted just update the records
+          this.api.updateGoals(updatedGoals).subscribe(r => {
+            this.router.navigate(['/peg-home']);
+          })
+        }
       }
-
     }
-
   }
+
+  deleteExtraGoal(id: number, i: number) {
+    //if this is an edit page add the goal to the delete array in order to delete it from the server afterwards
+    if (this.addNew === false) {
+      this.deleteArray.push(id);
+    }
+    //slice the element from goalList
+    this.extraordinaryGoalList.splice(i, 1);
+  }
+
+  deleteOrdGoal(id: number, i: number) {
+    //if this is an edit page add the goal to the delete array in order to delete it from the server afterwards
+    if (this.addNew === true) {
+      this.deleteArray.push(id);
+    }
+    //slice the element from goalList
+    this.ordinaryGoalList.splice(i, 1);
+  }
+
 /* 
   
   saveGoals() {

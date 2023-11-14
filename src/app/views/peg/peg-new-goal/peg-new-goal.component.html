@@ -40,7 +40,7 @@
           <div class="col-1 text-center">al 31/12</div>
         </div>
 
-        <app-peg-goal *ngFor="let goal of extraordinaryGoalList; index as i" [inputGoal]="goal" [typeInput]="'extraordinary'" (goalUpdated)="updateExtraGoal($event, i)" ></app-peg-goal>
+        <app-peg-goal *ngFor="let goal of extraordinaryGoalList; index as i" [inputGoal]="goal" [typeInput]="'extraordinary'" (goalUpdated)="updateExtraGoal($event, i)" (sliceElement)="deleteExtraGoal($event, i)" ></app-peg-goal>
 
         <div class="row border-top border-muted-peg pt-2 text-muted">
           <div class="col-5"></div>
@@ -73,7 +73,7 @@
           <div class="col-1 text-center">al 31/12</div>
         </div>
 
-        <app-peg-goal *ngFor="let goal of ordinaryGoalList; index as i" [inputGoal]="goal" [typeInput]="'ordinary'" (goalUpdated)="updateOrdGoal($event, i)" ></app-peg-goal>
+        <app-peg-goal *ngFor="let goal of ordinaryGoalList; index as i" [inputGoal]="goal" [typeInput]="'ordinary'" (goalUpdated)="updateOrdGoal($event, i)" (sliceElement)="deleteOrdGoal($event, i)"></app-peg-goal>
 
         <div class="row border-top border-muted-peg pt-2 text-muted">
           <div class="col-5"></div>
