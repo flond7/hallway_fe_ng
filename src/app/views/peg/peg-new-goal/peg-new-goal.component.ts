@@ -139,7 +139,7 @@ export class PegNewGoalComponent {
         if (r === true) {
           this.modalRefOffice.hide();
           this.modalService.openFeedbackModal(false, GC.PEG_MODAL_RECORD_EXIST);
-          this.router.navigate(['/peg-edit']);
+          this.router.navigate(['/peg-edit'], { queryParams: { edit: true } });
         }
     })  
     }

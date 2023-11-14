@@ -14,7 +14,7 @@
           <div class="btn border border-primary-peg text-primary-peg" (click)="openModal(officeModal)">Scegli ></div>
         </div>
         <div *ngIf="showWidgets === true" class="col">
-          <app-peg-card title="Personale coinvolto" [number]="people" icon="faUser" [bgcolor]="white1" [textcolor]="dark"></app-peg-card>
+          <app-peg-card title="Personale coinvolto" [number]="people" icon="faUser" [bgcolor]="white2" [textcolor]="dark"></app-peg-card>
         </div>
         <div *ngIf="showWidgets === true" class="col">
           <app-peg-card title="Obbiettivi ordinari" [number]="ordNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="">
+      <div *ngIf="selectedManager.id !== 0" class="">
         <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{extraordinaryTitle}}</div>
         <div class="row header small text-muted">
           <div class="col-5">Nome</div>
@@ -57,7 +57,7 @@
         </div>
       </div>
 
-      <div class="mt-5">
+      <div  *ngIf="selectedManager.id !== 0" class="mt-5">
         <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{ordinaryTitle}}</div>
         <div class="row header small text-muted">
           <div class="col-5">Nome</div>
@@ -91,7 +91,7 @@
         </div>
       </div>
       
-      <div class="my-3">
+      <div *ngIf="selectedManager.id !== 0" class="my-3">
         <div class="btn bg-primary-peg" (click)="saveGoals()"><fa-icon [icon]='faFloppyDisk' class="m-0"></fa-icon> Salva</div>
       </div>
 
