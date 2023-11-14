@@ -84,6 +84,8 @@ export class PegReportPersonComponent {
   }
   
   selectPerson(user: PegPerson) {
+    //delete the chart from the page to re-render it after getting new data
+    this.showChart = false;
     this.selectedUser = user;
     const data = { year: this.year, id: this.selectedUser.id }
       this.api.getReportPerson(data).subscribe(r => {

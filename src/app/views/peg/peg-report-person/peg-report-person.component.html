@@ -25,29 +25,27 @@
             <div *ngIf="selectedUser.id !== 0" class="">
                 <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{extraordinaryTitle}}</div>
                 <div class="row header small text-muted">
-                <div class="col-6">Nome</div>
-                <div class="col-1 text-center">Valore</div>
-                <div class="col-2 text-center">Realizzazione %</div>
-                <div class="col-3 text-center">Punti raggiunti</div>
-                </div>
-                <div class="row header small text-muted">
-                <div class="col-6"></div>
-                <div class="col-1 text-center">[1..100]</div>
-                <div class="col-1 text-center">30/06</div>
-                <div class="col-1 text-center">31/12</div>
-                <div class="col text-center">30/06</div>
-                <div class="col text-center">31/12</div>
+                    <div class="col-5">Nome</div>
+                    <div class="col-3">Ufficio</div>
+                    <div class="col-1 text-center">Valore</div>
+                    <div class="col-1 text-center">% al</div>
+                    <div class="col-2 text-center">Punti al</div>
+                    </div>
+                    <div class="row header small text-muted">
+                    <div class="col-5"></div>
+                    <div class="col-3"></div>
+                    <div class="col-1 text-center">[1..100]</div>
+                    <div class="col-1 text-center">31/12</div>
+                    <div class="col-2 text-center">31/12</div>
                 </div>
 
                 <app-peg-goal-report *ngFor="let goal of extraordinaryGoalList; index as i" [inputGoal]="goal"></app-peg-goal-report>
 
                 <div class="row border-top border-muted-peg pt-2 text-muted">
-                <div class="col-6"></div>
+                <div class="col-8"></div>
                 <div class="col-1 text-center">{{extraordinaryTotals[0]}}</div>
                 <div class="col-1 text-center"></div>
-                <div class="col-1 text-center"></div>
-                <div class="col text-center">{{extraordinaryTotals[1]}}</div>
-                <div class="col text-center">{{extraordinaryTotals[2]}}</div>
+                <div class="col-2 text-center">{{extraordinaryTotals[2]}}</div>
                 </div>
 
             </div>
@@ -55,29 +53,27 @@
             <div *ngIf="selectedUser.id !== 0" class="mt-5">
                 <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{ordinaryTitle}}</div>
                 <div class="row header small text-muted">
-                <div class="col-6">Nome</div>
-                <div class="col-1 text-center">Valore</div>
-                <div class="col-2 text-center">Realizzazione %</div>
-                <div class="col-3 text-center">Punti raggiunti</div>
-                </div>
-                <div class="row header small text-muted">
-                <div class="col-6"></div>
-                <div class="col-1 text-center">[1..100]</div>
-                <div class="col-1 text-center">30/06</div>
-                <div class="col-1 text-center">31/12</div>
-                <div class="col text-center">30/06</div>
-                <div class="col text-center">31/12</div>
+                    <div class="col-5">Nome</div>
+                    <div class="col-3">Ufficio</div>
+                    <div class="col-1 text-center">Valore</div>
+                    <div class="col-1 text-center">% al</div>
+                    <div class="col-2 text-center">Punti al</div>
+                    </div>
+                    <div class="row header small text-muted">
+                    <div class="col-5"></div>
+                    <div class="col-3"></div>
+                    <div class="col-1 text-center">[1..100]</div>
+                    <div class="col-1 text-center">31/12</div>
+                    <div class="col-2 text-center">31/12</div>
                 </div>
 
                 <app-peg-goal-report *ngFor="let goal of ordinaryGoalList; index as i" [inputGoal]="goal" ></app-peg-goal-report>
 
                 <div class="row border-top border-muted-peg pt-2 text-muted">
-                <div class="col-6"></div>
-                <div class="col-1 text-center">{{ordinaryTotals[0]}}</div>
-                <div class="col-1 text-center"></div>
-                <div class="col-1 text-center"></div>
-                <div class="col text-center">{{ordinaryTotals[1]}}</div>
-                <div class="col text-center">{{ordinaryTotals[2]}}</div>
+                    <div class="col-8"></div>
+                    <div class="col-1 text-center">{{ordinaryTotals[0]}}</div>
+                    <div class="col-1 text-center"></div>
+                    <div class="col-2 text-center">{{ordinaryTotals[2]}}</div>
                 </div>
 
             </div>
