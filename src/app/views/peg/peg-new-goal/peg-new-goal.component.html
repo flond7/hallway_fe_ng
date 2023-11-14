@@ -10,7 +10,6 @@
           <div class="row big text-bold me-2">{{selectedOffice.name}}</div>
         </div>
         <div class="col-2 d-flex flex-column justify-content-end">
-          <!-- <div class="btn border border-primary-peg text-primary-peg" (click)="this.bsModalService.show(officeModal)">Scegli ></div> -->
           <div class="btn border border-primary-peg text-primary-peg" (click)="openModal(officeModal)">Scegli ></div>
         </div>
         <div *ngIf="showWidgets === true" class="col">
