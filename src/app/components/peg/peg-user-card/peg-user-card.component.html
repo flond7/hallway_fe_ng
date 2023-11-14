@@ -1,1 +1,27 @@
-<p>peg-user-card works!</p>
+<div class="">
+  <div class="">
+    {{selectedUser.name}}
+  </div>
+  <div class="">
+    {{selectedUser.surname}}
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="">Ordinari</div>
+      <div class="">{{ordNumero}}</div>
+    </div>
+    <div class="col">
+      <div class="">Ordinari</div>
+      <div class="">{{extraNumero}}</div>
+    </div>
+    <div class="col">
+      <div class="">% Realizzazione</div>
+      <div class="" [ngClass]="{'text-success' : totalPercent === 100; 'text-danger' : totalPercent <= 60}">{{totalPercent}}</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <canvas *ngIf="totalShowChart === true" baseChart [datasets]="totalChartData" [options]="doughnutChartOptions" [type]="'doughnut'"></canvas>
+  </div>
+</div>
