@@ -93,9 +93,30 @@ export class PegNewGoalComponent {
 
   }
 
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      // Get the value of a parameter by its name
+      let edit = params.get('edit');
+      if (edit === 'true') {
+        this.addNew = false;
+      }
+    });
+  }
+
   selectOffice(office: PegPoOffice) {
     this.selectedOffice = office;
     this.selectedManager = office.manager;
+    //if this is an edit page then retrieve the info
+    if (this.addNew === false) {
+      console.log('edit select')
+      let data = { year: this.year, id: this.selectedOffice.id }
+      this.api.getReportOffice(data).subscribe(r => {
+        this.goalList = r.data;
+        //separate goals in ordinary and extraordinary
+        this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
+        this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
+      })
+    }
   }
 
   getTotals(list: PegGoal[]) {
