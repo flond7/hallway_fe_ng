@@ -91,7 +91,7 @@ export class PegGoalComponent implements OnInit {
     }
 
     //reset the involved person array to empty
-    this.inputGoal.involvedPeople = [];
+    //this.inputGoal.involvedPeople = [];
   }
 
   computeWeights() {
