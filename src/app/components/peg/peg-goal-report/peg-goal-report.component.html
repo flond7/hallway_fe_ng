@@ -2,23 +2,12 @@
 
     <div class="row m-0 my-2">
 
-        <div class="col-5 m-0 ps-0">
-            <input id="name" type="text" class="w-100 form-control" [(ngModel)]="inputGoal.name">
-        </div>
+        <div class="col-6 m-0 ps-0">{{inputGoal.name}}</div>
+        <div class="col-1 text-center">{{inputGoal.weight}}</div>
+        <div class="col-1 text-center">{{inputGoal.percent_3006}}</div>
+        <div class="col-1 text-center">{{inputGoal.percent_3112}}</div>
 
-        <div class="col-1">
-            <input id="weight" type="number" class="form-control text-center" [(ngModel)]="inputGoal.weight">
-        </div>
-
-        <div class="col-1">
-            <input id="percent_3006" type="number" class="form-control text-center" [(ngModel)]="inputGoal.percent_3006">
-        </div>
-
-        <div class="col-1">
-            <input id="percent_3112" type="number" class="form-control text-center" [(ngModel)]="inputGoal.percent_3112">
-        </div>
-
-        <div class="col-1 d-flex align-items-center justify-content-center">
+        <div class="col d-flex align-items-center justify-content-center">
             <div *ngIf="inputGoal.weight_3006">
                 <span *ngIf="inputGoal.weight_3006 <= weight_midvalue" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
                 <span *ngIf="inputGoal.weight_3006 > this.weight_midvalue && inputGoal.weight_3006 < this.inputGoal.weight," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
@@ -27,7 +16,7 @@
             </div>
         </div>
 
-        <div class="col-1 d-flex align-items-center justify-content-center">
+        <div class="col d-flex align-items-center justify-content-center">
             <div *ngIf="inputGoal.weight_3112">
                 <span *ngIf="inputGoal.weight_3112 <= this.weight_midvalue" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
                 <span *ngIf="inputGoal.weight_3112 > this.weight_midvalue && inputGoal.weight_3112 < this.inputGoal.weight," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>

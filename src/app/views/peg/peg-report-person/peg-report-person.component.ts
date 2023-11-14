@@ -84,6 +84,8 @@ export class PegReportPersonComponent {
         this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
         //calculate values for widget
         this.countGoals();
+        this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
+        this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
       })
   }
 
@@ -108,16 +110,6 @@ export class PegReportPersonComponent {
       return sum;
     }, 0)
     return [weight, weight3006, weight3112]
-  }
-
-  updateExtraGoal(updatedGoal: PegGoal, i: number) {
-    this.extraordinaryGoalList[i] = updatedGoal;
-    this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
-  }
-
-  updateOrdGoal(updatedGoal: PegGoal, i: number) {
-    this.ordinaryGoalList[i] = updatedGoal;
-    this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
   }
 
   printPdf() {
