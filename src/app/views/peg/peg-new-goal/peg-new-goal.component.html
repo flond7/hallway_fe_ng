@@ -13,14 +13,14 @@
           <!-- <div class="btn border border-primary-peg text-primary-peg" (click)="this.bsModalService.show(officeModal)">Scegli ></div> -->
           <div class="btn border border-primary-peg text-primary-peg" (click)="openModal(officeModal)">Scegli ></div>
         </div>
-        <div class="col">
-          <app-peg-card title="Personale coinvolto" [number]="100" icon="faUser" [bgcolor]="white1" [textcolor]="dark"></app-peg-card>
+        <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Personale coinvolto" [number]="people" icon="faUser" [bgcolor]="white1" [textcolor]="dark"></app-peg-card>
         </div>
-        <div class="col">
-          <app-peg-card title="Obbiettivi ordinari" [number]="100" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+        <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Obbiettivi ordinari" [number]="ordNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
-        <div class="col">
-          <app-peg-card title="Obbiettivi straordinari" [number]="100" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+        <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Obbiettivi straordinari" [number]="extraNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
       </div>
 

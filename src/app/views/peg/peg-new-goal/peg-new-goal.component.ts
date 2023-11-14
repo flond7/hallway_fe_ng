@@ -82,6 +82,12 @@ export class PegNewGoalComponent {
   // Delete element
   deleteArray: number[] = [];
 
+  // widgets vars
+  showWidgets: boolean = false;
+  ordNumber: number = 0;
+  extraNumber: number = 0;
+  people: number = 0;
+
   // FA icons
   faFloppyDisk = faFloppyDisk; faPlus = faPlus;
 
@@ -121,6 +127,8 @@ export class PegNewGoalComponent {
         //separate goals in ordinary and extraordinary
         this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
         this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
+        //calculate widget values
+        this.countGoalsAndPeople();
       })
     } else {
     //if this an add page check if there are already records for this office and year and if there are redirect to the edit page
@@ -135,6 +143,23 @@ export class PegNewGoalComponent {
         }
     })  
     }
+  }
+
+  countGoalsAndPeople() {
+    this.showWidgets = true;
+    this.ordNumber = this.ordinaryGoalList.length;
+    this.extraNumber = this.extraordinaryGoalList.length;
+    
+    //create an object with the id as key and the number of times it is included in goals as value (keep it in case it's needed after for some more stats), 
+    //then iterate trought each goal and add a counter for that person
+    const countMap: { [key: number]: number } = {};
+    this.goalList.forEach(item => {
+      item.involvedPeople.forEach(id => {
+        countMap[id] = (countMap[id] || 0) + 1;
+      });
+    });
+    //transform the object in an array and get the length
+    this.people = Object.keys(countMap).length;
   }
 
   getTotals(list: PegGoal[]) {
