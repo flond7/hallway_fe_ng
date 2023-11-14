@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faUsers, faBullseye, faHome, faPlus, faPen, faList, faFileExport } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faBullseye, faHome, faPlus, faPen, faList, faFileExport, faChartSimple } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-peg-menu',
@@ -15,5 +15,6 @@ export class PegMenuComponent {
   faPen = faPen;
   faList = faList;
   faFileExport = faFileExport;
+  faChartSimple = faChartSimple;
 
 }
