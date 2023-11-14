@@ -12,7 +12,6 @@ import autoTable from 'jspdf-autotable'
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
-
 // Modal imports
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from '../../../services/modals.service'
@@ -94,7 +93,6 @@ export class PegReportPersonComponent {
   pdfBodyOrdinary = [GC.PEG_PDF_ACCESS_KEYS];
   pdfBodyExtraordinary = [GC.PEG_PDF_ACCESS_KEYS];  //needed so the first row are the headers// pdf vars
 
-
   constructor(private api: PegApiService, private modalService: ModalService, public bsModalService: BsModalService) {
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
@@ -173,8 +171,8 @@ export class PegReportPersonComponent {
 
   generatePdf() {
     this.createPdfTable();
-     this.pdfTitle = this.selectedUser.name + " - anno: " + this.year;
-     // Get the chart element
+
+    // Get the chart element
     const chartElement = document.getElementById('doughnutChart');
 
     if (chartElement) {
@@ -182,43 +180,55 @@ export class PegReportPersonComponent {
         //if there is a canvas
         const chartImage = canvas.toDataURL('image/png');
         //const pdf = new jspdf.jsPDF();
-   
-       const documentDefinition = {
-       pageOrientation: PageOrientation.Portrait,
-       content: [
-         { text: this.pdfTitle, style: 'header' },
-         { image: chartImage},
-         { text: ' ' }, //empty line for aesthetic purposes
-         { text: GC.PEG_GOAL_EXTRAORDINARY_TITLE, style: 'h2' },
-         {
-           table: {
-             headerRows: 1,
-             widths: [220, 100, 30, 50, 50],
-             body: this.pdfBodyExtraordinary,
-           }
-         },
-         { text: ' ' }, //empty line for aesthetic purposes
-         { text: GC.PEG_GOAL_ORDINARY_TITLE, style: 'h2' },
-         {
-           table: {
-             headerRows: 1,
-             widths: [220, 100, 30, 50, 50],
-             body: this.pdfBodyOrdinary,
-           }
-         },
-         { text: ' ' }, //empty line for aesthetic purposes
-         { text: GC.PEG_PDF_STATS_TEXT + this.totalPercent + ' %', bold: true},
- 
-       ],
-       styles: GC.PDF_STYLE
-     };
-   
- 
-     pdfMake.createPdf(documentDefinition).open();
-    })
+
+        const documentDefinition = {
+          pageOrientation: PageOrientation.Landscape,
+          content: [
+            { text: this.year, style: 'year' },
+            { text: this.selectedUser.name + ' ' + this.selectedUser.surname, style: 'name' },
+            { text: ' ' }, //empty line for aesthetic purposes
+            { text: GC.PEG_GOAL_EXTRAORDINARY_TITLE, style: 'h2' },
+            { 
+              columns: [
+                [
+                  {
+                    table: {
+                      headerRows: 1,
+                      body: this.pdfBodyExtraordinary,
+                      widths: [220, 100, 30, 60, 50],
+                    },
+                    layout: 'lightHorizontalLines',
+                    width: '60%',
+                  },
+                  { text: ' ' }, //empty line for aesthetic purposes
+                  { text: GC.PEG_GOAL_ORDINARY_TITLE, style: 'h2' },
+                  { text: ' ' }, //empty line for aesthetic purposes
+                  {
+                    table: {
+                      headerRows: 1,
+                      body: this.pdfBodyOrdinary,
+                      widths: [220, 100, 30, 60, 50],
+                    },
+                    layout: 'lightHorizontalLines',
+                    width: '60%',
+                  },
+                ],
+                [
+                  { image: chartImage, width: 250 },
+                  { text: this.totalPercent.toFixed(2) + '%', style: 'h1'},
+                ]
+              ]
+            },
+          ],
+          styles: GC.PDF_STYLE
+        }
+
+
+        pdfMake.createPdf(documentDefinition).open();
+      })
+    }
   }
-   }
-  
+
 
   createPdfTable() {
     this.ordinaryGoalList.map(goal => {

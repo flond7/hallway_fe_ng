@@ -42,6 +42,29 @@ export const PEG_INSTRUCTIONS = {
 }
 export const PEG_PDF_ACCESS_KEYS: Array<string> = ['Nome','Ufficio', 'Peso', '% (31/12)']
 export const PEG_PDF_STATS_TEXT: string = "Percentuale di obbiettivi assegnati e realizzati al 31/12: "
+export const PEG_PDF_STYLE = {
+  name: {
+    font: 'Quicksand',
+    fontSize: 22,
+  },
+  year: {
+    font: 'Quicksand',
+    fontSize: 16,
+    borderBottom: '1px solid #fecf6c',
+  },
+  subheader: {
+    fontSize: 18,
+    bold: true
+  },
+  h2: {
+    fontSize: 18,
+    bold: false
+  },
+  h1: {
+    fontSize: 38,
+    bold: true,
+  }
+}
 
 
 //ACCESSO AGLI ATTI
@@ -57,6 +80,16 @@ export const PDF_ACCESS_KEYS: Array<string> = [
   'Richiesta', 'Richiedente', 'Tipo richiesta', 'Oggetto', 'Controinteressati', 'Responsabile', 'Esito', 'Risposta', 'Note'
 ]
 export const PDF_STYLE = {
+  name: {
+    //font: 'Quicksand',
+    fontSize: 22,
+  },
+  year: {
+    //font: 'Quicksand',
+    fontSize: 16,
+    border: '1px solid #dddddd',
+    borderBottom: '1px solid #dddddd',
+  },
   header: {
     fontSize: 22,
     bold: true
@@ -64,6 +97,10 @@ export const PDF_STYLE = {
   subheader: {
     fontSize: 18,
     bold: true
+  },
+  h1: {
+    fontSize: 30,
+    bold: true,
   },
   h2: {
     fontSize: 18,
