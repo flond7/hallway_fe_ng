@@ -76,9 +76,8 @@ export class PegGoalComponent implements OnInit {
   }
 
   ngOnInit() {
-    //set to zero the weights we have to calculate later
-    this.inputGoal.weight_3006 = 0.0;
-    this.inputGoal.weight_3112 = 0.0;
+    //if the weights already exist keep them, otherwise calculate them base on percentages
+    this.computeWeights();
 
     //set the typù
     this.inputGoal.type = this.typeInput;
