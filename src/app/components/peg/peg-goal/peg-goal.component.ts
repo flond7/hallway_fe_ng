@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
-import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUserPlus, faXmark, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faCheck, faPen, faTrash, faSearch, faUser, faUserPlus, faXmark, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from '../../../services/peg-api.service';
 import { PegPerson, PegGoal } from '../../../../interfaces';
 import * as GC from '../../../../constants'
@@ -55,7 +55,7 @@ export class PegGoalComponent implements OnInit {
 
   // FA icons
   faPlus = faPlus; faMinus = faMinus; faCheck = faCheck; faPen = faPen; faTrash = faTrash;
-  faSearch = faSearch; faUserPlus = faUserPlus; faXmark = faXmark; faExclamation = faExclamation;
+  faSearch = faSearch; faUser = faUser; faUserPlus = faUserPlus; faXmark = faXmark; faExclamation = faExclamation;
 
   // Modal
   modalRef?: BsModalRef;
