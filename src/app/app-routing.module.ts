@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'peg-home', component: PegHomeComponent },
   { path: 'peg-view-reports', component: PegViewReportsComponent },
   { path: 'peg-new-goal', component: PegNewGoalComponent },
-  { path: 'peg-edit', component: PegEditComponent },
+  { path: 'peg-edit', component: PegNewGoalComponent },
+  //{ path: 'peg-edit', component: PegEditComponent },
   
   { path: 'aa-new-access', component: AaNewAccessComponent },
   { path: 'aa-list-access', component: AaListAccessComponent },
