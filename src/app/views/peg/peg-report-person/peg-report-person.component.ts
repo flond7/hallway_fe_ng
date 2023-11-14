@@ -215,7 +215,8 @@ export class PegReportPersonComponent {
                 ],
                 [
                   { image: chartImage, width: 250 },
-                  { text: this.totalPercent.toFixed(2) + '%', style: 'h1'},
+                  { text: ' ' }, //empty line for aesthetic purposes
+                  { text: 'Realizzazione: ' +  this.totalPercent.toFixed(2) + '%', style: 'h1'},
                 ]
               ]
             },
