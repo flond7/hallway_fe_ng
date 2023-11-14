@@ -1,8 +1,9 @@
 import { Component, TemplateRef } from '@angular/core';
 import { PegPerson, PegGoal } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
-import * as GC from '../../../../constants';
 import { faFilePdf, faPlus} from '@fortawesome/free-solid-svg-icons';
+import { ChartConfiguration } from 'chart.js';
+import * as GC from '../../../../constants';
 // Modal imports
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from '../../../services/modals.service'
@@ -13,11 +14,8 @@ import { ModalService } from '../../../services/modals.service'
   styleUrls: ['./peg-report-person.component.sass']
 })
 export class PegReportPersonComponent {
-
-  
   // initial vars
   year: number = 0;
-  addNew = true;       //to keep track if this is the add or the edit page
 
   // Goal list
   goalList: PegGoal[] = [];                     //goal list is the concat of the extra and ordinary goal lists
@@ -28,8 +26,8 @@ export class PegReportPersonComponent {
   userList$: PegPerson[] = [];
   selectedUser: PegPerson = {
     id: 0,
-    name: '',
-    surname: '',
+    name: 'Seleziona',
+    surname: 'Utente',
     jobCategory: '',
     manager: false,
     managerOfOffices: []
@@ -60,6 +58,17 @@ export class PegReportPersonComponent {
   white1 = GC.COLOR_WHITE_ONE;
   white2 = GC.COLOR_WHITE_TWO;
   white3 = GC.COLOR_WHITE_THREE;
+
+  // Doughnut charts options
+  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = { responsive: true, transitions: {}};
+  public totalChartData: ChartConfiguration<'doughnut'>['data']['datasets'] = [      // data: [success , failure], label: 'Series A', backgroundColor: ['#success', '#failure'],
+    { data: [0, 0], backgroundColor: ['#8bc34a', '#505154'], borderWidth: 0 }
+  ]; 
+  // graph vars
+  totalWeight: number = 0;
+  totalWeight_3112: number = 0;  
+  totalPercent: number = 0;    
+  showChart: boolean = false;   
   
   constructor(private api: PegApiService, private modalService: ModalService, public bsModalService: BsModalService) {
     const currentDate = new Date();
@@ -86,6 +95,8 @@ export class PegReportPersonComponent {
         this.countGoals();
         this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
         this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
+        //calculate values for the chart and visualize it
+        this.personPointsCalculation();
       })
   }
 
@@ -112,6 +123,26 @@ export class PegReportPersonComponent {
     return [weight, weight3006, weight3112]
   }
 
+  personPointsCalculation() {
+    this.totalWeight_3112 = this.goalList.reduce((sum, goal) => {
+      if (goal.weight_3112 !== undefined) {
+        return sum + goal.weight_3112;
+      }
+      return sum;
+    }, 0);
+    this.totalWeight = this.goalList.reduce((sum, goal) => sum + goal.weight,0);
+    this.updateDoughnutChart();
+    this.totalPercent = (this.totalWeight_3112 / this.totalWeight) * 100;
+    this.year = this.goalList[0].year;  //needed for the pdf title
+  }
+
+  updateDoughnutChart() {
+    //set data = [success, failure]
+    let failure = this.totalWeight - this.totalWeight_3112
+    this.totalChartData[0].data = [this.totalWeight_3112, failure]
+    this.showChart = true;
+    console.log(this.totalChartData[0].data)
+  }
   printPdf() {
     console.log('print')
   }
