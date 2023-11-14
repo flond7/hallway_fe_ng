@@ -79,12 +79,12 @@
             </div>
             
             <div *ngIf="selectedUser.id !== 0" class="my-3">
-                <div class="btn bg-primary-peg" (click)="printPdf()"><fa-icon [icon]='faFilePdf' class="m-0"></fa-icon> Esporta in pdf</div>
+                <div class="btn bg-primary-peg" (click)="generatePdf()"><fa-icon [icon]='faFilePdf' class="m-0"></fa-icon> Esporta in pdf</div>
             </div>
         </div>
 
         <div class="col-4 pt-5">
-            <canvas *ngIf="showChart === true" baseChart [datasets]="totalChartData" [options]="doughnutChartOptions" [type]="'doughnut'"></canvas>
+            <canvas id="doughnutChart" *ngIf="showChart === true" baseChart [datasets]="totalChartData" [options]="doughnutChartOptions" [type]="'doughnut'"></canvas>
             <h1 class="big text-bold text-center">{{this.totalPercent | number: '1.1-1'}} %</h1>
             <p class="text-center">{{this.totalWeight_3112}} / {{this.totalWeight}}</p>
         </div>                                                            
