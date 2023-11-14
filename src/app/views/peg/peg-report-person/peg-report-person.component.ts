@@ -1,8 +1,8 @@
 import { Component, TemplateRef } from '@angular/core';
-import { PegPerson, PegOffice, PegGoal, PegPoOffice } from 'src/interfaces';
+import { PegPerson, PegGoal } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
 import * as GC from '../../../../constants';
-import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faPlus} from '@fortawesome/free-solid-svg-icons';
 // Modal imports
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalService } from '../../../services/modals.service'
@@ -47,7 +47,7 @@ export class PegReportPersonComponent {
   extraNumber: number = 0;
 
   // FA icons
-  faFilePdf = faFilePdf;
+  faFilePdf = faFilePdf; faPlus = faPlus;
 
   // strings and titles
   extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
