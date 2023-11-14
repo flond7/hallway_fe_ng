@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PegPerson, PegOffice, PegGoal, PegPoOffice } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
@@ -106,12 +106,15 @@ export class PegNewGoalComponent {
     });
   }
 
+  openModal(modal: TemplateRef<any>) {
+    this.modalRefOffice = this.bsModalService.show(modal);
+  }
+
   selectOffice(office: PegPoOffice) {
     this.selectedOffice = office;
     this.selectedManager = office.manager;
     //if this is an edit page then retrieve the info
     if (this.addNew === false) {
-      console.log('edit select')
       let data = { year: this.year, id: this.selectedOffice.id }
       this.api.getReportOffice(data).subscribe(r => {
         this.goalList = r.data;
@@ -119,6 +122,18 @@ export class PegNewGoalComponent {
         this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
         this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
       })
+    } else {
+    //if this an add page check if there are already records for this office and year and if there are redirect to the edit page
+    let checkData = {'year': this.year, 'officeId': this.selectedOffice.id}
+    this.api.checkExistingRecords(checkData).subscribe(r => {
+        console.log(r)
+        //if there are records already in the DB, open a modal to tell the user and redirect to edit page
+        if (r === true) {
+          this.modalRefOffice.hide();
+          this.modalService.openFeedbackModal(false, GC.PEG_MODAL_RECORD_EXIST);
+          this.router.navigate(['/peg-edit']);
+        }
+    })  
     }
   }
 
@@ -241,6 +256,7 @@ export class PegNewGoalComponent {
     //slice the element from goalList
     this.ordinaryGoalList.splice(i, 1);
   }
+
 
 /* 
   

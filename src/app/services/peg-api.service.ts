@@ -107,6 +107,11 @@ export class PegApiService {
     return this.httpClient.post(baseURL + 'api_peg/get_goals_numbers', data, this.httpOptions)
   }
 
+  checkExistingRecords(data: any): Observable<any> {
+    return this.httpClient.post(baseURL + 'api_peg/check_existing_goals', data, this.httpOptions)
+  }
+
+
 
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)
