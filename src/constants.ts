@@ -31,6 +31,7 @@ export const INFO_GOAL_PHASE = "";
 export const PEG_GOAL_EXTRAORDINARY_TITLE: string = "Obbiettivi straordinari"
 export const PEG_GOAL_ORDINARY_TITLE: string = "Obbiettivi ordinari"
 export const PEG_ALERT_WEIGHT: string = "La somma del peso di tutti gli obbiettivi deve essere 100"
+export const PEG_MODAL_RECORD_EXIST: string = "Ci sono già obbiettivi per questo ufficio nell'anno selezionato. Modifica gli obbiettivi già esistenti"
 export const PEG_ALERT_PO_OFFICE: string = "Devi selezionare l'ufficio"
 export const PEG_INSTRUCTIONS = {
   'weight': "valore compreso tra 1 e 100, indica l'importanza dell'obbiettivo parametrato a tutte le attività elencate e svolte dall'ufficio. I valori di tutti gli obbiettivi elencati devono essere pari a 100",
