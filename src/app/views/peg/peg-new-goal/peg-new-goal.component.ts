@@ -155,6 +155,8 @@ export class PegNewGoalComponent {
   }
 
   saveGoals() {
+    console.log(this.year.toString().length)
+
     //check if office is selected (PO is a consequence of that)
     if (this.selectedOffice.id === 0) {
       this.modalService.openFeedbackModal(false, GC.PEG_ALERT_PO_OFFICE)
@@ -167,7 +169,7 @@ export class PegNewGoalComponent {
     let weightOrdSum = this.ordinaryGoalList.reduce((sum, goal) => sum + goal.weight, 0);
 
     //if there is no input there is nothing to save
-    if (this.extraordinaryGoalList.length === 0 || this.ordinaryGoalList.length === 0 ) {
+    if (this.extraordinaryGoalList.length === 0 && this.ordinaryGoalList.length === 0 ) {
       this.modalService.openFeedbackModal(false, GC.MODAL_NO_INPUT)
 
     //if there are goals in ordinary or extraordinary array and thery wieth sum is not 100, open modal
@@ -198,6 +200,11 @@ export class PegNewGoalComponent {
 
       } else {
         //if addNew === false this is the edit page
+        console.log('editing')
+        this.api.updateGoals(updatedGoals).subscribe(r => {
+          console.log(r);
+          this.router.navigate(['/peg-home']);
+        })
       }
 
     }
