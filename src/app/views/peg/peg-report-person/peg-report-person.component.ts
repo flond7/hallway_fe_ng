@@ -172,6 +172,7 @@ export class PegReportPersonComponent {
   }
 
   generatePdf() {
+    this.createPdfTable();
      this.pdfTitle = this.selectedUser.name + " - anno: " + this.year;
      // Get the chart element
     const chartElement = document.getElementById('doughnutChart');
@@ -180,7 +181,7 @@ export class PegReportPersonComponent {
       html2canvas(chartElement).then(canvas => {
         //if there is a canvas
         const chartImage = canvas.toDataURL('image/png');
-        const pdf = new jspdf.jsPDF();
+        //const pdf = new jspdf.jsPDF();
    
        const documentDefinition = {
        pageOrientation: PageOrientation.Portrait,
@@ -217,32 +218,7 @@ export class PegReportPersonComponent {
     })
   }
    }
-  /* generatePdf() {
-    //create the table for the pdf
-    this.createPdfTable()
-
-    // Get the chart element
-    const chartElement = document.getElementById('doughnutChart');
-
-    if (chartElement) {
-      html2canvas(chartElement).then(canvas => {
-        // Create a new jsPDF instance
-        const pdf = new jspdf.jsPDF();
-
-        // Calculate the width and height of the PDF based on the chart size
-        //const pdfWidth = pdf.internal.pageSize.getWidth();
-        //const pdfHeight = pdf.internal.pageSize.getHeight();
-        const chartImage = canvas.toDataURL('image/png');
-
-        // Add the chart image to the PDF
-        pdf.addImage(chartImage, 'PNG', 10, 10, pdfWidth - 20, pdfHeight - 20);
-
-        // Save or open the PDF
-        pdf.save('chart.pdf');
-      });
-    }
-  } */
-
+  
 
   createPdfTable() {
     this.ordinaryGoalList.map(goal => {
@@ -256,116 +232,4 @@ export class PegReportPersonComponent {
     })
   }
 
-  onGeneratePdfClick() {
-    const chartElement = document.getElementById('your-chart-id');
-  
-    if (chartElement) {
-      html2canvas(chartElement).then(chartCanvas => {
-        // Create the PDF content
-        const pdfContent = {
-          header: 'Your PDF Header',
-          content: [
-            // Col-8 section with a table
-            {
-              columns: [
-                { text: 'Col-8 Section with a Table', width: '60%' },
-                {
-                  table: {
-                    headerRows: 1,
-                    widths: ['*', '*'], // Adjust column widths as needed
-                    body: [
-                      ['Header 1', 'Header 2'],
-                      ['Row 1, Cell 1', 'Row 1, Cell 2'],
-                      ['Row 2, Cell 1', 'Row 2, Cell 2'],
-                    ],
-                  },
-                  width: '40%',
-                },
-              ],
-            },
-            // Col-4 section with the chart
-            {
-              columns: [
-                { text: 'Col-4 Section with a Chart', width: '60%' },
-                //{ image: chartCanvas.toDataURL(), width: 200, height: 150, alignment: 'center' },
-              ],
-            },
-          ],
-        };
-  
-        // Generate the PDF
-        pdfMake.createPdf(pdfContent).open();
-      });
-    }
-  }
-  
- /* 
-  onGeneratePdfClick() {
-    const chartElement = document.getElementById('your-chart-id');
-  
-    if (chartElement) {
-      html2canvas(chartElement).then(chartCanvas => {
-        const pdf = new jsPDF();
-  
-        // Add header
-        pdf.text('Your PDF Header', 20, 20);
-  
-        // Col-8 section with a table
-        pdf.text('Col-8 Section with a Table', 20, 40);
-        const tableData = [['Header 1', 'Header 2'], ['Row 1, Cell 1', 'Row 1, Cell 2'], ['Row 2, Cell 1', 'Row 2, Cell 2']];
-        pdf.autoTable({ head: tableData.slice(0, 1), body: tableData.slice(1) }, 20, 50);
-  
-        // Col-4 section with the chart
-        pdf.text('Col-4 Section with a Chart', 20, 150);
-        const chartImage = chartCanvas.toDataURL('image/png');
-        pdf.addImage(chartImage, 'PNG', 20, 160, 100, 75);
-  
-        // Save or open the PDF
-        pdf.save('your-pdf-file.pdf');
-      });
-    }
-  }
- */
- /*  onGeneratePdfClick() {
-    const chartElement = document.getElementById('your-chart-id');
-    if (chartElement) {
-      html2canvas(chartElement).then(chartCanvas => {
-        // Capture the chart as an image
-
-        // Create the PDF content
-        const pdfContent = {
-          header: 'Your PDF Header',
-          content: [
-            // Col-8 section with a table
-            {
-              columns: [
-                { text: 'Col-8 Section with a Table', width: '60%' },
-                { table: {
-                    headers: ['Header 1', 'Header 2'],
-                    rows: [
-                      ['Row 1, Cell 1', 'Row 1, Cell 2'],
-                      ['Row 2, Cell 1', 'Row 2, Cell 2'],
-                    ],
-                  },
-                  width: '40%',
-                },
-              ],
-            },
-            // Col-4 section with the chart
-            { columns: [
-                { text: 'Col-4 Section with a Chart', width: '60%' },
-                { image: chartCanvas.toDataURL(), width: 200, height: 150, alignment: 'center' },
-              ],
-            },
-          ],
-          pageMargins: [40, 60, 40, 60], // Adjust margins as needed
-        };
-
-        // Generate the PDF
-        pdfMake.createPdf(pdfContent).open();
-      });
-    }
-  } */
 }
-
-
