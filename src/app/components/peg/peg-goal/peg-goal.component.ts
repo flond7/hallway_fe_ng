@@ -80,8 +80,15 @@ export class PegGoalComponent implements OnInit {
     this.inputGoal.weight_3006 = 0.0;
     this.inputGoal.weight_3112 = 0.0;
 
-    //set the typeù
+    //set the typù
     this.inputGoal.type = this.typeInput;
+
+    //if inputGoal has involved people keep it and populate involvedForVisualization
+    if (this.inputGoal.involvedPeople.length > 0) {
+      this.involvedForVisualization = this.inputGoal.involvedPeople.map((userId: number) => {
+        return this.userList.find((user) => user.id === userId) as PegPerson;
+      });
+    }
 
     //reset the involved person array to empty
     this.inputGoal.involvedPeople = [];
