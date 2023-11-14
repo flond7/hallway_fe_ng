@@ -1,0 +1,111 @@
+<app-peg-menu></app-peg-menu>
+
+<div class="container">
+  <div class="row w-100">
+    <div class="col-12">
+
+      <div class="row py-5">
+        <div class="col-4">
+          <div class="row border-bottom border-primary-peg mb-3 pb-2 h4">{{year}}</div>
+          <div class="row big text-bold me-2">{{selectedUser.name}} {{selectedUser.surname}}</div>
+        </div>
+        <div class="col-2 d-flex flex-column justify-content-end">
+          <div class="btn border border-primary-peg text-primary-peg" (click)="openModal(personModal)">Scegli ></div>
+        </div>
+        <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Obbiettivi ordinari" [number]="ordNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+        </div>
+        <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Obbiettivi straordinari" [number]="extraNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+        </div>
+      </div>
+
+      <div *ngIf="selectedUser.id !== 0" class="">
+        <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{extraordinaryTitle}}</div>
+        <div class="row header small text-muted">
+          <div class="col-5">Nome</div>
+          <div class="col-1 text-center">Valore pt</div>
+          <div class="col-2 text-center">Realizzazione %</div>
+          <div class="col-2 text-center">Punti raggiunti</div>
+        </div>
+        <div class="row header small text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">[1..100]</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+        </div>
+
+        <app-peg-goal-report *ngFor="let goal of extraordinaryGoalList; index as i" [inputGoal]="goal"></app-peg-goal-report>
+
+        <div class="row border-top border-muted-peg pt-2 text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">{{extraordinaryTotals[0]}}</div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center">{{extraordinaryTotals[1]}}</div>
+          <div class="col-1 text-center">{{extraordinaryTotals[2]}}</div>
+        </div>
+
+      </div>
+
+      <div *ngIf="selectedUser.id !== 0" class="mt-5">
+        <div class="row border-bottom border-primary-peg mb-3 pb-2 h4 text-light">{{ordinaryTitle}}</div>
+        <div class="row header small text-muted">
+          <div class="col-5">Nome</div>
+          <div class="col-1 text-center">Valore pt</div>
+          <div class="col-2 text-center">Realizzazione %</div>
+          <div class="col-2 text-center">Punti raggiunti</div>
+        </div>
+        <div class="row header small text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">[1..100]</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+          <div class="col-1 text-center">al 30/06</div>
+          <div class="col-1 text-center">al 31/12</div>
+        </div>
+
+        <app-peg-goal-report *ngFor="let goal of ordinaryGoalList; index as i" [inputGoal]="goal" ></app-peg-goal-report>
+
+        <div class="row border-top border-muted-peg pt-2 text-muted">
+          <div class="col-5"></div>
+          <div class="col-1 text-center">{{ordinaryTotals[0]}}</div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center"></div>
+          <div class="col-1 text-center">{{ordinaryTotals[1]}}</div>
+          <div class="col-1 text-center">{{ordinaryTotals[2]}}</div>
+        </div>
+
+      </div>
+      
+      <div *ngIf="selectedUser.id !== 0" class="my-3">
+        <div class="btn bg-primary-peg" (click)="printPdf()"><fa-icon [icon]='faFilePdf' class="m-0"></fa-icon> Esporta in pdf</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #personModal>
+  <div class="modal-body bg-dark px-5">
+
+    <div class="row flex-column justify-content-between py-4">
+      <label class="h4 pb-1">Anno</label>
+      <input placeholder="anno" id="" type="text" class="col-4 form-control w-6 text-center border-bottom border-primary-peg me-3" [(ngModel)]="year">
+    </div>
+    <label class="h4 pt-4">Persone</label>
+    <div *ngFor="let user of userList$" class="border-bottom border-muted-peg py-1 mb-1">
+      <div class="w-100 d-flex justify-content-between align-items-center" (click)="selectPerson(user)">
+        <span class=""> {{user.name}} {{user.surname}}</span>
+      </div>
+    </div>
+
+    <div class="row justify-content-center px-5 pt-4">
+      <div class="w-auto btn bg-secondary-peg" (click)="bsModalService.hide()">Chiudi</div>
+    </div>
+  </div>
+</ng-template>
