@@ -41,6 +41,7 @@ import { DeleteModalComponent } from './components/modals/delete-modal/delete-mo
 import { PegCardComponent } from './components/peg/peg-card/peg-card.component';
 import { PegReportPersonComponent } from './views/peg/peg-report-person/peg-report-person.component';
 import { PegGoalReportComponent } from './components/peg/peg-goal-report/peg-goal-report.component';
+import { PegReportOfficeComponent } from './views/peg/peg-report-office/peg-report-office.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { PegGoalReportComponent } from './components/peg/peg-goal-report/peg-goa
     PegCardComponent,
     PegReportPersonComponent,
     PegGoalReportComponent,
+    PegReportOfficeComponent,
   ],
   imports: [
     BrowserModule,
