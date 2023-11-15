@@ -43,6 +43,7 @@ import { PegReportPersonComponent } from './views/peg/peg-report-person/peg-repo
 import { PegGoalReportComponent } from './components/peg/peg-goal-report/peg-goal-report.component';
 import { PegReportOfficeComponent } from './views/peg/peg-report-office/peg-report-office.component';
 import { PegUserCardComponent } from './components/peg/peg-user-card/peg-user-card.component';
+import { PegInstructionsComponent } from './views/peg/peg-instructions/peg-instructions.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { PegUserCardComponent } from './components/peg/peg-user-card/peg-user-ca
     PegGoalReportComponent,
     PegReportOfficeComponent,
     PegUserCardComponent,
+    PegInstructionsComponent,
   ],
   imports: [
     BrowserModule,
