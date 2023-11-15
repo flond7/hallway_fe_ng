@@ -19,7 +19,7 @@ export class PegNewGoalComponent {
 
   // initial vars
   year: number = 0;
-  addNew = true;       //to keep track if this is the add or the edit page
+  addNew: boolean = true;   //to keep track if this is the add or the edit page
 
   // Office selection and manager selection
   //officeList$: PegOffice[] = [];
@@ -103,9 +103,11 @@ export class PegNewGoalComponent {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       // Get the value of a parameter by its name
-      let edit = params.get('edit');
+      //let edit = params.get('edit');
+      let edit = params['edit'];
+      console.log(edit)
       if (edit === 'true') {
         this.addNew = false;
       }
@@ -119,6 +121,7 @@ export class PegNewGoalComponent {
   selectOffice(office: PegPoOffice) {
     this.selectedOffice = office;
     this.selectedManager = office.manager;
+
     //if this is an edit page then retrieve the info
     if (this.addNew === false) {
       let data = { year: this.year, id: this.selectedOffice.id }
@@ -130,18 +133,18 @@ export class PegNewGoalComponent {
         //calculate widget values
         this.countGoalsAndPeople();
       })
-    } else {
+    } else if (this.addNew === true) {
     //if this an add page check if there are already records for this office and year and if there are redirect to the edit page
     let checkData = {'year': this.year, 'officeId': this.selectedOffice.id}
-    this.api.checkExistingRecords(checkData).subscribe(r => {
-        console.log(r)
-        //if there are records already in the DB, open a modal to tell the user and redirect to edit page
-        if (r === true) {
-          this.modalRefOffice.hide();
-          this.modalService.openFeedbackModal(false, GC.PEG_MODAL_RECORD_EXIST);
-          this.router.navigate(['/peg-edit'], { queryParams: { edit: true } });
-        }
-    })  
+      this.api.checkExistingRecords(checkData).subscribe(r => {
+          console.log(r)
+          //if there are records already in the DB, open a modal to tell the user and redirect to edit page
+          if (r === true) {
+            this.modalRefOffice.hide();
+            this.modalService.openFeedbackModal(false, GC.PEG_MODAL_RECORD_EXIST);
+            this.router.navigate(['/peg-edit'], { queryParams: { edit: true } });
+          }
+      })  
     }
   }
 
@@ -265,8 +268,8 @@ export class PegNewGoalComponent {
   }
 
   deleteExtraGoal(id: number, i: number) {
-    //if this is an edit page add the goal to the delete array in order to delete it from the server afterwards
-    if (this.addNew === false) {
+    //if the id is !== 0 (meaning that it was created before and it's on the server) add the goal to the delete array in order to delete it from afterwards
+    if (id !== 0) {
       this.deleteArray.push(id);
     }
     //slice the element from goalList
@@ -275,7 +278,7 @@ export class PegNewGoalComponent {
 
   deleteOrdGoal(id: number, i: number) {
     //if this is an edit page add the goal to the delete array in order to delete it from the server afterwards
-    if (this.addNew === true) {
+    if (id !== 0) {
       this.deleteArray.push(id);
     }
     //slice the element from goalList
