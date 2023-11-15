@@ -77,6 +77,7 @@ export class PegReportOfficeComponent {
   ordNumber: number = 0;
   extraNumber: number = 0;
   people: number = 0;
+  countMap: { [key: number]: number } = {};
 
   // FA icons
   faFloppyDisk = faFloppyDisk; faPlus = faPlus; faFilePdf = faFilePdf;
@@ -105,7 +106,6 @@ export class PegReportOfficeComponent {
 
     api.officeAndPoListData$.subscribe(r => {
       this.officeList$ = r;
-      console.log(r)
     })
 
   }
@@ -140,14 +140,14 @@ export class PegReportOfficeComponent {
 
     //create an object with the id as key and the number of times it is included in goals as value (keep it in case it's needed after for some more stats), 
     //then iterate trought each goal and add a counter for that person
-    const countMap: { [key: number]: number } = {};
     this.goalList.forEach(item => {
       item.involvedPeople.forEach(id => {
-        countMap[id] = (countMap[id] || 0) + 1;
+        this.countMap[id] = (this.countMap[id] || 0) + 1;
       });
     });
     //transform the object in an array and get the length
-    this.people = Object.keys(countMap).length;
+    this.people = Object.keys(this.countMap).length;
+    console.log(this.countMap);
   }
 
   getTotals(list: PegGoal[]) {

@@ -113,7 +113,9 @@ export class PegApiService {
   getAvarageWeight(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/get_average_weight', data, this.httpOptions)
   }
-
+  getMinPersonReport(data: any): Observable<any> {
+    return this.httpClient.post(baseURL + 'api_peg/get_person_min_results', data, this.httpOptions)
+  }
 
   /* findSingleUser(cf:any) {
     return this.httpClient.get(`${baseURL}/user/view/${cf}`)

@@ -1,23 +1,27 @@
 <div class="">
   <div class="">
-    {{selectedUser.name}}
+    {{miniPersonReport.name}}
   </div>
   <div class="">
-    {{selectedUser.surname}}
+    {{miniPersonReport.surname}}
   </div>
 
   <div class="row">
     <div class="col">
       <div class="">Ordinari</div>
-      <div class="">{{ordNumero}}</div>
+      <div class="">{{miniPersonReport.ordinary_count}}</div>
     </div>
     <div class="col">
       <div class="">Ordinari</div>
-      <div class="">{{extraNumero}}</div>
+      <div class="">{{miniPersonReport.extraordinary_count}}</div>
     </div>
     <div class="col">
-      <div class="">% Realizzazione</div>
-      <div class="" [ngClass]="{'text-success' : totalPercent === 100, 'text-danger' : totalPercent <= 60}">{{totalPercent}}</div>
+      <div class="">% Realizzazione ORD</div>
+      <div class="" [ngClass]="{'text-success' : miniPersonReport.percent_ordinary === 100, 'text-danger' : miniPersonReport.percent_ordinary <= 60}">{{miniPersonReport.percent_ordinary  | number: '1.1-1'}} %</div>
+    </div>
+    <div class="col">
+      <div class="">% Realizzazione EXTRA</div>
+      <div class="" [ngClass]="{'text-success' : miniPersonReport.percent_extraordinary === 100, 'text-danger' : miniPersonReport.percent_extraordinary <= 60}">{{miniPersonReport.percent_extraordinary | number: '1.1-1'}} %</div>
     </div>
   </div>
 
