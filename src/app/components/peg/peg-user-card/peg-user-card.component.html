@@ -1,6 +1,6 @@
 <div class="col rounded card p-4 justify-content-between" [ngStyle]="{'background-color': bgcolor, 'color': textcolor}">
     
-  <div class="col-8">
+
 
     <div class="h3 mb-0 pb-0">
       {{miniPersonReport.name}}
@@ -9,8 +9,8 @@
       {{miniPersonReport.surname}}
     </div>
 
-    <div class="row">
-      <div class="col-6">
+    <div class="row justify-content-end mb-4 pe-4">
+      <div class="col-5 text-end">
   
         <div class="card-titles text-muted">{{ordinaryTitle}}</div>
         <div class="mb-3">{{miniPersonReport.ordinary_count}}</div>
@@ -19,7 +19,7 @@
         <div class="" [ngClass]="{'text-success' : miniPersonReport.percent_ordinary === 100, 'text-danger' : miniPersonReport.percent_ordinary <= 60}">{{miniPersonReport.percent_ordinary  | number: '1.1-1'}} %</div>
   
       </div>
-      <div class="col-6">
+      <div class="col-5 text-end">
         <div class="card-titles text-muted">{{extraordinaryTitle}}</div>
         <div class="mb-3">{{miniPersonReport.extraordinary_count}}</div>
       
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-  </div>
+ 
   <div class="col-12">
     <div style="display: block;">
       <canvas baseChart

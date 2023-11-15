@@ -45,15 +45,23 @@ export class PegUserCardComponent implements OnInit {
   // chart
   public barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      x: {
+      },
+      y: {
+        min: 0,
+        max: 100,
+      },
+    },
   };
 
   public barChartLabels = ['Ordinary', 'Extraordinary'];
   public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
+  public barChartLegend = false;
 
   public barChartData = [
-    { data: [75, 25], label: 'Percentage' }
+    { data: [75, 25], label: 'Percentage', colors: ['#ffffff', '#gggggg'] }
   ];
 
   showBarChart: boolean = false;  //needed because the cart doesn't render properly if the data are not already populated correctly
@@ -71,7 +79,7 @@ export class PegUserCardComponent implements OnInit {
     let data = { year: this.year, id: this.idUser }
     this.api.getMinPersonReport(data).subscribe(r => {
       this.miniPersonReport = r.data;
-      //this.populateChart();
+      this.barChartData = [{ data: [this.miniPersonReport.percent_ordinary, this.miniPersonReport.percent_extraordinary], label: 'perc', colors: ['#ffffff', '#dddddd'] }];
     })
   }
 
