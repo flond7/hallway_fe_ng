@@ -1,11 +1,9 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { PegPerson, PegOffice, PegGoal, PegPoOffice } from 'src/interfaces';
+import { PegGoal } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
 import * as GC from '../../../../constants';
-import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { ChartOptions, ChartType, ChartDataset, ChartConfiguration } from 'chart.js';
+import { ChartConfiguration, ChartOptions, ChartDataset, ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-peg-user-card',
@@ -15,17 +13,10 @@ import { ChartOptions, ChartType, ChartDataset, ChartConfiguration } from 'chart
 export class PegUserCardComponent implements OnInit {
   @Input() year: number = 0;
   @Input() idUser: string = '';
+  @Input() bgcolor: string = '';
+  @Input() textcolor: string = '';
 
   userId: number = 0; //used to cast the key arriving as a string into a number
-  userList$: PegPerson[] = []   //used to retrieve name and surname
-  /* selectedUser: PegPerson = {
-    id: 0,
-    name: '',
-    surname: '',
-    jobCategory: '',
-    manager: false,
-    managerOfOffices: []
-  } */
 
   miniPersonReport = {
     name: '',
@@ -41,70 +32,69 @@ export class PegUserCardComponent implements OnInit {
   extraNumero: number = 0;
   ordNumero: number = 0;
 
-  totalWeight_3112: number = 0;
-  totalWeight: number = 0;
-  totalPercent: number = 0;
+  /*   totalWeight_3112: number = 0;
+    totalWeight: number = 0;
+    totalPercent: number = 0;
+   */
 
-  // Doughnut charts options
-  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = { responsive: true, transitions: {}};
-  public totalChartData: ChartConfiguration<'doughnut'>['data']['datasets'] = [
-    { data: [0, 0], backgroundColor: ['#8bc34a', '#505154'], borderWidth: 0 }
-  ]
-  totalShowChart: boolean = false;
 
-  constructor(private api: PegApiService) {
-    /* api.userListData$.subscribe(r => {
-      this.userList$ = r;
-      //find the user based on id and perform check to ensure is not undefined
-      const foundUser = this.userList$.find(user => user.id === this.userId);
-      if (foundUser !== undefined) {
-        this.selectedUser = foundUser;
-      }
-    }) */
-  }
+  // strings and messages
+  extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
+  ordinaryTitle: string = GC.PEG_GOAL_ORDINARY_TITLE;
+
+  // chart
+  public barChartOptions = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+
+  public barChartLabels = ['Ordinary', 'Extraordinary'];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+
+  public barChartData = [
+    { data: [75, 25], label: 'Percentage' }
+  ];
+
+  showBarChart: boolean = false;  //needed because the cart doesn't render properly if the data are not already populated correctly
+
+
+
+
+  constructor(private api: PegApiService) { }
 
   ngOnInit() {
     //cast userId input in number
     this.userId = Number(this.idUser);
-    
+
     //get report to access
     let data = { year: this.year, id: this.idUser }
-    this.api.getMinPersonReport(data).subscribe(r=> {
+    this.api.getMinPersonReport(data).subscribe(r => {
       this.miniPersonReport = r.data;
+      //this.populateChart();
     })
-    /* this.api.getReportPerson(data).subscribe(r => {
-      this.goalList = r.data;
-      //divide ordinar and extraordinary goals
-      let extraordinaryGoalList = this.goalList.map(g => g.type === 'extraordinaryy');
-      let ordinaryGoalList = this.goalList.map(g => g.type === 'ordinaryy');
-      //count the goals
-      this.extraNumero = extraordinaryGoalList.length;
-      this.ordNumero = ordinaryGoalList.length;
-      //calculate percentage
-      this.calculateTotalPercent();
-    }) */
-
-    //find selected user based on id
-    //this.selectedUser = this.userList$.find(user => user.id === this.userId)
-
   }
 
-  calculateTotalPercent() {
-    /* this.totalWeight_3112 = this.goalList.reduce((sum, goal) => {
-      if (goal.weight_3112 !== undefined) {
-        return sum + goal.weight_3112;
-      }
-      return sum;
-    }, 0);
-    this.totalWeight = this.goalList.reduce((sum, goal) => sum + goal.weight, 0);
-    //this.updateDoughnutChart();
-    this.totalPercent = (this.totalWeight_3112 / this.totalWeight) * 100;
-     */this.createDataChart();
-  }
+/* populateChart() {
+  this.barChartData.labels = ["Goals"];
 
-  createDataChart() {
-    this.totalShowChart = true
-  }
+  console.log(this.miniPersonReport.percent_extraordinary)
+  const newExtra = {
+    //data: this.miniPersonReport.map(g => g.extraordinary),
+    //data: [Math.round(this.miniPersonReport.percent_extraordinary)],
+    data: [1, 8],
+    backgroundColor: GC.COLOR_PRIMARY_PEG,
+    label: 'S'}
+  this.barChartData.datasets.push(newExtra);
 
+  const newOrd = {
+    //data: [Math.round(this.miniPersonReport.percent_ordinary)],
+    data: [4,9],
+    backgroundColor: GC.COLOR_WHITE,
+    label: 'OO'};
+  this.barChartData.datasets.push(newOrd);
 
+  this.showBarChart = true;
+  console.log(this.barChartData)
+}*/
 }
