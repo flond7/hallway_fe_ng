@@ -45,8 +45,8 @@ export const PEG_PDF_ACCESS_KEYS: Array<string> = ['Nome','Ufficio', 'Peso', '% 
 export const PEG_PDF_STATS_TEXT: string = "Percentuale di obbiettivi assegnati e realizzati al 31/12: "
 export const PEG_MSG_MANAGER_THIS_IS: string = "L'utente selezionato è una PO e gli obbiettivi visualizzati sono quelli dei suoi uffici"
 export const PEG_MSG_AVARAGE: string = "La media dei valori degli obbiettivi assegnati agli utenti di quest'ente è di "
-export const PEG_MSG_AVARAGE_UPPER: string = "Questo utente sono stati assegnati obbiettivi di valori più alti della media (compiti più difficili)";
-export const PEG_MSG_AVARAGE_LOWER: string = "Questo utente sono stati assegnati obbiettivi di valori più bassi della media (compiti più facili)";
+export const PEG_MSG_AVARAGE_UPPER: string = "A questo utente sono stati assegnati obbiettivi di valori più alti della media (compiti più difficili)";
+export const PEG_MSG_AVARAGE_LOWER: string = "A questo utente sono stati assegnati obbiettivi di valori più bassi della media (compiti più facili)";
 
 //ACCESSO AGLI ATTI
 export const AA_APPLICANT_TYPE: Array<string> = ['Privato cittadino', 'Ente pubblico'];
