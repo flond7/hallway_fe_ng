@@ -13,6 +13,9 @@
           <div class="btn border border-primary-peg text-primary-peg" (click)="openModal(officeModal)">Scegli ></div>
         </div>
         <div *ngIf="showWidgets === true" class="col">
+          <app-peg-card title="Persone coinvolte" [number]="people" icon="faUser" [bgcolor]="white2" [textcolor]="dark"></app-peg-card>
+        </div>
+        <div *ngIf="showWidgets === true" class="col">
           <app-peg-card title="Obbiettivi ordinari" [number]="ordNumber" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
         <div *ngIf="showWidgets === true" class="col">
@@ -83,7 +86,7 @@
           </div>
         </div>
 
-        <div class="col-4 pt-5">
+        <div *ngIf="selectedOffice.id !== 0" class="col-4 pt-5">
           <canvas id="doughnutChart" *ngIf="showChart === true" baseChart [datasets]="totalChartData" [options]="doughnutChartOptions" [type]="'doughnut'"></canvas>
           <h1 class="big text-bold text-center">{{this.totalPercent | number: '1.1-1'}} %</h1>
           <p class="text-center">{{this.totalWeight_3112}} / {{this.totalWeight}}</p>

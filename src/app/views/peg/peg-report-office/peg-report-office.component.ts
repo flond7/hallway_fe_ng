@@ -67,29 +67,10 @@ export class PegReportOfficeComponent {
   goalList: PegGoal[] = [];                     //goal list is the concat of the extra and ordinary goal lists
   extraordinaryGoalList: PegGoal[] = [];
   ordinaryGoalList: PegGoal[] = [];
-  emptyGoal: PegGoal = {
-    id: 0,
-    name: '',
-    description: '',
-    weight: 0,
-    manager: null,
-    office: {
-      id: 0,
-      name: ''
-    },
-    year: 0,
-    involvedPeople: [],
-    percent_3006: 0,
-    weight_3006: 0,
-    percent_3112: 0,
-    weight_3112: 0,
-    type: '',
-  };
 
   // total calculation
   extraordinaryTotals: number[] = [];   //these arrays contain the result of getTotals(), weight, weight3006, weight3112, so you can access them as xxxxTotal[0], [1] or [2] in the template
   ordinaryTotals: number[] = [];
-
 
   // widgets vars
   showWidgets: boolean = false;
@@ -133,7 +114,6 @@ export class PegReportOfficeComponent {
     this.modalRefOffice = this.bsModalService.show(modal);
   }
 
-
   selectOffice(office: PegOffice) {
     //delete the chart from the page to re-render it after getting new data
     this.showChart = false;
@@ -157,6 +137,17 @@ export class PegReportOfficeComponent {
     this.showWidgets = true;
     this.ordNumber = this.ordinaryGoalList.length;
     this.extraNumber = this.extraordinaryGoalList.length;
+
+    //create an object with the id as key and the number of times it is included in goals as value (keep it in case it's needed after for some more stats), 
+    //then iterate trought each goal and add a counter for that person
+    const countMap: { [key: number]: number } = {};
+    this.goalList.forEach(item => {
+      item.involvedPeople.forEach(id => {
+        countMap[id] = (countMap[id] || 0) + 1;
+      });
+    });
+    //transform the object in an array and get the length
+    this.people = Object.keys(countMap).length;
   }
 
   getTotals(list: PegGoal[]) {
