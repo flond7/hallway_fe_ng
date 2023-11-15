@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { PegPerson, PegGoal } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
-import { faFilePdf, faPlus, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faPlus, faExclamationTriangle, faWeight } from '@fortawesome/free-solid-svg-icons';
 import { ChartConfiguration } from 'chart.js';
 import * as GC from '../../../../constants';
 
@@ -60,11 +60,15 @@ export class PegReportPersonComponent {
   extraNumber: number = 0;
 
   // FA icons
-  faFilePdf = faFilePdf; faPlus = faPlus; faExclamationTriangle = faExclamationTriangle;
+  faFilePdf = faFilePdf; faPlus = faPlus; faExclamationTriangle = faExclamationTriangle; faWeight = faWeight;
 
   // strings and titles
   extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
   ordinaryTitle: string = GC.PEG_GOAL_ORDINARY_TITLE;
+  poMessage = GC.PEG_MSG_MANAGER_THIS_IS;
+  avgMessage = GC.PEG_MSG_AVARAGE;
+  avgMessageLower = GC.PEG_MSG_AVARAGE_LOWER;
+  avgMessageUpper = GC.PEG_MSG_AVARAGE_UPPER;
 
   // Css control
   primarypeg = GC.COLOR_PRIMARY_PEG;
@@ -74,8 +78,10 @@ export class PegReportPersonComponent {
   white2 = GC.COLOR_WHITE_TWO;
   white3 = GC.COLOR_WHITE_THREE;
 
-  // Messages
-  poMessage = GC.PEG_MANAGER_THIS_IS;
+  // Avarage vars
+  avarage: number = 0;
+  lower: boolean = false;
+  upper: boolean = false;  //var used to keep track if a person has been assigned an unusual weight of goals (too much or too little)
 
   // Doughnut charts options
   public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = { responsive: true, transitions: {} };
@@ -176,6 +182,25 @@ export class PegReportPersonComponent {
       return sum;
     }, 0);
     this.totalWeight = this.goalList.reduce((sum, goal) => sum + goal.weight, 0);
+    //calculate difference between avarage weight and person weight
+    let data = {year: this.year};
+    this.api.getAvarageWeight(data).subscribe(r => {
+      this.avarage = r.average_weight;
+      let sd = r.standard_deviation;
+      let bottom = this.avarage - sd;
+      let top = this.avarage + sd;
+      if (bottom > this.totalWeight) {
+        this.lower = true;
+        this.upper = false;
+      } else if (this.totalWeight > top) {
+        this.lower = false;
+        this.upper = true;
+      }
+      console.log('avg: '+this.avarage+' this.totalWeight: '+this.totalWeight);
+      console.log('bottom: '+bottom+' top: '+top+' sd: '+sd);
+      console.log('this.ower: '+this.lower+' upper: ' + this.upper);
+    })
+
     this.updateDoughnutChart();
     this.totalPercent = (this.totalWeight_3112 / this.totalWeight) * 100;
     this.year = this.goalList[0].year;  //needed for the pdf title

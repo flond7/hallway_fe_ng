@@ -81,6 +81,13 @@
                     <div class="col-2 text-center">{{ordinaryTotals[2]}}</div>
                 </div>
 
+                <div *ngIf="this.selectedUser.manager === false && (lower === true || upper === true)" class="alert alert-warning">
+                    <fa-icon [icon]='faWeight' class=""></fa-icon> {{this.avgMessage}} {{avarage | number: '1.1-1'}} 
+                    <div *ngIf="lower === true"class="">{{avgMessageLower}}</div>
+                    <div *ngIf="upper === true"class="">{{avgMessageUpper}}</div>
+                </div>
+    
+
             </div>
             
             <div *ngIf="selectedUser.id !== 0" class="my-3">
