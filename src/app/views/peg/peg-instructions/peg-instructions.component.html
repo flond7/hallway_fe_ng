@@ -1,0 +1,72 @@
+<app-peg-menu></app-peg-menu>
+
+<div class="container">
+  <div class="row w-100">
+    <div class="col-12">
+      <div class="">
+        <ul>
+          <li><a href="#aggiungi">Aggiungi obbiettivi</a></li>
+          <li><a href="#modifica">Modifica obbiettivi</a></li>
+          <li><a href="#elimina">Elimina obbiettivi</a></li>
+          <li><a href="#reportPersona">Report utente</a></li>
+          <li><a href="#reportPo">Report PO</a></li>
+          <li><a href="#reportUfficio">Report ufficio</a></li>
+        </ul>
+      </div>
+      <div id="aggiungi" class="">
+        <h2 class="">Aggiungi obbiettivi</h2>
+        <p>Gli obbiettivi sono distinti in: <strong>{{ordTitle}}</strong> e <strong>{{extraTitle}}</strong>.
+        <p>Ciascun obbiettivo ha:</p>
+        <ul>
+          <li>un <strong>nome</strong></li>
+          <li>un <strong>valore</strong> espresso in punti da 1 a 100</li>
+          <li>una <strong>percentuale di realizzazione al 30/06</strong></li>
+          <li>una <strong>percentuale di realizzazione al 31/12</strong></li>
+          <li>un <strong>punteggio al 30/06</strong> che viene calcolato automaticamente dal sistema moltiplicando il valore dell'obbiettivo per la percentuale di realizzazione al 30/06</li>
+          <li>un <strong>punteggio al 30/06</strong> che viene calcolato automaticamente dal sistema moltiplicando il valore dell'obbiettivo per la percentuale di realizzazione al 31/12</li>
+          <li>un elenco di <strong>persone assegnate</strong> alla realizzazione dell'obbiettivo</li>
+        </ul>
+        <p>Gli obbiettivi, raggruppatin in {{ordTitle}} e {{extraTitle}}, vengono inseriti tutti assieme dalla sezione "Aggiungi"</p>
+        <p>Al momento dell'inserimento la somma di tutti gli obbiettivi di un gruppo dovrá essere pari a 100. Per assegnare il valore a un obbiettivo é possibile immaginare che i 100 punti rappresentino il 100% del lavoro dell'ufficio da suddividere nei diversi obbiettivi in base alle risorse che questi richiedono e occupano.</p>
+        <p>I due gruppi, {{ordTitle}} e {{extraTitle}}, vengono considerati separatamente quind per ciascun grupop la somma degli obbiettivi dovrá essere 100. </p>
+    </div>
+    </div>
+    <div id="modifica" class="">
+      <h2 class="">Modifica obbiettivo</h2>
+      <p>Una volta inseriti gli obbiettivi possono essere modificati dalla sezione "Modifica".</p>
+      <p>E' necessario selezionare anno e ufficio per visualizzare il relativo elenco degli obbiettivi e modificare uno o piú parametri.</p>
+      <p>Da questa sezione é anche possibile aggiungere nuovi obbiettivi o eliminarne di esistenti. In entrambi i casi, comunque, bisogna fare attenzione a rimodulare il valore degli obbiettivi restanti in modo che la somma totale dei valori risulti sempre 100.</p>
+    </div>
+    <div id="elimina" class="">
+      <h2 class="">Elimina obbiettivo</h2>
+      <p>Per eliminare un obbiettivo é necessario andare nella pagina di Modifica, selezionare l'ufficio e l'anno corrispondete, quindi cliccare sull'icona rossa con il cestino sulla riga corrispondente all'obbiettivo da eliminare.</p>
+      <p>La cancellazione avrá effetto solo dopo aver cliccato sul pulsante "Salva" a fondo pagina.</p>
+    </div>
+    <div id="reportPersona" class="">
+      <h2 class="">Report persona</h2>
+      <p>Per ottenere il report delle attivitá di un utente é necessario andare nella sezione Repor persona, selezionare l'anno e la persona di cui si vuole vedere il report</p>
+      <p>Sulla destra verrá visualizzato il numero totale degli obbiettivi {{ordTitle}} e {{extraTitle}} assegnati all'utente. Piú in basso a sinistra comparirá l'elenco degli obbiettivi distinti in {{ordTitle}} e {{extraTitle}}. PEr ciascun obbiettivo verrá visualizzato l'ufficio a cui quell'obbiettivo é associato, il valore espresso in punti, la percentuale di realizzazione al 31/12.</p>
+      <p>Sulla destra un grafico a ciambella visualizza la percentuale degli obbiettivi totali ({{ordTitle}} e {{extraTitle}}) raggiunta dall-utente.</p>
+      <p>Per contestualizzare il punteggio percentuale il sistema somma, per ciascun utente, i valori degli obbiettivi assegnati e calcola la media e la deviazione standard. Nel caso i punteggi di un utente risultino fuori dal range [media - deviazione standar, media + deviazione standard] visualizza un alerte segnalando la situazione (es: agli utenti di un ente vengono assegnati, in media obbiettivi per un valore di 100 punti con una deviazione standard di 20 punti. La somma del valore degli obbiettivi dell'utente A é di 32, sulla sua pagina di report comparirá un allert: "A questo utente sono stati assegnati obbiettivi di valori più bassi della media (compiti più facili)</p>
+      <p>L'indicazione dell'allert puó essere utile per contestualizzare la percentuale di realizzazione degli obbiettivi. Se un utente ha una percentuale bassa ma l'allert avvisa che a quell'utente sono stati assegnati obbiettivi piú impegnativi, allora é possibile prendere in considerazione una redistribuzione di carichi di lavoro</p>
+      <p>In basso a sinistra il pulsante "Esporta in pdf" crea un file pdf con le taballe degli obbiettivi e il grafico a ciambella.</p>
+    </div>
+    <div id="reportPo" class="">
+      <h2 class="">Report PO</h2>
+      <p>Quando nella pagina Report persona si seleziona un utente che é una PO, viene visualizzato un alert che segnala il diverso ruolo della persona.</p>
+      <p>Dati e statistiche visualizzate per le PO sono le stesse degli altri utenti individuali con la differenza che ad essere visualizzati, e utilizzati per le statistiche, sono tutti gli obbiettivi degli uffici di cui la PO selezioanta é a capo</p>
+      <p>I dati delle po non vengono considerati per il calcolo delle medie dei punteggi e della deviazione standard degli altri utenti perché i loro punteggi, comprendendo gli obbiettivi degli interi uffici, saranno verosimilmente alti e fuori scala.</p>
+      <p>Per lo stesso motivo nel caso delle PO non vengono visualizzati allert relativi al valore degli obbiettivi assegnati</p>
+      <p>In basso a sinistra il pulsante "Esporta in pdf" crea un file pdf con le taballe degli obbiettivi e il grafico a ciambella.</p>
+    </div>
+    <div id="reportUfficio" class="">
+      <h2 class="">Report ufficio</h2>
+      <p>Dalla sezione "Report ufficio" é possibile visualizzare il report, distinto per anno, degli obbiettivi {{ordTitle}} e {{extraTitle}} e il numero delle persone impiegati per svolgerli.</p>
+      <p>Piú in basso, come accade nei report individuali, vengono visualizzati gli elenchi degli obbiettivi distinti in {{ordTitle}} e {{extraTitle}}. E'ossibile visualizzare il nome dell'obbiettivo, il valore, la percentuale di realizzazione al 31/12 e i punti valore parametrati alla percentuale di realizzazione.</p>
+      <p>Sulla destra il grafico a ciambella visualizza la percentuale di realizzazione degli obbiettivi al 31/12</p>
+      <p>Nella parte bassa, a vine pagina, vengono visualizzate delle schede riassuntive, una per ciascun utente che partecipa ad almeno un obbiettivo dell'ufficio. Nella scheda viene visualizzato il nome della persona, la sua categorai di inquadramento, il numero degli obbiettivi totali che vedono coinvolta questa persona distinti in {{ordTitle}} e {{extraTitle}}, e la percentuale di realizzazione, al 31/12, degli obbiettivi per cui questa persona collabora.</p>
+      <p>Il grafico a barre che si trova nella parte piú bassa della scheda visualizza la suddivisione grafica in {{ordTitle}} e {{extraTitle}} dell'utente.</p>
+      <p>In basso a sinistra il pulsante "Esporta in pdf" crea un file pdf con le taballe degli obbiettivi e il grafico a ciambella.</p>
+    </div>
+  </div>
+</div>
