@@ -62,6 +62,8 @@ export class PegReportOfficeComponent {
   white1 = GC.COLOR_WHITE_ONE;
   white2 = GC.COLOR_WHITE_TWO;
   white3 = GC.COLOR_WHITE_THREE;
+  dark1 = GC.COLOR_DARK_ONE;
+
 
   // Goal list
   goalList: PegGoal[] = [];                     //goal list is the concat of the extra and ordinary goal lists
@@ -147,7 +149,6 @@ export class PegReportOfficeComponent {
     });
     //transform the object in an array and get the length
     this.people = Object.keys(this.countMap).length;
-    console.log(this.countMap);
   }
 
   getTotals(list: PegGoal[]) {
@@ -185,7 +186,6 @@ export class PegReportOfficeComponent {
     let failure = this.totalWeight - this.totalWeight_3112
     this.totalChartData[0].data = [this.totalWeight_3112, failure]
     this.showChart = true;
-    console.log(this.totalChartData[0].data)
   }
 
   generatePdf() {
