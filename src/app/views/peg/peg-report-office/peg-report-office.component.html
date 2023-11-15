@@ -93,9 +93,9 @@
         </div>
       </div>
 
-      <div class="row">
-        <div *ngFor="let user of countMap | keyvalue" class="col-4">{{user.key}}
-          <app-peg-user-card [year]="this.year" [idUser]="user.key"></app-peg-user-card>
+      <div class="row my-5">
+        <div *ngFor="let user of countMap | keyvalue" class="col-4">
+          <app-peg-user-card [bgcolor]="dark1" [textcolor]="white" [year]="this.year" [idUser]="user.key"></app-peg-user-card>
         </div>
       </div>
 
