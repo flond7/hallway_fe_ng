@@ -5,7 +5,7 @@ import { PegApiService } from '../../../services/peg-api.service';
 import * as GC from '../../../../constants';
 import { faFloppyDisk, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { ChartOptions, ChartType, ChartDataset, ChartConfiguration } from 'chart.js';
 
 @Component({
   selector: 'app-peg-user-card',
@@ -35,6 +35,11 @@ export class PegUserCardComponent {
   totalWeight: number = 0;
   totalPercent: number = 0;
 
+  // Doughnut charts options
+  public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = { responsive: true, transitions: {}};
+  public totalChartData: ChartConfiguration<'doughnut'>['data']['datasets'] = [
+    { data: [0, 0], backgroundColor: ['#8bc34a', '#505154'], borderWidth: 0 }
+  ]
   totalShowChart: boolean = false;
 
   constructor(private api: PegApiService) {

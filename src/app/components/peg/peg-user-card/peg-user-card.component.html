@@ -17,7 +17,7 @@
     </div>
     <div class="col">
       <div class="">% Realizzazione</div>
-      <div class="" [ngClass]="{'text-success' : totalPercent === 100; 'text-danger' : totalPercent <= 60}">{{totalPercent}}</div>
+      <div class="" [ngClass]="{'text-success' : totalPercent === 100, 'text-danger' : totalPercent <= 60}">{{totalPercent}}</div>
     </div>
   </div>
 
