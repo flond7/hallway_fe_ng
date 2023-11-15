@@ -79,8 +79,8 @@ export const PDF_STYLE = {
     bold: true
   },
   h1: {
-    fontSize: 22,
-    bold: true,
+    fontSize: 25,
+    bold: false,
   },
   h2: {
     fontSize: 18,

@@ -231,6 +231,8 @@ export class PegReportOfficeComponent {
                     layout: 'lightHorizontalLines',
                     width: '60%',
                   },
+                  { text: ' ' }, //empty line for aesthetic purposes
+                  { text: 'Personale coinvolto: '+this.people+' persone', style:'h2'},
                 ],
                 [
                   { image: chartImage, width: 250 },
@@ -248,7 +250,6 @@ export class PegReportOfficeComponent {
       })
     }
   }
-
 
   createPdfTable() {
     this.ordinaryGoalList.map(goal => {
