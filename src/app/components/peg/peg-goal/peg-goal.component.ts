@@ -79,18 +79,22 @@ export class PegGoalComponent implements OnInit {
     //if the weights already exist keep them, otherwise calculate them base on percentages
     this.computeWeights();
 
-    //set the typù
+    //set the type
     this.inputGoal.type = this.typeInput;
+
+    //reset the involved person array to empty, needed to restart the array for a new component
+    //this.inputGoal.involvedPeople = [];
 
     //if inputGoal has involved people keep it and populate involvedForVisualization
     if (this.inputGoal.involvedPeople.length > 0) {
       this.involvedForVisualization = this.inputGoal.involvedPeople.map((userId: number) => {
         return this.userList.find((user) => user.id === userId) as PegPerson;
       });
+    } else {
+      //reset the involved person array to empty, needed to restart the array for a new component
+      this.inputGoal.involvedPeople = [];
     }
 
-    //reset the involved person array to empty
-    //this.inputGoal.involvedPeople = [];
   }
 
   computeWeights() {
