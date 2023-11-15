@@ -1,7 +1,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { PegPerson, PegGoal } from 'src/interfaces';
 import { PegApiService } from '../../../services/peg-api.service';
-import { faFilePdf, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faPlus, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { ChartConfiguration } from 'chart.js';
 import * as GC from '../../../../constants';
 
@@ -22,7 +22,6 @@ enum PageOrientation {
   Portrait = 'portrait',
   Landscape = 'landscape',
 }
-
 
 @Component({
   selector: 'app-peg-report-person',
@@ -61,7 +60,7 @@ export class PegReportPersonComponent {
   extraNumber: number = 0;
 
   // FA icons
-  faFilePdf = faFilePdf; faPlus = faPlus;
+  faFilePdf = faFilePdf; faPlus = faPlus; faExclamationTriangle = faExclamationTriangle;
 
   // strings and titles
   extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
@@ -74,6 +73,9 @@ export class PegReportPersonComponent {
   white1 = GC.COLOR_WHITE_ONE;
   white2 = GC.COLOR_WHITE_TWO;
   white3 = GC.COLOR_WHITE_THREE;
+
+  // Messages
+  poMessage = GC.PEG_MANAGER_THIS_IS;
 
   // Doughnut charts options
   public doughnutChartOptions: ChartConfiguration<'doughnut'>['options'] = { responsive: true, transitions: {} };
