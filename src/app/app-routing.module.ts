@@ -9,6 +9,7 @@ import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.co
 import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-reports.component';
 import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
 import { PegReportPersonComponent } from './views/peg/peg-report-person/peg-report-person.component';
+import { PegReportOfficeComponent } from './views/peg/peg-report-office/peg-report-office.component';
 import { PegEditComponent } from './views/peg/peg-edit/peg-edit.component';
 
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'peg-new-goal', component: PegNewGoalComponent },
   { path: 'peg-edit', component: PegNewGoalComponent },
   { path: 'peg-report-person', component: PegReportPersonComponent },
+  { path: 'peg-report-office', component: PegReportOfficeComponent },
   //{ path: 'peg-edit', component: PegEditComponent },
   
   { path: 'aa-new-access', component: AaNewAccessComponent },
