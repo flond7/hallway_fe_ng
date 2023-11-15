@@ -110,7 +110,9 @@ export class PegApiService {
   checkExistingRecords(data: any): Observable<any> {
     return this.httpClient.post(baseURL + 'api_peg/check_existing_goals', data, this.httpOptions)
   }
-
+  getAvarageWeight(data: any): Observable<any> {
+    return this.httpClient.post(baseURL + 'api_peg/get_average_weight', data, this.httpOptions)
+  }
 
 
   /* findSingleUser(cf:any) {
