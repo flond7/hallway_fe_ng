@@ -111,18 +111,36 @@ export class PegReportPersonComponent {
     this.showChart = false;
     this.selectedUser = user;
     const data = { year: this.year, id: this.selectedUser.id }
-    this.api.getReportPerson(data).subscribe(r => {
-      this.goalList = r.data;
-      ///separate goals in ordinary and extraordinary
-      this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
-      this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
-      //calculate values for widget
-      this.countGoals();
-      this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
-      this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
-      //calculate values for the chart and visualize it
-      this.personPointsCalculation();
-    })
+
+    //if the person is a manager use a different api to retrieve all the goals the person is responsable for
+    if (this.selectedUser.manager === true) {
+      this.api.getReportPo(data).subscribe(r => {
+        this.goalList = r.data;
+        ///separate goals in ordinary and extraordinary
+        this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
+        this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
+        //calculate values for widget
+        this.countGoals();
+        this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
+        this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
+        //calculate values for the chart and visualize it
+        this.personPointsCalculation();
+      })
+    } else {
+      //if the person is not  manager use a different api 
+      this.api.getReportPerson(data).subscribe(r => {
+        this.goalList = r.data;
+        ///separate goals in ordinary and extraordinary
+        this.ordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "ordinary");
+        this.extraordinaryGoalList = r.data.filter((g: PegGoal) => g.type === "extraordinary");
+        //calculate values for widget
+        this.countGoals();
+        this.extraordinaryTotals = this.getTotals(this.extraordinaryGoalList);
+        this.ordinaryTotals = this.getTotals(this.ordinaryGoalList);
+        //calculate values for the chart and visualize it
+        this.personPointsCalculation();
+      })
+    }
   }
 
   countGoals() {
@@ -188,7 +206,7 @@ export class PegReportPersonComponent {
             { text: this.selectedUser.name + ' ' + this.selectedUser.surname, style: 'name' },
             { text: ' ' }, //empty line for aesthetic purposes
             { text: GC.PEG_GOAL_EXTRAORDINARY_TITLE, style: 'h2' },
-            { 
+            {
               columns: [
                 [
                   {
@@ -216,7 +234,7 @@ export class PegReportPersonComponent {
                 [
                   { image: chartImage, width: 250 },
                   { text: ' ' }, //empty line for aesthetic purposes
-                  { text: 'Realizzazione: ' +  this.totalPercent.toFixed(2) + '%', style: 'h1'},
+                  { text: 'Realizzazione: ' + this.totalPercent.toFixed(2) + '%', style: 'h1' },
                 ]
               ]
             },
@@ -229,7 +247,6 @@ export class PegReportPersonComponent {
       })
     }
   }
-
 
   createPdfTable() {
     this.ordinaryGoalList.map(goal => {
