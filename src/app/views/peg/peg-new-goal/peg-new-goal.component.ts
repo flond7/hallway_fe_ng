@@ -21,6 +21,9 @@ export class PegNewGoalComponent {
   year: number = 0;
   addNew: boolean = true;   //to keep track if this is the add or the edit page
 
+  // page
+  page: string = "aggiungi";
+
   // Office selection and manager selection
   //officeList$: PegOffice[] = [];
   officeList$: PegPoOffice[] = [];
@@ -110,6 +113,7 @@ export class PegNewGoalComponent {
       console.log(edit)
       if (edit === 'true') {
         this.addNew = false;
+        this.page = 'modifica'
       }
     });
   }
