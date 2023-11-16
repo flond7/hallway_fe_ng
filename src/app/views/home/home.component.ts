@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { faBullseye } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faFolderOpen, faBullseye } from '@fortawesome/free-solid-svg-icons';
 import { PegApiService } from 'src/app/services/peg-api.service';
 import { AccessoAttiApiService } from 'src/app/services/accessoAtti-api.service';
 
@@ -12,8 +11,8 @@ import { AccessoAttiApiService } from 'src/app/services/accessoAtti-api.service'
 })
 export class HomeComponent {
 
-  faUsers = faUsers;
-  faBullseye = faBullseye;
+  // FA icons
+  faUsers = faUsers; faBullseye = faBullseye; faFolderOpen = faFolderOpen;
 
   permission_users = true;
   permission_peg : string | null = "";
