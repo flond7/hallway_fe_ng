@@ -5,11 +5,11 @@
     <div class="col-12">
 
       <div class="row pt-5">
-        <div class="col-4 big text-bold me-2">
-          Magnifica comunitá di montagna
+        <div class="col-5 big text-bold me-2">
+          {{namePA}}
         </div>
         <div class="col">
-          <app-peg-card title="Personale coinvolto" [number]="100" icon="faUser" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+          <app-peg-card title="Personale coinvolto" [number]="people" icon="faUser" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
         <div class="col">
           <app-peg-card title="{{ordTitle}}" [number]="ordSum" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
@@ -23,6 +23,10 @@
       </div>
 
       <div class="row my-5">
+        <div class="row my-3 border-bottom border-primary-peg">
+          <div class="h2 mb-0 py-2">Distribuzione obbiettivi</div>
+        </div>
+
           <div *ngIf="showBarChart === true" class="d-block h-12 w-100">
             <canvas baseChart class="chart" 
               [data]="barChartData"
@@ -39,25 +43,83 @@
         <div class="col-8">
 
           <div class="row mt-3 border-bottom border-primary-peg">
-            <div class="h4 mb-0 py-2">{{namePA}} - Anno {{year}}</div>
+            <div class="h2 mb-0 py-2">Uffici - Anno {{year}}</div>
           </div>
 
-          <div class="row h-1 align-content-center text-muted-peg mt-3 small">
-            <div class="col-8">Ufficio</div>
-            <div class="col-2">Ordinari</div>
-            <div class="col-2">Straordinari</div>
+          <div class="row h-1 align-content-center text-muted-peg mt-3 pb-0 small">
+            <div class="col-4"></div>
+            <div class="col-4 text-center">{{ordTitle}}</div>
+            <div class="col-4 text-center">{{extraTitle}}</div>
+          </div>
+          <div class="row h-1 align-content-center text-muted-peg small">
+            <div class="col-4">Ufficio</div>
+            <div class="col-1 text-center">Num</div>
+            <div class="col text-center">% 30/06</div>
+            <div class="col text-center">% 31/12</div>
+            <div class="col-1 text-center">Num</div>
+            <div class="col text-center">% 30/06</div>
+            <div class="col text-center">% 31/12</div>
           </div>
 
           <div *ngFor="let office of officeGoals" class="row h-3 align-content-center border-bottom border-muted-peg">
-            <div class="col-8 ">{{office.name}}</div>
-            <div class="col-2">{{office.ordinary}}</div>
-            <div class="col-2">{{office.extraordinary}}</div>
+            <div class="col-4">{{office.name}}</div>
+
+            <div class="col-1 text-center">{{office.ordinary}}</div>
+            <div class="col-3 d-flex">
+              <div class="col" >
+                <div class="text-center" *ngIf="office.perc_ord_3006 !== undefined">
+                  <span *ngIf="office.perc_ord_3006 <= 50" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_ord_3006 > 50 && office.sum_ord_weights3006 < 100," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_ord_3006 === 100" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                  <span class="px-1">{{office.perc_ord_3006 | number: '1.1-1'}}</span>
+                </div>
+              </div>
+              <div class="col border-right border-muted-peg" >
+                <div class="text-center" *ngIf="office.perc_ord_3112 !== undefined">
+                  <span *ngIf="office.perc_ord_3112 <= 50" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_ord_3112 > 50 && office.sum_ord_weights3112 < 100," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_ord_3112 === 100" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                  <span class="px-1">{{office.perc_ord_3112 | number: '1.1-1'}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-1 text-center">{{office.extraordinary}}</div>
+            <div class="col-3 d-flex">
+              <div class="col" >
+                <div class="text-center" *ngIf="office.perc_extra_3006 !== undefined">
+                  <span *ngIf="office.perc_extra_3006 <= 50" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_extra_3006 > 50 && office.sum_extra_weights3006 < 100," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_extra_3006 === 100" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                  <span class="px-1">{{office.perc_extra_3006 | number: '1.1-1'}}</span>
+                </div>
+              </div>
+              <div class="col" >
+                <div class="text-center" *ngIf="office.perc_extra_3112 !== undefined">
+                  <span *ngIf="office.perc_extra_3112 <= 50" class="text-danger"><fa-icon [icon]='faXmark' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_extra_3112 > 50 && office.sum_extra_weights3112 < 100," class="text-warning"><fa-icon [icon]='faExclamation' class="m-0"></fa-icon></span>
+                  <span *ngIf="office.perc_extra_3112 === 100" class="text-success"><fa-icon [icon]='faCheck' class="m-0"></fa-icon></span>
+                  <span class="px-1">{{office.perc_extra_3112 | number: '1.1-1'}}</span>
+                </div>
+              </div>
+            </div>
+            
+            
+
           </div>
 
         </div>
 
-        <div class="col-4 h-5">
-          <app-peg-card title="Media obbiettivi assegnati" [number]="avgGoal" icon="faUser" [bgcolor]="white2" [textcolor]="dark"></app-peg-card>
+        <div class="col-4 px-3">
+          <div class="row m-3 mb-4 border-bottom border-primary-peg">
+            <div class="h2 mb-0 py-2">Medie</div>
+          </div>
+          <div class="">
+            <app-peg-card-horizontal title="Media obbiettivi assegnati" [number]="avgGoal" icon="faBullseye" [bgcolor]="white2" [textcolor]="dark"></app-peg-card-horizontal>
+          </div>
+         <!--  <div class="mt-4">
+            <app-peg-card-horizontal title="Personale coinvolto" [number]="people" icon="faUser" [bgcolor]="white2" [textcolor]="dark"></app-peg-card-horizontal>
+          </div> -->
         </div>
 
 

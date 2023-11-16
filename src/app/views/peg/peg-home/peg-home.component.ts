@@ -2,11 +2,30 @@ import { Component } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartDataset, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { PegApiService } from '../../../services/peg-api.service';
+import { faExclamation, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { PegOffice } from 'src/interfaces';
 import * as GC from '../../../../constants'
 
 //needed to populate data for chart dinamically
-interface officeData { ordinary: 0, extraordinary: 0, name: '', sum_weights: 0, sum_weights3112: 0, people_involved: [] };
+interface officeData { 
+  ordinary: number, 
+  extraordinary: number, 
+  name: string, 
+  sum_ord_weights: number, 
+  sum_ord_weights3006: number, 
+  sum_ord_weights3112: number, 
+  sum_extra_weights: number, 
+  sum_extra_weights3006: number, 
+  sum_extra_weights3112: number, 
+  sum_weights: number, 
+  sum_weights3006: number, 
+  sum_weights3112: number, 
+  perc?: number,
+  perc_ord_3006?: number,
+  perc_ord_3112?: number,
+  perc_extra_3006?: number,
+  perc_extra_3112?: number
+};
 
 @Component({
   selector: 'app-peg-home',
@@ -65,6 +84,9 @@ export class PegHomeComponent {
   involvedPeople = [];
   avgGoal: number = 0;
 
+  // FA icons
+  faExclamation = faExclamation; faXmark = faXmark; faCheck = faCheck;
+
   constructor(private api: PegApiService) {
     const currentDate = new Date();
     this.year = currentDate.getFullYear();
@@ -107,13 +129,21 @@ export class PegHomeComponent {
     let sum_weights3112 = this.officeGoals.reduce((total, item) => total + item.sum_weights3112, 0);
     this.percent = (sum_weights3112 * 100) / sum_weights;
 
-    //calculate people involved
-
     //calculate average number of goals for person
     const values = Object.values(this.involvedPeople)
     let goalSum = values.reduce((total, value) => total + value, 0);
-    this.avgGoal = goalSum / values.length;     //length works on array only
+    this.people = values.length;
+    this.avgGoal = goalSum / this.people;     //length works on array only
+
+    //calculate percent
+    this.officeGoals.forEach(goal =>{
+      goal.perc_ord_3006 = (goal.sum_ord_weights3006 * 100 ) / goal.sum_ord_weights; 
+      goal.perc_ord_3112 = (goal.sum_ord_weights3112 * 100 ) / goal.sum_ord_weights; 
+      goal.perc_extra_3006 = (goal.sum_extra_weights3006 * 100 ) / goal.sum_extra_weights; 
+      goal.perc_extra_3112 = (goal.sum_extra_weights3112 * 100 ) / goal.sum_extra_weights; 
+    })
    
+    console.log(this.officeGoals);
   }
 
 }

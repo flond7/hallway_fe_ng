@@ -1,1 +1,19 @@
-<p>peg-card-horizontal works!</p>
+<div class="row rounded mx-3 p-3 pb-4 justify-content-between" [ngStyle]="{'background-color': bgcolor, 'color': textcolor}">
+    <div class="col-8 align-items-center d-flex">
+        {{title}}
+    </div>
+    <div class="col-4 align-items-end d-flex justify-content-end">
+        <div class="d-flex">
+            <div class="big text-bold me-2">
+                {{number | number: '1.1-1'}}
+            </div>
+            <div class="small-icon">
+                <fa-icon *ngIf="icon === 'faBullseye'" [icon]='faBullseye' class="icon-bg me-2"></fa-icon>
+                <fa-icon *ngIf="icon === 'faPercent'" [icon]='faPercent' class="icon-bg me-2"></fa-icon>
+                <fa-icon *ngIf="icon === 'faUser'" [icon]='faUser' class="icon-bg me-2"></fa-icon>
+                <fa-icon *ngIf="icon === 'faBuilding'" [icon]='faBuilding' class="icon-bg me-2"></fa-icon>
+            </div>
+        </div>
+    </div>
+
+</div>
