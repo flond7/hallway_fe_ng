@@ -32,15 +32,10 @@ export class PegUserCardComponent implements OnInit {
   extraNumero: number = 0;
   ordNumero: number = 0;
 
-  /*   totalWeight_3112: number = 0;
-    totalWeight: number = 0;
-    totalPercent: number = 0;
-   */
-
-
   // strings and messages
   extraordinaryTitle: string = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
   ordinaryTitle: string = GC.PEG_GOAL_ORDINARY_TITLE;
+  primaryPeg = GC.COLOR_PRIMARY_PEG;
 
   // chart
   public barChartOptions = {
@@ -61,7 +56,7 @@ export class PegUserCardComponent implements OnInit {
   public barChartLegend = false;
 
   public barChartData = [
-    { data: [75, 25], label: 'Percentage', colors: ['#ffffff', '#gggggg'] }
+    { data: [75, 25], label: 'Percentage', backgroundColor: ['#ffffff', '#ffffff' ] }
   ];
 
   showBarChart: boolean = false;  //needed because the cart doesn't render properly if the data are not already populated correctly
@@ -79,30 +74,8 @@ export class PegUserCardComponent implements OnInit {
     let data = { year: this.year, id: this.idUser }
     this.api.getMinPersonReport(data).subscribe(r => {
       this.miniPersonReport = r.data;
-      this.barChartData = [{ data: [this.miniPersonReport.percent_ordinary, this.miniPersonReport.percent_extraordinary], label: 'perc', colors: ['#ffffff', '#dddddd'] }];
+      this.barChartData = [{ data: [this.miniPersonReport.percent_ordinary, this.miniPersonReport.percent_extraordinary], label: 'perc', backgroundColor: ['#ffffff', this.primaryPeg] }];
     })
   }
 
-/* populateChart() {
-  this.barChartData.labels = ["Goals"];
-
-  console.log(this.miniPersonReport.percent_extraordinary)
-  const newExtra = {
-    //data: this.miniPersonReport.map(g => g.extraordinary),
-    //data: [Math.round(this.miniPersonReport.percent_extraordinary)],
-    data: [1, 8],
-    backgroundColor: GC.COLOR_PRIMARY_PEG,
-    label: 'S'}
-  this.barChartData.datasets.push(newExtra);
-
-  const newOrd = {
-    //data: [Math.round(this.miniPersonReport.percent_ordinary)],
-    data: [4,9],
-    backgroundColor: GC.COLOR_WHITE,
-    label: 'OO'};
-  this.barChartData.datasets.push(newOrd);
-
-  this.showBarChart = true;
-  console.log(this.barChartData)
-}*/
 }
