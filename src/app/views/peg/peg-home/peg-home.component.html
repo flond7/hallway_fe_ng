@@ -12,13 +12,13 @@
           <app-peg-card title="Personale coinvolto" [number]="100" icon="faUser" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
         <div class="col">
-          <app-peg-card title="Obbiettivi ordinari" [number]="100" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+          <app-peg-card title="{{ordTitle}}" [number]="ordSum" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
         <div class="col">
-          <app-peg-card title="Obbiettivi straordinari" [number]="100" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
+          <app-peg-card title="{{extraTitle}}" [number]="extraSum" icon="faBullseye" [bgcolor]="white" [textcolor]="dark"></app-peg-card>
         </div>
         <div class="col">
-          <app-peg-card title="Realizzazione al 31/12" [number]="100" icon="faPercent" [bgcolor]="primarypeg" [textcolor]="dark"></app-peg-card>
+          <app-peg-card title="Realizzazione al 31/12" [number]="percent" icon="faPercent" [bgcolor]="primarypeg" [textcolor]="dark"></app-peg-card>
         </div>
       </div>
 

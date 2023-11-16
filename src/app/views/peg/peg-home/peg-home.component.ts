@@ -6,7 +6,7 @@ import { PegOffice } from 'src/interfaces';
 import * as GC from '../../../../constants'
 
 //needed to populate data for chart dinamically
-interface officeData {ordinary: 0, extraordinary: 0, name: ''};
+interface officeData {ordinary: 0, extraordinary: 0, name: '', sum_weights: 0, sum_weights3112: 0, people_involved: []};
 
 @Component({
   selector: 'app-peg-home',
@@ -15,11 +15,18 @@ interface officeData {ordinary: 0, extraordinary: 0, name: ''};
 })
 export class PegHomeComponent {
 
+  //year
+  year: number = 0;
+
+  // string and messages
   namePA: string = GC.NAME_PA;
+  ordTitle= GC.PEG_GOAL_ORDINARY_TITLE;
+  extraTitle= GC.PEG_GOAL_EXTRAORDINARY_TITLE;
   primarypeg = GC.COLOR_PRIMARY_PEG;
   dark = GC.COLOR_DARK;
   white = GC.COLOR_WHITE;
 
+  // bar chart
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
@@ -45,12 +52,14 @@ export class PegHomeComponent {
   };
   showBarChart: boolean = false;  //needed because the cart doesn't render properly if the data are not already populated correctly
 
-
-  
+  //goals
   officeGoals: officeData[] = [];
 
-  //year
-  year: number = 0;
+  // widgets
+  ordSum: number = 0;
+  extraSum: number = 0;
+  percent: number = 0;
+  people: number = 0;
 
   constructor(private api: PegApiService) {
       const currentDate = new Date();
@@ -59,6 +68,7 @@ export class PegHomeComponent {
         console.log(r);
         this.officeGoals = r
         this.populateChart();
+        this.getWidgetData();
       })
     }
 
@@ -79,6 +89,18 @@ export class PegHomeComponent {
 
     this.showBarChart = true;
     console.log(this.barChartData)
+  }
+
+  getWidgetData(){
+    this.ordSum = this.officeGoals.reduce((total, item) => total + item.ordinary, 0);
+    this.extraSum = this.officeGoals.reduce((total, item) => total + item.extraordinary, 0);
+
+    //calculate percentage for the whole PA
+    let sum_weights = this.officeGoals.reduce((total, item ) => total + item.sum_weights, 0);
+    let sum_weights3112 = this.officeGoals.reduce((total, item ) => total + item.sum_weights3112, 0);
+    this.percent = (sum_weights3112 * 100) / sum_weights;
+
+    //calculate people involved
   }
 
 }
