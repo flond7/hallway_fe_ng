@@ -6,7 +6,7 @@ import { PegOffice } from 'src/interfaces';
 import * as GC from '../../../../constants'
 
 //needed to populate data for chart dinamically
-interface officeData {ordinary: 0, extraordinary: 0, name: '', sum_weights: 0, sum_weights3112: 0, people_involved: []};
+interface officeData { ordinary: 0, extraordinary: 0, name: '', sum_weights: 0, sum_weights3112: 0, people_involved: [] };
 
 @Component({
   selector: 'app-peg-home',
@@ -20,11 +20,13 @@ export class PegHomeComponent {
 
   // string and messages
   namePA: string = GC.NAME_PA;
-  ordTitle= GC.PEG_GOAL_ORDINARY_TITLE;
-  extraTitle= GC.PEG_GOAL_EXTRAORDINARY_TITLE;
+  ordTitle = GC.PEG_GOAL_ORDINARY_TITLE;
+  extraTitle = GC.PEG_GOAL_EXTRAORDINARY_TITLE;
   primarypeg = GC.COLOR_PRIMARY_PEG;
   dark = GC.COLOR_DARK;
   white = GC.COLOR_WHITE;
+  white1 = GC.COLOR_WHITE_ONE;
+  white2 = GC.COLOR_WHITE_TWO;
 
   // bar chart
   public barChartOptions: ChartConfiguration['options'] = {
@@ -60,17 +62,20 @@ export class PegHomeComponent {
   extraSum: number = 0;
   percent: number = 0;
   people: number = 0;
+  involvedPeople = [];
+  avgGoal: number = 0;
 
   constructor(private api: PegApiService) {
-      const currentDate = new Date();
-      this.year = currentDate.getFullYear();
-      this.api.getGoalNumbers({year: this.year}).subscribe(r => {
-        console.log(r);
-        this.officeGoals = r
-        this.populateChart();
-        this.getWidgetData();
-      })
-    }
+    const currentDate = new Date();
+    this.year = currentDate.getFullYear();
+    this.api.getGoalNumbers({ year: this.year }).subscribe(r => {
+      console.log(r);
+      this.officeGoals = r.data
+      this.involvedPeople = r.people_involved;
+      this.populateChart();
+      this.getWidgetData();
+    })
+  }
 
   populateChart() {
     this.barChartData.labels = this.officeGoals.map(g => g.name);
@@ -78,29 +83,37 @@ export class PegHomeComponent {
     const newExtra = {
       data: this.officeGoals.map(g => g.extraordinary),
       backgroundColor: GC.COLOR_PRIMARY_PEG,
-      label: GC.PEG_GOAL_EXTRAORDINARY_TITLE};
+      label: GC.PEG_GOAL_EXTRAORDINARY_TITLE
+    };
     this.barChartData.datasets.push(newExtra);
 
     const newOrd = {
       data: this.officeGoals.map(g => g.ordinary),
       backgroundColor: GC.COLOR_WHITE,
-      label: GC.PEG_GOAL_ORDINARY_TITLE};
+      label: GC.PEG_GOAL_ORDINARY_TITLE
+    };
     this.barChartData.datasets.push(newOrd);
 
     this.showBarChart = true;
     console.log(this.barChartData)
   }
 
-  getWidgetData(){
+  getWidgetData() {
     this.ordSum = this.officeGoals.reduce((total, item) => total + item.ordinary, 0);
     this.extraSum = this.officeGoals.reduce((total, item) => total + item.extraordinary, 0);
 
     //calculate percentage for the whole PA
-    let sum_weights = this.officeGoals.reduce((total, item ) => total + item.sum_weights, 0);
-    let sum_weights3112 = this.officeGoals.reduce((total, item ) => total + item.sum_weights3112, 0);
+    let sum_weights = this.officeGoals.reduce((total, item) => total + item.sum_weights, 0);
+    let sum_weights3112 = this.officeGoals.reduce((total, item) => total + item.sum_weights3112, 0);
     this.percent = (sum_weights3112 * 100) / sum_weights;
 
     //calculate people involved
+
+    //calculate average number of goals for person
+    const values = Object.values(this.involvedPeople)
+    let goalSum = values.reduce((total, value) => total + value, 0);
+    this.avgGoal = goalSum / values.length;     //length works on array only
+   
   }
 
 }
