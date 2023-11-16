@@ -1,9 +1,9 @@
-<app-peg-menu></app-peg-menu>
+<app-peg-menu [page]="'instructions'"></app-peg-menu>
 
 <div class="container">
   <div class="row w-100">
     <div class="col-12">
-      <div class="">
+      <div class="mt-5">
         <ul>
           <li><a href="#aggiungi">Aggiungi obbiettivi</a></li>
           <li><a href="#modifica">Modifica obbiettivi</a></li>
@@ -14,7 +14,7 @@
         </ul>
       </div>
       <div id="aggiungi" class="">
-        <h2 class="">Aggiungi obbiettivi</h2>
+        <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faPlus' class="smaller-icon me-3"></fa-icon>Aggiungi obbiettivi</h2>
         <p>Gli obbiettivi sono distinti in: <strong>{{ordTitle}}</strong> e <strong>{{extraTitle}}</strong>.
         <p>Ciascun obbiettivo ha:</p>
         <ul>
@@ -32,18 +32,18 @@
     </div>
     </div>
     <div id="modifica" class="">
-      <h2 class="">Modifica obbiettivo</h2>
+      <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faPen' class="smaller-icon me-3"></fa-icon>Modifica obbiettivo</h2>
       <p>Una volta inseriti gli obbiettivi possono essere modificati dalla sezione "Modifica".</p>
       <p>E' necessario selezionare anno e ufficio per visualizzare il relativo elenco degli obbiettivi e modificare uno o piú parametri.</p>
       <p>Da questa sezione é anche possibile aggiungere nuovi obbiettivi o eliminarne di esistenti. In entrambi i casi, comunque, bisogna fare attenzione a rimodulare il valore degli obbiettivi restanti in modo che la somma totale dei valori risulti sempre 100.</p>
     </div>
     <div id="elimina" class="">
-      <h2 class="">Elimina obbiettivo</h2>
+      <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faTrash' class="smaller-icon me-3"></fa-icon>Elimina obbiettivo</h2>
       <p>Per eliminare un obbiettivo é necessario andare nella pagina di Modifica, selezionare l'ufficio e l'anno corrispondete, quindi cliccare sull'icona rossa con il cestino sulla riga corrispondente all'obbiettivo da eliminare.</p>
       <p>La cancellazione avrá effetto solo dopo aver cliccato sul pulsante "Salva" a fondo pagina.</p>
     </div>
     <div id="reportPersona" class="">
-      <h2 class="">Report persona</h2>
+      <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faChartSimple' class="smaller-icon me-3"></fa-icon>Report persona</h2>
       <p>Per ottenere il report delle attivitá di un utente é necessario andare nella sezione Repor persona, selezionare l'anno e la persona di cui si vuole vedere il report</p>
       <p>Sulla destra verrá visualizzato il numero totale degli obbiettivi {{ordTitle}} e {{extraTitle}} assegnati all'utente. Piú in basso a sinistra comparirá l'elenco degli obbiettivi distinti in {{ordTitle}} e {{extraTitle}}. PEr ciascun obbiettivo verrá visualizzato l'ufficio a cui quell'obbiettivo é associato, il valore espresso in punti, la percentuale di realizzazione al 31/12.</p>
       <p>Sulla destra un grafico a ciambella visualizza la percentuale degli obbiettivi totali ({{ordTitle}} e {{extraTitle}}) raggiunta dall-utente.</p>
@@ -52,7 +52,7 @@
       <p>In basso a sinistra il pulsante "Esporta in pdf" crea un file pdf con le taballe degli obbiettivi e il grafico a ciambella.</p>
     </div>
     <div id="reportPo" class="">
-      <h2 class="">Report PO</h2>
+      <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faChartSimple' class="smaller-icon me-3"></fa-icon>Report PO</h2>
       <p>Quando nella pagina Report persona si seleziona un utente che é una PO, viene visualizzato un alert che segnala il diverso ruolo della persona.</p>
       <p>Dati e statistiche visualizzate per le PO sono le stesse degli altri utenti individuali con la differenza che ad essere visualizzati, e utilizzati per le statistiche, sono tutti gli obbiettivi degli uffici di cui la PO selezioanta é a capo</p>
       <p>I dati delle po non vengono considerati per il calcolo delle medie dei punteggi e della deviazione standard degli altri utenti perché i loro punteggi, comprendendo gli obbiettivi degli interi uffici, saranno verosimilmente alti e fuori scala.</p>
@@ -60,7 +60,7 @@
       <p>In basso a sinistra il pulsante "Esporta in pdf" crea un file pdf con le taballe degli obbiettivi e il grafico a ciambella.</p>
     </div>
     <div id="reportUfficio" class="">
-      <h2 class="">Report ufficio</h2>
+      <h2 class="border-bottom border-primary-peg"><fa-icon [icon]='faChartSimple' class="smaller-icon me-3"></fa-icon>Report ufficio</h2>
       <p>Dalla sezione "Report ufficio" é possibile visualizzare il report, distinto per anno, degli obbiettivi {{ordTitle}} e {{extraTitle}} e il numero delle persone impiegati per svolgerli.</p>
       <p>Piú in basso, come accade nei report individuali, vengono visualizzati gli elenchi degli obbiettivi distinti in {{ordTitle}} e {{extraTitle}}. E'ossibile visualizzare il nome dell'obbiettivo, il valore, la percentuale di realizzazione al 31/12 e i punti valore parametrati alla percentuale di realizzazione.</p>
       <p>Sulla destra il grafico a ciambella visualizza la percentuale di realizzazione degli obbiettivi al 31/12</p>
