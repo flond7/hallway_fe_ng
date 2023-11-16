@@ -13,31 +13,27 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 
+/* MODALS */
+import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
+import { DeleteModalComponent } from './components/modals/delete-modal/delete-modal.component';
+
 //import { AuthenticationInterceptor } from './authentication.interceptor'
 
+/* AA */
+import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
+import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
+import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
+import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list-row.component';
 
 /* PEG */
 import { PegHomeComponent } from './views/peg/peg-home/peg-home.component';
 import { PegMenuComponent } from './components/peg/peg-menu/peg-menu.component';
 import { PegPhaseRowComponent } from './components/peg/peg-phase-row/peg-phase-row.component';
 import { PegNewGoalComponent } from './views/peg/peg-new-goal/peg-new-goal.component';
-import { PegViewGoalComponent } from './views/peg/peg-view-goal/peg-view-goal.component';
-import { PegViewUserComponent } from './views/peg/peg-view-user/peg-view-user.component';
-
-import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
-import { AaMenuComponent } from './components/accessoAtti/aa-menu/aa-menu.component';
-import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
-import { AaListRowComponent } from './components/accessoAtti/aa-list-row/aa-list-row.component';
-
-/* MODALS */
-import { FeedbackModalComponent } from './components/modals/feedback-modal/feedback-modal.component';
 import { PegGoalComponent } from './components/peg/peg-goal/peg-goal.component';
 import { PegGoalTabComponent } from './components/peg/peg-goal-tab/peg-goal-tab.component';
-import { PegViewReportsComponent } from './views/peg/peg-view-reports/peg-view-reports.component';
 import { PegSearchForReportsComponent } from './components/peg/peg-search-for-reports/peg-search-for-reports.component';
 import { PegReportGoalListComponent } from './components/peg/peg-report-goal-list/peg-report-goal-list.component';
-import { PegEditComponent } from './views/peg/peg-edit/peg-edit.component';
-import { DeleteModalComponent } from './components/modals/delete-modal/delete-modal.component';
 import { PegCardComponent } from './components/peg/peg-card/peg-card.component';
 import { PegReportPersonComponent } from './views/peg/peg-report-person/peg-report-person.component';
 import { PegGoalReportComponent } from './components/peg/peg-goal-report/peg-goal-report.component';
@@ -51,25 +47,21 @@ import { PegCardHorizontalComponent } from './components/peg/peg-card-horizontal
   declarations: [
     AppComponent,
     HomeComponent,
-    PegHomeComponent,
-    PegMenuComponent,
-    PegPhaseRowComponent,
-    PegNewGoalComponent,
-    PegViewGoalComponent,
-    PegViewUserComponent,
+    LoginComponent,
+    FeedbackModalComponent,
+    DeleteModalComponent,  
     AaNewAccessComponent,
     AaMenuComponent,
     AaListAccessComponent,
     AaListRowComponent,
-    FeedbackModalComponent,
-    LoginComponent,
+    PegHomeComponent,
+    PegMenuComponent,
+    PegPhaseRowComponent,
+    PegNewGoalComponent,
     PegGoalComponent,
     PegGoalTabComponent,
-    PegViewReportsComponent,
     PegSearchForReportsComponent,
     PegReportGoalListComponent,
-    PegEditComponent,
-    DeleteModalComponent,
     PegCardComponent,
     PegReportPersonComponent,
     PegGoalReportComponent,
