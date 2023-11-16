@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faHome, faPlus, faPen, faList, faFileExport } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +7,9 @@ import { faHome, faPlus, faPen, faList, faFileExport } from '@fortawesome/free-s
   styleUrls: ['./aa-menu.component.sass']
 })
 export class AaMenuComponent {
+  
+  @Input() page: string = '';
+
   faHome = faHome;
   faPlus = faPlus;
   faPen = faPen;
