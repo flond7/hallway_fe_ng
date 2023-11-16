@@ -1,8 +1,22 @@
-<div class="row no-gutters m-0 h-4 d-flex justify-content-center align-content-center bg-primary-peg">
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" routerLink="/peg-home"><fa-icon [icon]='faHome' class="icon-bg me-2"></fa-icon>Home</div>
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" [routerLink]="['/peg-new-goal']"><fa-icon [icon]='faPlus' class="icon-bg me-2"></fa-icon>Aggiungi</div>
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" [routerLink]="['/peg-edit']" [queryParams]="{ edit: true }"><fa-icon [icon]='faPen' class="icon-bg me-2"></fa-icon>Modifica</div>
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" routerLink="/peg-report-office"><fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report office</div>
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" routerLink="/peg-report-person"><fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report persone</div>
-  <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle" routerLink="/peg-instructions"><fa-icon [icon]='faInfo' class="icon-bg me-2"></fa-icon>Istruzioni</div>
+<div class="d-flex flex-row px-3 align-items-center justify-content-center bg-primary-peg">
+  <div class="">
+    <img class="logo" src="assets/img/hallway_PEG_dark.png" alt="Hallway PEG logo">
+  </div>
+  <div class="row d-flex h-3">
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'home' }" [routerLink]="['/peg-home']">
+      <fa-icon [icon]='faHome' class="icon-bg me-2"></fa-icon>Home
+    </div>
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'aggiungi' }" [routerLink]="['/peg-new-goal']">
+      <fa-icon [icon]='faPlus' class="icon-bg me-2"></fa-icon>Aggiungi
+    </div>
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'modifica' }" [routerLink]="['/peg-edit']" [queryParams]="{ edit: true }">
+      <fa-icon [icon]='faPen' class="icon-bg me-2"></fa-icon>Modifica</div>
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'reportOffice' }" [routerLink]="['/peg-report-office']">
+      <fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report ufficio</div>
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle text-dark h-3" [ngClass]="{ 'menu-btn-selected': page === 'reportPerson' }" [routerLink]="['/peg-report-person']">
+      <fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report persone</div>
+    <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle text-dark h-3" [ngClass]="{ 'menu-btn-selected': page === 'instructions' }" [routerLink]="['/peg-instructions']">
+      <fa-icon [icon]='faInfo' class="icon-bg me-2"></fa-icon>Istruzioni</div>
+  </div>
+  <!-- <div class="">right end</div> -->
 </div>

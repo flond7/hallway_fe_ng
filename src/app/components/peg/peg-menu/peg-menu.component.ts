@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faUsers, faBullseye, faHome, faPlus, faPen, faList, faFileExport, faChartSimple, faInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +7,8 @@ import { faUsers, faBullseye, faHome, faPlus, faPen, faList, faFileExport, faCha
   styleUrls: ['./peg-menu.component.sass']
 })
 export class PegMenuComponent {
+  
+  @Input() page: string = '';
 
   faUsers = faUsers;
   faBullseye = faBullseye;
