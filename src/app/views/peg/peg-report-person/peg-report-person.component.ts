@@ -175,6 +175,10 @@ export class PegReportPersonComponent {
   }
 
   personPointsCalculation() {
+    //reset values to see allert
+    this.lower = false;
+    this.upper = false;
+    
     this.totalWeight_3112 = this.goalList.reduce((sum, goal) => {
       if (goal.weight_3112 !== undefined) {
         return sum + goal.weight_3112;
