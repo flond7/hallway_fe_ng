@@ -6,8 +6,7 @@ import { faHome, faPlus, faPen, faList, faFileExport } from '@fortawesome/free-s
   templateUrl: './aa-menu.component.html',
   styleUrls: ['./aa-menu.component.sass']
 })
-export class AaMenuComponent {
-  
+export class AaMenuComponent  {
   @Input() page: string = '';
 
   faHome = faHome;

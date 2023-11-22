@@ -9,28 +9,27 @@
         routerLink="/aa-list-access"><fa-icon [icon]='faList' class="icon-bg me-2"></fa-icon>Liste</div>
     <div class="btn bg-dark-transp w-auto h-2 mx-1 d-flex align-items-center justify-content-middle"
         routerLink="/peg-new-goal"><fa-icon [icon]='faFileExport' class="icon-bg me-2"></fa-icon>Esporta</div>
-</div>
- -->
+</div> -->
 <div class="d-flex flex-row px-3 align-items-center justify-content-center bg-primary-aa">
     <div class="">
         <img class="logo" src="assets/img/hallway_AA_white.png" alt="Hallway Accesso Atti logo">
     </div>
     <div class="row d-flex h-3">
         <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3"
-            [ngClass]="{ 'menu-btn-selected': page === 'home' }" [routerLink]="['/aa-home']">
+            [ngClass]="{ 'menu-btn-selected': page === 'home' }" routerLink="/aa-new-access">
             <fa-icon [icon]='faHome' class="icon-bg me-2"></fa-icon>Home
         </div>
         <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3"
-            [ngClass]="{ 'menu-btn-selected': page === 'aggiungi' }" [routerLink]="['/aa-new-acces']">
+            [ngClass]="{ 'menu-btn-selected': page === 'aggiungi' }" [routerLink]="['/aa-new-access']">
             <fa-icon [icon]='faPlus' class="icon-bg me-2"></fa-icon>Aggiungi
         </div>
         <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3"
-            [ngClass]="{ 'menu-btn-selected': page === 'modifica' }" [routerLink]="['/aa-edit-access']"
+            [ngClass]="{ 'menu-btn-selected': page === 'modifica' }" routerLink="/aa-new-access"
             [queryParams]="{ edit: true }">
             <fa-icon [icon]='faPen' class="icon-bg me-2"></fa-icon>Modifica
         </div>
         <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3"
-            [ngClass]="{ 'menu-btn-selected': page === 'reportOffice' }" [routerLink]="['/aa-list-access']">
+            [ngClass]="{ 'menu-btn-selected': page === 'lista' }" [routerLink]="['/aa-list-access']">
             <fa-icon [icon]='faList' class="icon-bg me-2"></fa-icon>Liste
         </div>
     </div>
