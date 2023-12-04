@@ -11,8 +11,9 @@
 ## constants.ts
 Rember they can be imported in .ts files but to use them in a template you need to reassign them to a new variable defined in the view .ts file
 
-
-
+## run on a host
+To bind the local server on a specific ip address specify it with --host and the ip
+- yarn start --host x.x.x.x
 
 
 # Login with django
