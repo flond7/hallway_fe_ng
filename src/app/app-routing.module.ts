@@ -13,6 +13,11 @@ import { PegInstructionsComponent } from './views/peg/peg-instructions/peg-instr
 import { AaNewAccessComponent } from './views/accessoAtti/aa-new-access/aa-new-access.component';
 import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-list-access.component';
 
+
+import { UtentiHomeComponent } from './views/utenti/utenti-home/utenti-home.component';
+import { UtentiDetailComponent } from './views/utenti/utenti-detail/utenti-detail.component';
+import { UtentiNewComponent } from './views/utenti/utenti-new/utenti-new.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -27,6 +32,11 @@ const routes: Routes = [
 
   { path: 'aa-new-access', component: AaNewAccessComponent },
   { path: 'aa-list-access', component: AaListAccessComponent },
+
+  { path: 'utenti-home', component: UtentiHomeComponent },
+  { path: 'utenti-detail', component: UtentiDetailComponent },
+  { path: 'utenti-new', component: UtentiNewComponent },
+
 ];
 
 @NgModule({
