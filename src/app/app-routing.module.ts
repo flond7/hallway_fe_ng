@@ -33,9 +33,9 @@ const routes: Routes = [
   { path: 'aa-new-access', component: AaNewAccessComponent },
   { path: 'aa-list-access', component: AaListAccessComponent },
 
-  { path: 'utenti-home', component: UtentiHomeComponent },
-  { path: 'utenti-detail', component: UtentiDetailComponent },
-  { path: 'utenti-new', component: UtentiNewComponent },
+  { path: 'users-home', component: UtentiHomeComponent },
+  { path: 'users-detail', component: UtentiDetailComponent },
+  { path: 'users-new', component: UtentiNewComponent },
 
 ];
 
