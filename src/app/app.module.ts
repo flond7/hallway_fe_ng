@@ -41,6 +41,10 @@ import { PegReportOfficeComponent } from './views/peg/peg-report-office/peg-repo
 import { PegUserCardComponent } from './components/peg/peg-user-card/peg-user-card.component';
 import { PegInstructionsComponent } from './views/peg/peg-instructions/peg-instructions.component';
 import { PegCardHorizontalComponent } from './components/peg/peg-card-horizontal/peg-card-horizontal.component';
+import { UtentiHomeComponent } from './views/utenti/utenti-home/utenti-home.component';
+import { UtentiNewComponent } from './views/utenti/utenti-new/utenti-new.component';
+import { UtentiDetailComponent } from './views/utenti/utenti-detail/utenti-detail.component';
+import { UtentiMenuComponent } from './components/utenti/utenti-menu/utenti-menu.component';
 
 
 @NgModule({
@@ -69,6 +73,10 @@ import { PegCardHorizontalComponent } from './components/peg/peg-card-horizontal
     PegUserCardComponent,
     PegInstructionsComponent,
     PegCardHorizontalComponent,
+    UtentiHomeComponent,
+    UtentiNewComponent,
+    UtentiDetailComponent,
+    UtentiMenuComponent,
   ],
   imports: [
     BrowserModule,
