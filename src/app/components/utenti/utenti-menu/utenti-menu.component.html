@@ -1,12 +1,12 @@
-<div class="d-flex flex-row px-3 align-items-center justify-content-center bg-primary-peg">
+<div class="d-flex flex-row px-3 align-items-center justify-content-center bg-primary-users">
     <div class="">
-      <img class="logo" src="assets/img/hallway_PEG_dark.png" alt="Hallway PEG logo">
+      <img class="logo" src="assets/img/hallway_PEG_dark.png" alt="Hallway users logo">
     </div>
     <div class="row d-flex h-3">
-      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'home' }" [routerLink]="['/peg-home']">
+      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'home' }" [routerLink]="['/users-home']">
         <fa-icon [icon]='faHome' class="icon-bg me-2"></fa-icon>Home
       </div>
-      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'aggiungi' }" [routerLink]="['/peg-new-goal']">
+      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'aggiungi' }" [routerLink]="['/users-new-goal']">
         <fa-icon [icon]='faPlus' class="icon-bg me-2"></fa-icon>Aggiungi
       </div>
       <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'modifica' }" [routerLink]="['/peg-edit']" [queryParams]="{ edit: true }">
