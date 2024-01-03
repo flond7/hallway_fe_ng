@@ -11,4 +11,9 @@ export class UtentiDetailComponent {
   // string and messages
   namePA: string = GC.NAME_PA;
 
+  category="D1";
+  name = "Elisa";
+  surname = "Pessa";
+  office = "Servizio informatico";
+
 }

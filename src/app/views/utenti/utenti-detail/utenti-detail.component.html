@@ -1,14 +1,21 @@
-<app-utenti-menu [page]="'home'"></app-utenti-menu>
+<app-utenti-menu [page]="'detail'"></app-utenti-menu>
 
 <div class="container">
   <div class="row w-100">
     <div class="col-12">
 
-      <div class="row pt-5">
-        <div class="col-5 big text-bold me-2">
-          {{namePA}}
+      <div class="row border-bottom border-primary-users pt-5 pb-3">
+        <div class="col-1 bg-primary-users text-dark d-flex align-items-center big text-bold me-2">
+          {{category}}
         </div>
-        
+
+        <div class="col-5 big text-bold me-2">
+          {{name}} <br>
+          {{surname}}
+        </div>
+        <div class="col-3 text-uppercase d-flex align-items-end letter-spacing-25 me-2">
+          {{office}}
+        </div>
       </div>
 
       <div class="row my-5">
@@ -25,22 +32,19 @@
         <div class="col-8">
 
           <div class="row mt-3 border-bottom border-primary-peg">
-            <div class="h2 mb-0 py-2">Uffici - Anno </div>
+            <div class="h2 mb-0 py-2">LAN - Rete locale </div>
           </div>
 
-          <div class="row h-1 align-content-center text-muted-peg mt-3 pb-0 small">
-            <div class="col-4"></div>
-            <div class="col-4 text-center">ordTitle</div>
-            <div class="col-4 text-center">extraTitle</div>
+          <div class="row h-1 align-content-center text-muted-peg small mt-3">
+            <div class="col-4">Cartelle visualizzate</div>
+            <div class="col-3">Ruolo</div>
+            <div class="col-5">Note</div>
           </div>
-          <div class="row h-1 align-content-center text-muted-peg small">
-            <div class="col-4">Ufficio</div>
-            <div class="col-1 text-center">Num</div>
-            <div class="col text-center">% 30/06</div>
-            <div class="col text-center">% 31/12</div>
-            <div class="col-1 text-center">Num</div>
-            <div class="col text-center">% 30/06</div>
-            <div class="col text-center">% 31/12</div>
+
+          <div class="row h-1 align-content-center mt-3">
+            <div class="col-4">Cartelle visualizzate</div>
+            <div class="col-3">Ruolo</div>
+            <div class="col-5">Note</div>
           </div>
 
 
@@ -49,7 +53,7 @@
 
         <div class="col-4 px-3">
           <div class="row m-3 mb-4 border-bottom border-primary-peg">
-            <div class="h2 mb-0 py-2">Medie</div>
+            <div class="h2 mb-0 py-2">Mail</div>
           </div>
 
         </div>
