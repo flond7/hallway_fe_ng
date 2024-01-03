@@ -23,9 +23,21 @@ export class UtentiApiService {
 
   }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    }),
+  };
+
 
   /* getUserList(): Observable<any> {
     return this.httpClient.get(baseURL + 'api_user/pauser_list_peg')
   } */
 
+  getUserCredentials(user: any): Observable<any> {
+    console.log(user)
+    const data = { id: user.id }
+    return this.httpClient.post(baseURL + 'api_user/user_pacredential', data, this.httpOptions)
+  }
 }
