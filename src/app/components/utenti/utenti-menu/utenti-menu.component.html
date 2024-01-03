@@ -11,8 +11,8 @@
       </div>
       <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'modifica' }" [routerLink]="['/peg-edit']" [queryParams]="{ edit: true }">
         <fa-icon [icon]='faPen' class="icon-bg me-2"></fa-icon>Modifica</div>
-      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'reportOffice' }" [routerLink]="['/peg-report-office']">
-        <fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report ufficio</div>
+      <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle h-3" [ngClass]="{ 'menu-btn-selected': page === 'detail' }" [routerLink]="['/user-detail']">
+        <fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>detail</div>
       <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle text-dark h-3" [ngClass]="{ 'menu-btn-selected': page === 'reportPerson' }" [routerLink]="['/peg-report-person']">
         <fa-icon [icon]='faChartSimple' class="icon-bg me-2"></fa-icon>Report persone</div>
       <div class="menu-btn w-auto h-100 mx-0 d-flex align-items-center justify-content-middle text-dark h-3" [ngClass]="{ 'menu-btn-selected': page === 'instructions' }" [routerLink]="['/peg-instructions']">
