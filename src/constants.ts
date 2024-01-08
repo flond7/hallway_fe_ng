@@ -88,3 +88,10 @@ export const PDF_STYLE = {
     bold: false
   }
 }
+
+
+// USERS
+export const U_NAME_LAN: string = "LAN";
+export const U_NAME_PROTOCOL: string = "Gifra";
+export const U_NAME_FINANCIAL: string = "Ascot";
+export const U_NAME_CITYCOUNCIL: string = "Adweb";
