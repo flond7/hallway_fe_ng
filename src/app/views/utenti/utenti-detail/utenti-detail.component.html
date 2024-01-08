@@ -1,88 +1,171 @@
 <app-utenti-menu [page]="'detail'"></app-utenti-menu>
 
 <div class="container">
-  <div class="row w-100">
+  <div class="row w-100 bg-dark2-transp rounded p-3">
     <div class="" (click)="getUserCredentials(this.elisa)">
       carica
     </div>
     <div class="col-12 d-flex">
 
-      <div class="col-3 rounded">
+      <div class="col-3 bg-light rounded p-3 me-3">
         <div class="">
-          <div class="" *ngIf="credentials.lanRole === 'administrator'"><fa-icon [icon]='faHatWizard' class="icon-bg"></fa-icon></div>
+          <div class="" *ngIf="credentials.lanRole === 'l2'"><fa-icon [icon]='faHatWizard'
+              class="icon-bg"></fa-icon></div>
         </div>
         <div class="">
           <div class="">Nome: {{credentials.user.name}}</div>
           <div class="">Cognome: {{credentials.user.surname}}</div>
+          <div class="">Ufficio: {{credentials.user.name}}</div>
           <div class="">Categoria: {{credentials.user.jobCategory}}</div>
         </div>
       </div>
 
-      <div class="col-9">
-        <div class="badged">
-          <div class=""><fa-icon [icon]='faEnvelope' class="icon-bg"></fa-icon></div>
-        </div>
-      </div>
+      <div class="col me-3">
 
-
-      <div class="row border-bottom border-primary-users pt-5 pb-3">
-        <div class="col-1 bg-primary-users text-dark d-flex align-items-center big text-bold me-2">
-          {{credentials.user.jobCategory}}
-        </div>
-
-        <div class="col-5 big text-bold me-2">
-          {{credentials.user.name}} <br>
-          {{credentials.user.surname}}
-        </div>
-        <div class="col-3 text-uppercase d-flex align-items-end letter-spacing-25 me-2">
-          {{office}}
-        </div>
-      </div>
-
-      <div class="row my-5">
-        <div class="row my-3 border-bottom border-primary-peg">
-          <div class="h2 mb-0 py-2">Distribuzione obbiettivi</div>
-        </div>
-
-          
-      </div>
-
-
-      
-      <div class="row">
-        <div class="col-8">
-
-          <div class="row mt-3 border-bottom border-primary-users">
-            <div class="h2 mb-0 py-2">LAN - Rete locale </div>
+        <div class="bg-light rounded p-3">          
+          <div class="border-bottom border-primary-users text-uppercase d-flex align-items-end letter-spacing-25 pb-1 mb-2 me-2">
+            <fa-icon [icon]='faNetworkWired' class="text-primary-users me-3"></fa-icon>
+            LAN
           </div>
 
-          <div class="row h-1 align-content-center text-muted-peg small mt-3">
-            <div class="col-4">Cartelle visualizzate</div>
-            <div class="col-3">Ruolo</div>
-            <div class="col-5">Note</div>
+          <div class="">
+            <div class="text-bold">Ruolo:</div>
+            <div class="text-muted-users">{{credentials.lanRole}}</div>
+            <div class="text-bold mt-3">Cartelle visualizzate: </div>
+            <div class="text-muted-users" *ngFor="let office of credentials.lanOffice">{{office}}</div>
+            <div class="text-bold mt-3">Note:</div>
+            <div class="text-muted-users">{{credentials.lanNote}}</div>
+          </div>
+        </div>
+
+        <div class="bg-light rounded mt-3 p-3">          
+          <div class="border-bottom border-primary-users text-uppercase d-flex align-items-end letter-spacing-25 pb-1 mb-2 me-2">
+            <fa-icon [icon]='faFile' class="text-primary-users me-3"></fa-icon>
+            ADWEB
           </div>
 
-          <div class="row h-1 align-content-center mt-3">
-            <div class="col-4">
-              <div class="" *ngFor="let office of credentials.lanOffice">{{office}}</div>
+          <div class="">
+            <div class="text-bold">Ruolo:</div>
+            <div class="text-muted-users">{{credentials.adwebRole}}</div>
+            <div class="text-bold mt-3">Cartelle visualizzate: </div>
+            <div class="text-muted-users" *ngFor="let office of credentials.adwebOffice">{{office}}</div>
+            <div class="text-bold mt-3">Note:</div>
+            <div class="text-muted-users">{{credentials.adwebNote}}</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="col">
+
+        <div class="bg-light rounded p-3">          
+          <div class="border-bottom border-primary-users text-uppercase d-flex align-items-end letter-spacing-25 pb-1 mb-2">
+            <fa-icon [icon]='faEnvelope' class="text-primary-users me-3"></fa-icon>
+            MAIL
+          </div>
+
+          <div class="">
+            <div class="text-bold">Casella personale:</div>
+            <div class="text-muted-users">{{credentials.mail}}</div>
+            <div class="text-bold mt-3">Abilitazione per vedere: </div>
+            <div class="text-muted-users" *ngFor="let office of credentials.mailOffice">{{office}}</div>
+          </div>
+
+        </div>
+
+        <div class="bg-light rounded mt-3 p-3">          
+          <div class="border-bottom border-primary-users text-uppercase d-flex align-items-end letter-spacing-25 pb-1 mb-2">
+            <fa-icon [icon]='faMoneyBill' class="text-primary-users me-3"></fa-icon>
+            ASCOT
+          </div>
+
+          <div class="">
+            <div class="">
+              <div class="text-bold">Ruolo:</div>
+              <div class="text-muted-users">{{credentials.ascotRole}}</div>
+              <div class="text-bold mt-3">Abilitazioni aree: </div>
+              <div class="text-muted-users" *ngFor="let office of credentials.ascotOffice">{{office}}</div>
+              <div class="text-bold mt-3">Note:</div>
+              <div class="text-muted-users">{{credentials.ascotbNote}}</div>
             </div>
-            <div class="col-3">{{credentials.lanRole}}</div>
-            <div class="col-5">{{credentials.lanNote}}</div>
-          </div>
-
-
-
-        </div>
-
-        <div class="col-4 px-3">
-          <div class="row m-3 mb-4 border-bottom border-primary-peg">
-            <div class="h2 mb-0 py-2">Mail</div>
           </div>
 
         </div>
+
+        <div class="bg-light rounded mt-3 p-3">          
+          <div class="border-bottom border-primary-users text-uppercase d-flex align-items-end letter-spacing-25 pb-1 mb-2">
+            <fa-icon [icon]='faMoneyBill' class="text-primary-users me-3"></fa-icon>
+            GIFRA - ITERATTI
+          </div>
+
+          <div class="">
+            <div class="">
+              <div class="text-bold">Ruolo:</div>
+              <div class="text-muted-users">{{credentials.ascotRole}}</div>
+              <div class="text-bold mt-3">Abilitazioni aree: </div>
+              <div class="text-muted-users" *ngFor="let office of credentials.ascotOffice">{{office}}</div>
+              <div class="text-bold mt-3">Note:</div>
+              <div class="text-muted-users">{{credentials.ascotbNote}}</div>
+            </div>
+          </div>
+
+        </div>
+
+        
+      </div>
+
+    </div>
+
+    <div class="row border-bottom border-primary-users pt-5 pb-3">
+      <div class="col-1 bg-primary-users text-dark d-flex align-items-center big text-bold me-2">
+        {{credentials.user.jobCategory}}
+      </div>
+
+      <div class="col-5 big text-bold me-2">
+        {{credentials.user.name}} <br>
+        {{credentials.user.surname}}
+      </div>
+      <div class="col-3 text-uppercase d-flex align-items-end letter-spacing-25 me-2">
+        {{office}}
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-8">
+
+        <div class="row mt-3 border-bottom border-primary-users">
+          <div class="h2 mb-0 py-2">LAN - Rete locale </div>
+        </div>
+
+        <div class="row h-1 align-content-center text-muted-peg small mt-3">
+          <div class="col-4">Cartelle visualizzate</div>
+          <div class="col-3">Ruolo</div>
+          <div class="col-5">Note</div>
+        </div>
+
+        <div class="row h-1 align-content-center mt-3">
+          <div class="col-4">
+            <div class="" *ngFor="let office of credentials.lanOffice">{{office}}</div>
+          </div>
+          <div class="col-3">{{credentials.lanRole}}</div>
+          <div class="col-5">{{credentials.lanNote}}</div>
+        </div>
+
 
 
       </div>
+
+      <div class="col-4 px-3">
+        <div class="row m-3 mb-4 border-bottom border-primary-peg">
+          <div class="h2 mb-0 py-2">Mail</div>
+        </div>
+
+      </div>
+
+
     </div>
   </div>
 </div>
