@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     const body = document.getElementsByTagName('body')[0];
 
     if (isLightPage) {
-      this.renderer.addClass(body, 'light-background');
+      this.renderer.addClass(body, 'users-background');
       this.renderer.removeClass(body, 'dark-background');
     } else {
       this.renderer.addClass(body, 'dark-background');

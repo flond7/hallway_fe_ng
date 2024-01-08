@@ -28,7 +28,7 @@ $bg-color: $dark
 $txt-color: $light
 //$txt-color: #5c6b85
 
-$custom-colors: ("users": #d63384, "primary-users": #d63384, "secondary-users": #58b6e2, "muted-users": #616161, "primary-peg": #fecf6c, "secondary-peg": #58b6e2, "muted-peg": #616161,"primary-aa": #28b49a, "secondary-aa": #b36cc1, "muted-aa": #616161,"dark":#1e1e25, 'darker':$darker, 'success': rgb(139, 195, 74))
+$custom-colors: ("users": #d63384, "primary-users": #d63384, "secondary-users": #58b6e2, "muted-users": #919293, "primary-peg": #fecf6c, "secondary-peg": #58b6e2, "muted-peg": #616161,"primary-aa": #28b49a, "secondary-aa": #b36cc1, "muted-aa": #616161,"dark":#1e1e25, 'darker':$darker, 'success': rgb(139, 195, 74))
 $theme-colors: map-merge($theme-colors, $custom-colors)
 
 
@@ -39,13 +39,17 @@ $celeste: #b1ede8ff
 $eggplant: #6d435aff
 $raisin-black: #352d39ff
 
+$dark-users: #344767
 
 @import "../node_modules/bootstrap/scss/bootstrap"
 
 
-.light-background
-  background-color: $light !important
-  color: $dark
+.users-background
+  background-color: #f1f2f3 !important
+  // background-image: url('assets/img/users_bg.jpg')
+  background-size: cover
+  background-position: center
+  color: $dark-users
 
 .dark-background 
   background-color: #000
@@ -109,8 +113,10 @@ textarea
   background-color: #fff
   box-shadow: 0 .5rem 1rem rgba($black, .15)
 
+.bg-dark2-transp
+  background-color: rgba(27, 21, 21, 0.03) !important
 .bg-dark-transp
-  background-color: rgba(0,0,0,0.2) !important
+  background-color: rgba(27, 21, 21, 0.2) !important
 .bg-none
   background-color: rgba(0,0,0,0) !important
 .bigger-icon
