@@ -50,6 +50,7 @@ import { UDetailComponent } from './views/utenti/u-detail/u-detail.component';
 import { UHomeComponent } from './views/utenti/u-home/u-home.component';
 import { UNewComponent } from './views/utenti/u-new/u-new.component';
 import { UAskComponent } from './views/utenti/u-ask/u-ask.component';
+import { USuccessFailComponent } from './components/utenti/u-success-fail/u-success-fail.component';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { UAskComponent } from './views/utenti/u-ask/u-ask.component';
     UHomeComponent,
     UNewComponent,
     UAskComponent,
+    USuccessFailComponent,
   ],
   imports: [
     BrowserModule,
