@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faCircle, faCircleHalfStroke, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-u-success-fail',
@@ -9,9 +9,8 @@ import { faCircle, faCircleHalfStroke, faMinus } from '@fortawesome/free-solid-s
 export class USuccessFailComponent {
   @Input() success: any;
   
-  faCircle =faCircle;
-  faCircleHalfStroke = faCircleHalfStroke;
-  faMinus =faMinus;
+  faCheck =faCheck;
+  faX = faX;
 
 
 }

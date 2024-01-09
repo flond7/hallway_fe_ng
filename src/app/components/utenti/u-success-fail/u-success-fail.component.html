@@ -1,1 +1,7 @@
-<p>u-success-fail works!</p>
+<div *ngIf="success === true" class="green-shades text-white circle p-3">
+    <fa-icon [icon]='faCheck' class="icon-bg"></fa-icon>
+</div>
+
+<div *ngIf="success === false" class="red-shades text-white circle p-3">
+    <fa-icon [icon]='faX' class="icon-bg"></fa-icon>
+</div>
