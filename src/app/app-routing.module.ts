@@ -17,6 +17,11 @@ import { AaListAccessComponent } from './views/accessoAtti/aa-list-access/aa-lis
 import { UtentiHomeComponent } from './views/utenti/utenti-home/utenti-home.component';
 import { UtentiDetailComponent } from './views/utenti/utenti-detail/utenti-detail.component';
 import { UtentiNewComponent } from './views/utenti/utenti-new/utenti-new.component';
+import { UNewComponent } from './views/utenti/u-new/u-new.component';
+import { UAskComponent } from './views/utenti/u-ask/u-ask.component';
+import { UDetailComponent } from './views/utenti/u-detail/u-detail.component';
+import { UListComponent } from './views/utenti/u-list/u-list.component';
+import { UHomeComponent } from './views/utenti/u-home/u-home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -33,9 +38,11 @@ const routes: Routes = [
   { path: 'aa-new-access', component: AaNewAccessComponent },
   { path: 'aa-list-access', component: AaListAccessComponent },
 
-  { path: 'users-home', component: UtentiHomeComponent },
-  { path: 'users-detail', component: UtentiDetailComponent },
-  { path: 'users-new', component: UtentiNewComponent },
+  { path: 'users-home', component: UHomeComponent },
+  { path: 'users-detail', component: UDetailComponent },
+  { path: 'users-new', component: UNewComponent },
+  { path: 'users-ask', component: UAskComponent },
+  { path: 'users-list', component: UListComponent },
 
 ];
 

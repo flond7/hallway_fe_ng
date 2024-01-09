@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UtentiApiService } from '../../../services/utenti-api.service';
 import { PegPerson } from 'src/interfaces';
 
-import { faEnvelope, faNetworkWired, faHatWizard, faFile, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faNetworkWired, faHatWizard, faFile, faMoneyBill, faPhone } from '@fortawesome/free-solid-svg-icons';
 import * as GC from '../../../../constants'
 
 @Component({
@@ -13,7 +13,14 @@ import * as GC from '../../../../constants'
 export class UtentiDetailComponent {
 
   // FA icons
-  faEnvelope = faEnvelope; faNetworkWired = faNetworkWired; faHatWizard = faHatWizard; faFile = faFile; faMoneyBill = faMoneyBill;
+  faEnvelope = faEnvelope; faNetworkWired = faNetworkWired; faHatWizard = faHatWizard; faFile = faFile; faMoneyBill = faMoneyBill; faPhone = faPhone;
+
+
+  financial = GC.U_NAME_FINANCIAL;
+  cityCouncil = GC.U_NAME_CITYCOUNCIL;
+  protocol = GC.U_NAME_PROTOCOL;
+  voip = GC.U_NAME_VOIP;
+  lan = GC.U_NAME_LAN;
 
   // string and messages
   namePA: string = GC.NAME_PA;

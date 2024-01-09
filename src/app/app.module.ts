@@ -45,6 +45,11 @@ import { UtentiHomeComponent } from './views/utenti/utenti-home/utenti-home.comp
 import { UtentiNewComponent } from './views/utenti/utenti-new/utenti-new.component';
 import { UtentiDetailComponent } from './views/utenti/utenti-detail/utenti-detail.component';
 import { UtentiMenuComponent } from './components/utenti/utenti-menu/utenti-menu.component';
+import { UListComponent } from './views/utenti/u-list/u-list.component';
+import { UDetailComponent } from './views/utenti/u-detail/u-detail.component';
+import { UHomeComponent } from './views/utenti/u-home/u-home.component';
+import { UNewComponent } from './views/utenti/u-new/u-new.component';
+import { UAskComponent } from './views/utenti/u-ask/u-ask.component';
 
 
 @NgModule({
@@ -77,6 +82,11 @@ import { UtentiMenuComponent } from './components/utenti/utenti-menu/utenti-menu
     UtentiNewComponent,
     UtentiDetailComponent,
     UtentiMenuComponent,
+    UListComponent,
+    UDetailComponent,
+    UHomeComponent,
+    UNewComponent,
+    UAskComponent,
   ],
   imports: [
     BrowserModule,
