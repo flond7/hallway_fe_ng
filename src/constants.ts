@@ -95,3 +95,4 @@ export const U_NAME_LAN: string = "LAN";
 export const U_NAME_PROTOCOL: string = "Gifra";
 export const U_NAME_FINANCIAL: string = "Ascot";
 export const U_NAME_CITYCOUNCIL: string = "Adweb";
+export const U_NAME_VOIP: string = "Voip";
