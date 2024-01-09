@@ -40,4 +40,11 @@ export class UtentiApiService {
     const data = { id: user.id }
     return this.httpClient.post(baseURL + 'api_user/user_pacredential', data, this.httpOptions)
   }
+
+  getListUserCredentials(): Observable<any> {
+    return this.httpClient.get(baseURL + 'api_user/user_list_pacredential', this.httpOptions)
+  }
+
+
+
 }
