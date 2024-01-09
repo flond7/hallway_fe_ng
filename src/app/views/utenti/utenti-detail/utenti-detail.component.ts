@@ -17,7 +17,7 @@ export class UtentiDetailComponent {
 
 
   financial = GC.U_NAME_FINANCIAL;
-  cityCouncil = GC.U_NAME_CITYCOUNCIL;
+  adweb = GC.U_NAME_ADWEB;
   protocol = GC.U_NAME_PROTOCOL;
   voip = GC.U_NAME_VOIP;
   lan = GC.U_NAME_LAN;

@@ -1,15 +1,27 @@
 <app-utenti-menu [page]="'detail'"></app-utenti-menu>
 
 <div class="container">
-    <div class="row w-100 bg-dark2-transp rounded p-3">
+    <div class="row w-100 bg-dark2-transp rounded p-">
         <div class="" (click)="getUserList()">
             carica
         </div>
-        <div class="">
-            <div class=""></div>
-            <div class="col"></div>
-            <div class="col"></div>
-            <div class="col"></div>
+        <div class="row">
+            <div class="col-3">Nome e cognome</div>
+            <div class="col">{{lan}}</div>
+            <div class="col">{{mail}}</div>
+            <div class="col">{{adweb}}</div>
+            <div class="col">{{financial}}</div>
+            <div class="col">{{protocol}}</div>
+            
+        </div>
+
+        <div *ngFor="let user of credentials" class="row">
+            <div class="col-3">{{user.user.name}} {{user.user.surname}}</div>
+            <div class="col"><app-u-success-fail [success]="user.lanAssigned"></app-u-success-fail></div>
+            <div class="col"><app-u-success-fail [success]="user.mailAssigned"></app-u-success-fail></div>
+            <div class="col"><app-u-success-fail [success]="user.adwebAssigned"></app-u-success-fail></div>
+            <div class="col"><app-u-success-fail [success]="user.ascotAssigned"></app-u-success-fail></div>
+            <div class="col"><app-u-success-fail [success]="user.gifraAssigned"></app-u-success-fail></div>
             
         </div>
 
