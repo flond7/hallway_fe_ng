@@ -1,33 +1,45 @@
 <app-utenti-menu [page]="'detail'"></app-utenti-menu>
 
-<div class="container">
-    <div class="row w-100 bg-dark2-transp rounded p-">
+<div class="container ">
+    <div class="row w-100 rounded px-4">
         <div class="" (click)="getUserList()">
             carica
         </div>
-        <div class="row">
-            <div class="col-3">Nome e cognome</div>
-            <div class="col">{{lan}}</div>
-            <div class="col">{{mail}}</div>
-            <div class="col">{{adweb}}</div>
-            <div class="col">{{financial}}</div>
-            <div class="col">{{protocol}}</div>
-            
+        <div class="bg-white rounded my-3 py-2 px-4">
+
         </div>
+        
+        <div class="bg-white rounded my-3 py-2 px-4">
+            <div class="row py-3">
+                <div class="col-2"></div>
+                <div class="col d-flex justify-content-center">{{lan}}</div>
+                <div class="col d-flex justify-content-center">{{mail}}</div>
+                <div class="col d-flex justify-content-center">{{adweb}}</div>
+                <div class="col d-flex justify-content-center">{{financial}}</div>
+                <div class="col d-flex justify-content-center">{{protocol}}</div>
+                <div class="col d-flex justify-content-center">{{website}}</div>
+                <div class="col d-flex justify-content-center">{{voip}}</div>
+                <div class="col d-flex justify-content-center">{{crm}}</div>
+                <div class="col d-flex justify-content-center">{{sdi}}</div>
+                <div class="col-2 d-flex justify-content-center"></div>
+                
+            </div>
 
-        <div *ngFor="let user of credentials" class="row">
-            <div class="col-3">{{user.user.name}} {{user.user.surname}}</div>
-            <div class="col"><app-u-success-fail [success]="user.lanAssigned"></app-u-success-fail></div>
-            <div class="col"><app-u-success-fail [success]="user.mailAssigned"></app-u-success-fail></div>
-            <div class="col"><app-u-success-fail [success]="user.adwebAssigned"></app-u-success-fail></div>
-            <div class="col"><app-u-success-fail [success]="user.ascotAssigned"></app-u-success-fail></div>
-            <div class="col"><app-u-success-fail [success]="user.gifraAssigned"></app-u-success-fail></div>
-            
+            <div *ngFor="let user of credentials" class="row gray-shades my-3 py-4">
+                <div class="col-2 text-muted-users"><strong>{{user.user.name}} {{user.user.surname}}</strong></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.lanAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.mailAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.adwebAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.ascotAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.gifraAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.websiteAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.voipAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.crmAssigned"></app-u-success-fail></div>
+                <div class="col d-flex justify-content-center"><app-u-success-fail [success]="user.sdiAssigned"></app-u-success-fail></div>
+                
+                <div class="col-2 d-flex justify-content-center">Dettagli ></div>
+            </div>
+
         </div>
-
-
-
     </div>
-
-
 </div>

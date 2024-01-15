@@ -17,6 +17,7 @@ export class UListComponent {
   lan = GC.U_NAME_LAN;
   website = GC.U_NAME_WEBSITE;
   mail = GC.U_NAME_MAIL;
+  crm = GC.U_NAME_CRM;
 
   constructor(private api: UtentiApiService,) { }
 
