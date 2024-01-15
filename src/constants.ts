@@ -98,3 +98,5 @@ export const U_NAME_ADWEB: string = "Adweb";
 export const U_NAME_VOIP: string = "Voip";
 export const U_NAME_MAIL: string = "Mail";
 export const U_NAME_WEBSITE: string = "Sito";
+export const U_NAME_CRM: string = "CRM";
+export const U_NAME_SDI: string = "SDI";
