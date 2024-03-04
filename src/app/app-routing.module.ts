@@ -23,6 +23,11 @@ import { UDetailComponent } from './views/utenti/u-detail/u-detail.component';
 import { UListComponent } from './views/utenti/u-list/u-list.component';
 import { UHomeComponent } from './views/utenti/u-home/u-home.component';
 
+
+import { CListComponent } from './views/concorsi/c-list/c-list.component';
+import { CNewComponent } from './views/concorsi/c-new/c-new.component';
+import { CQuestionnaireComponent } from './views/concorsi/c-questionnaire/c-questionnaire.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -43,6 +48,12 @@ const routes: Routes = [
   { path: 'users-new', component: UNewComponent },
   { path: 'users-ask', component: UAskComponent },
   { path: 'users-list', component: UListComponent },
+
+  
+  /* { path: 'c-home', component: UHomeComponent }, */
+  { path: 'c-list', component: CListComponent },
+  { path: 'c-new', component: CNewComponent },
+  { path: 'c-questionnaire', component: CQuestionnaireComponent },
 
 ];
 
