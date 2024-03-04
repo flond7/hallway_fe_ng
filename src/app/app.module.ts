@@ -51,6 +51,9 @@ import { UHomeComponent } from './views/utenti/u-home/u-home.component';
 import { UNewComponent } from './views/utenti/u-new/u-new.component';
 import { UAskComponent } from './views/utenti/u-ask/u-ask.component';
 import { USuccessFailComponent } from './components/utenti/u-success-fail/u-success-fail.component';
+import { CNewComponent } from './views/concorsi/c-new/c-new.component';
+import { CListComponent } from './views/concorsi/c-list/c-list.component';
+import { CQuestionnaireComponent } from './views/concorsi/c-questionnaire/c-questionnaire.component';
 
 
 @NgModule({
@@ -89,6 +92,9 @@ import { USuccessFailComponent } from './components/utenti/u-success-fail/u-succ
     UNewComponent,
     UAskComponent,
     USuccessFailComponent,
+    CNewComponent,
+    CListComponent,
+    CQuestionnaireComponent,
   ],
   imports: [
     BrowserModule,
